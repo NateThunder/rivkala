@@ -1,0 +1,396 @@
+.featuredReleases {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5.4rem, 8vw, 7rem) clamp(1.1rem, 5vw, 4.5rem) clamp(5.2rem, 8vw, 7rem);
+  background-color: #efe2cb;
+  background-image: url("/Backgrounds/white%20paper%20more%20suare.PNG");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #17120e;
+  isolation: isolate;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 74rem);
+  margin: 0 auto;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  width: max-content;
+  max-width: min(100%, 42rem);
+  margin: 0 auto clamp(1.15rem, 2vw, 1.5rem);
+  color: #17120e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3.35rem, 8vw, 6.8rem);
+  font-weight: 600;
+  line-height: 0.82;
+  text-align: center;
+}
+
+.title span {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  padding: 0.08em 0.3em 0.15em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: drop-shadow(0 0.62rem 0.72rem rgba(43, 29, 20, 0.2));
+}
+
+.titleCream {
+  background-image: url("/rivkala_featured_releases_assets/decor/torn-paper-strip-cream-long.png");
+  transform: rotate(-1.2deg);
+}
+
+.titlePink {
+  margin-top: -0.1em;
+  margin-left: min(1.5em, 27vw);
+  background-image: url("/rivkala_featured_releases_assets/decor/torn-paper-strip-dusty-pink.png");
+  transform: rotate(1.2deg);
+}
+
+.kicker {
+  max-width: 44rem;
+  margin: 0 auto clamp(3.1rem, 5vw, 4.35rem);
+  color: #26211c;
+  font-family: var(--font-geist-mono), "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(0.66rem, 0.92vw, 0.8rem);
+  font-weight: 800;
+  letter-spacing: 0.42em;
+  line-height: 1.7;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.releaseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.7rem, 4.2vw, 4.4rem);
+  align-items: start;
+}
+
+.releaseCard {
+  position: relative;
+  text-align: center;
+}
+
+.coverLink {
+  position: relative;
+  display: block;
+  width: min(100%, 22rem);
+  margin: 0 auto;
+  color: inherit;
+  text-decoration: none;
+  transform: rotate(var(--tilt, 0deg));
+  transform-origin: 50% 58%;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.coverLink::after {
+  content: "";
+  position: absolute;
+  right: -0.8rem;
+  bottom: -0.75rem;
+  width: clamp(2.1rem, 4.5vw, 3rem);
+  aspect-ratio: 1;
+  background:
+    linear-gradient(135deg, #14110f 45%, #251a15),
+    url("/rivkala_featured_releases_assets/backgrounds/black-paper-texture.png") center / cover;
+  clip-path: polygon(50% 88%, 13% 52%, 13% 26%, 29% 13%, 50% 28%, 71% 13%, 87% 26%, 87% 52%);
+  filter: drop-shadow(0 0.45rem 0.4rem rgba(31, 20, 14, 0.25));
+  opacity: 0.92;
+}
+
+.coverLink:hover,
+.coverLink:focus-visible {
+  filter: drop-shadow(0 1.28rem 1.05rem rgba(37, 24, 18, 0.22));
+  transform: translateY(-0.34rem) rotate(calc(var(--tilt, 0deg) * 0.58));
+}
+
+.coverLink:focus-visible {
+  outline: 0.14rem solid rgba(22, 18, 14, 0.82);
+  outline-offset: 0.36rem;
+}
+
+.releaseCover {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border: clamp(0.26rem, 0.58vw, 0.42rem) solid #f3e5cf;
+  box-shadow:
+    0 1.05rem 0.95rem rgba(45, 28, 19, 0.26),
+    0 0 0 1px rgba(48, 35, 26, 0.12);
+  object-fit: cover;
+}
+
+.releaseTape {
+  position: absolute;
+  top: -1.35rem;
+  left: 50%;
+  z-index: 2;
+  width: clamp(5.5rem, 10vw, 7.7rem);
+  height: auto;
+  pointer-events: none;
+  transform: translateX(-50%) rotate(var(--tape-tilt, 0deg));
+  user-select: none;
+}
+
+.releaseName {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: clamp(1.2rem, 2vw, 1.55rem) auto 0.82rem;
+  padding: 0.28rem 1.15rem 0.46rem;
+  background: url("/rivkala_featured_releases_assets/decor/release-title-paper-label.png") center / 100% 100% no-repeat;
+  color: #17120e;
+  filter: drop-shadow(0 0.35rem 0.34rem rgba(43, 29, 20, 0.15));
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.38rem, 2.5vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.releaseButton,
+.allReleasesLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.72rem;
+  font-family: var(--font-geist-mono), "Arial Narrow", Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.29em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.releaseButton::after,
+.allReleasesLink::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-block: 0.28rem solid transparent;
+  border-inline-start: 0.4rem solid currentColor;
+}
+
+.releaseButton {
+  min-width: 5.35rem;
+  min-height: 2.08rem;
+  padding: 0.58rem 0.8rem 0.54rem;
+  border: 1px solid rgba(14, 13, 12, 0.38);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent),
+    #20201f;
+  color: #f8ecd8;
+  box-shadow: 0 0.38rem 0.5rem rgba(37, 24, 18, 0.18);
+}
+
+.releaseButton:hover,
+.releaseButton:focus-visible {
+  background-color: #72151b;
+  color: #fff7e8;
+  transform: translateY(-0.08rem);
+}
+
+.releaseButton:focus-visible,
+.allReleasesLink:focus-visible {
+  outline: 0.13rem solid rgba(22, 18, 14, 0.82);
+  outline-offset: 0.24rem;
+}
+
+.allReleasesLink {
+  width: max-content;
+  max-width: 100%;
+  min-height: 3.4rem;
+  margin: clamp(3.4rem, 5.6vw, 4.8rem) auto 0;
+  padding: 1.05rem 1.8rem 1rem;
+  border: 1px solid rgba(22, 18, 14, 0.68);
+  background: rgba(244, 233, 215, 0.18);
+  color: #17120e;
+}
+
+.allReleasesLink:hover,
+.allReleasesLink:focus-visible {
+  border-color: rgba(22, 18, 14, 0.92);
+  background: rgba(255, 248, 234, 0.46);
+  transform: translateY(-0.1rem);
+}
+
+.lamp,
+.faceCollage {
+  position: absolute;
+  z-index: 1;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.lamp {
+  left: 0;
+  top: clamp(6.6rem, 10vw, 8.1rem);
+  width: clamp(5.6rem, 10.6vw, 8.625rem);
+  filter: drop-shadow(0.65rem 1.3rem 0.8rem rgba(32, 20, 15, 0.17));
+}
+
+.faceCollage {
+  top: clamp(2.7rem, 4.5vw, 4rem);
+  right: clamp(0.45rem, 1.4vw, 1.2rem);
+  width: clamp(11.5rem, 22vw, 18.5rem);
+  filter: drop-shadow(0 1rem 1rem rgba(43, 29, 20, 0.24));
+  transform: rotate(4deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .title,
+  .kicker,
+  .releaseCard,
+  .allReleasesLink {
+    animation: featured-rise 560ms ease both;
+  }
+
+  .kicker {
+    animation-delay: 70ms;
+  }
+
+  .releaseCard:nth-child(1) {
+    animation-delay: 130ms;
+  }
+
+  .releaseCard:nth-child(2) {
+    animation-delay: 210ms;
+  }
+
+  .releaseCard:nth-child(3) {
+    animation-delay: 290ms;
+  }
+
+  .allReleasesLink {
+    animation-delay: 350ms;
+  }
+}
+
+@keyframes featured-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 980px) {
+  .featuredReleases {
+    padding-top: clamp(5rem, 10vw, 6.4rem);
+  }
+
+  .inner {
+    width: min(100%, 42rem);
+  }
+
+  .releaseGrid {
+    grid-template-columns: 1fr;
+    gap: 3.7rem;
+  }
+
+  .coverLink {
+    width: min(100%, 24rem);
+  }
+
+  .lamp {
+    left: 0;
+  }
+
+  .faceCollage {
+    right: clamp(0.35rem, 1.5vw, 0.8rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .featuredReleases {
+    padding: 5.1rem clamp(1.05rem, 5vw, 1.6rem) 4.7rem;
+  }
+
+  .title {
+    max-width: calc(100% - 1rem);
+    font-size: clamp(2.25rem, 11.5vw, 3.25rem);
+  }
+
+  .titlePink {
+    margin-left: min(0.72em, 15vw);
+  }
+
+  .kicker {
+    max-width: 18rem;
+    margin-bottom: 2.9rem;
+    font-size: 0.61rem;
+    letter-spacing: 0.24em;
+  }
+
+  .releaseGrid {
+    gap: 3.25rem;
+  }
+
+  .coverLink {
+    width: min(100%, 20.5rem);
+  }
+
+  .releaseName {
+    font-size: clamp(1.45rem, 8vw, 2rem);
+  }
+
+  .allReleasesLink {
+    width: min(100%, 19.5rem);
+    padding-inline: 1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.23em;
+  }
+
+  .lamp {
+    left: 0;
+    top: 5.4rem;
+    width: 4.85rem;
+  }
+
+  .faceCollage {
+    top: 2.55rem;
+    right: 0.2rem;
+    width: 8.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 2.12rem;
+  }
+
+  .kicker {
+    font-size: 0.56rem;
+    letter-spacing: 0.19em;
+  }
+
+  .releaseButton,
+  .allReleasesLink {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+  }
+}

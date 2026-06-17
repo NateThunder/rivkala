@@ -1,0 +1,190 @@
+/* Rivkala Featured Releases section starter */
+.featured-releases {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 8vw, 8rem) 5vw 6rem;
+  background: #f3e7d2 url("../backgrounds/cream-paper-background.png") center / cover;
+  color: #161412;
+}
+
+.featured-releases::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 180px;
+  background: url("../backgrounds/black-torn-top-edge.png") top center / 100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.featured-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.featured-title {
+  position: relative;
+  width: max-content;
+  margin: 0 auto 1.3rem;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 7vw, 6.7rem);
+  line-height: .86;
+  letter-spacing: -0.04em;
+}
+
+.featured-title span {
+  display: block;
+  padding: .08em .28em .14em;
+  background-size: 100% 100%;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,.18));
+}
+
+.featured-title .cream {
+  background-image: url("../decor/torn-paper-strip-cream-long.png");
+  transform: rotate(-1deg);
+}
+
+.featured-title .pink {
+  margin-top: -.08em;
+  margin-left: .45em;
+  background-image: url("../decor/torn-paper-strip-dusty-pink.png");
+  transform: rotate(1deg);
+}
+
+.featured-kicker {
+  margin: 0 0 3.25rem;
+  text-align: center;
+  font-size: .78rem;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.release-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4.2rem);
+  align-items: start;
+}
+
+.release-card {
+  position: relative;
+  text-align: center;
+}
+
+.release-card::before {
+  content: "";
+  position: absolute;
+  inset: -12% -10% auto;
+  aspect-ratio: 1;
+  background: url("../decor/album-card-layered-mat.png") center / contain no-repeat;
+  z-index: -1;
+}
+
+.release-cover-wrap {
+  position: relative;
+  transform: rotate(var(--tilt, -1deg));
+  filter: drop-shadow(0 18px 18px rgba(0,0,0,.22));
+}
+
+.release-cover {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  border: 6px solid #f5ead8;
+}
+
+.release-cover-wrap::after {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  width: 120px;
+  height: 42px;
+  transform: translateX(-50%) rotate(var(--tape-tilt, -2deg));
+  background: url("../decor/beige-tape.png") center / contain no-repeat;
+  opacity: .9;
+}
+
+.release-card:nth-child(2) .release-cover-wrap::after {
+  background-image: url("../decor/black-tape.png");
+}
+
+.release-card:nth-child(3) .release-cover-wrap::after {
+  background-image: url("../decor/beige-tape.png");
+}
+
+.release-name {
+  display: inline-block;
+  margin: 1.35rem 0 .8rem;
+  padding: .28rem 1.1rem .45rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+  line-height: 1;
+  background: url("../decor/release-title-paper-label.png") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 6px 7px rgba(0,0,0,.16));
+}
+
+.release-link,
+.all-releases-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .28em;
+  font-size: .68rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.release-link {
+  min-width: 78px;
+  min-height: 32px;
+  padding: .55rem .8rem;
+  color: #f7efe0;
+  background: #20201f;
+}
+
+.all-releases-link {
+  width: max-content;
+  margin: 4.2rem auto 0;
+  padding: 1rem 1.7rem;
+  color: #161412;
+  border: 1px solid rgba(22,20,18,.65);
+}
+
+.featured-lamp,
+.featured-face-collage {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+.featured-lamp {
+  left: max(-110px, -8vw);
+  top: 6.2rem;
+  width: clamp(90px, 14vw, 170px);
+  z-index: 3;
+}
+
+.featured-face-collage {
+  right: max(-40px, -3vw);
+  top: 2.5rem;
+  width: clamp(180px, 24vw, 330px);
+  transform: rotate(4deg);
+  filter: drop-shadow(0 16px 18px rgba(0,0,0,.25));
+  z-index: 3;
+}
+
+@media (max-width: 850px) {
+  .featured-releases { padding-inline: 7vw; }
+  .release-grid { grid-template-columns: 1fr; gap: 3.5rem; max-width: 390px; margin: 0 auto; }
+  .featured-lamp { opacity: .35; left: -90px; }
+  .featured-face-collage { opacity: .65; top: 1rem; right: -90px; }
+  .featured-kicker { letter-spacing: .25em; }
+}

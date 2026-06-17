@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./home.css";
 import bannerText from "../public/banner text.png";
 import headshot from "../public/Bex photos/headshot transparent background.png";
+import FeaturedReleases from "./featured-releases";
 import SiteNav from "./site-nav";
 
 export default function HomeView() {
@@ -55,19 +56,7 @@ export default function HomeView() {
       </section>
 
       <section className="home__paper">
-        <div className="home__inner home__paper-content">
-          <div className="home__intro">
-            <span className="home__intro-mark" aria-hidden="true" />
-            <h2 className="home__intro-title">Rivkala</h2>
-            <p className="home__intro-copy">
-              A vintage soul with a modern voice. Rivkala weaves jazz,
-              cabaret, and chamber-pop into stories that linger.
-            </p>
-            <Link className="home__intro-link" href="/epk">
-              <span>More about Rivkala</span>
-            </Link>
-          </div>
-        </div>
+        <FeaturedReleases />
       </section>
     </main>
   );
