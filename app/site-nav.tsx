@@ -3,11 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "../public/Gemini_Generated_Image_4mr1b44mr1b44mr1-removebg-preview.png";
 
 const navItems = [
-  { href: "/music", label: "Music" },
+  { href: "/music", label: "Music", graphic: true },
   { href: "/videos", label: "Videos" },
   { href: "/epk", label: "EPK" },
   { href: "/shop", label: "Shop" },
@@ -17,6 +17,8 @@ const navItems = [
 export default function SiteNav() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [tappedHref, setTappedHref] = useState<string | null>(null);
+  const tapTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -37,6 +39,26 @@ export default function SiteNav() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (tapTimerRef.current !== null) {
+        clearTimeout(tapTimerRef.current);
+      }
+    };
+  }, []);
+
+  const triggerTap = (href: string) => {
+    if (tapTimerRef.current !== null) {
+      clearTimeout(tapTimerRef.current);
+    }
+
+    setTappedHref(href);
+    tapTimerRef.current = setTimeout(() => {
+      setTappedHref((currentHref) => (currentHref === href ? null : currentHref));
+      tapTimerRef.current = null;
+    }, 180);
+  };
 
   return (
     <nav
@@ -64,11 +86,7 @@ export default function SiteNav() {
         aria-expanded={isMenuOpen}
         aria-label={isMenuOpen ? "Close primary navigation" : "Open primary navigation"}
         onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
-      >
-        <span className="site-nav__menu-bar" aria-hidden="true" />
-        <span className="site-nav__menu-bar" aria-hidden="true" />
-        <span className="site-nav__menu-bar" aria-hidden="true" />
-      </button>
+      />
 
       <button
         type="button"
@@ -84,18 +102,30 @@ export default function SiteNav() {
         id="primary-navigation-menu"
         className={`site-nav__list${isMenuOpen ? " site-nav__list--open" : ""}`}
       >
-        {navItems.map(({ href, label }) => {
+        {navItems.map(({ href, label, graphic }) => {
           const isActive = pathname === href;
 
           return (
-            <li key={href} className="site-nav__item">
+            <li
+              key={href}
+              className={`site-nav__item${graphic ? " site-nav__item--graphic" : ""}`}
+            >
               <Link
                 href={href}
-                className={`site-nav__link${isActive ? " site-nav__link--active" : ""}`}
+                className={`site-nav__link${
+                  isActive ? " site-nav__link--active" : ""
+                }${graphic ? " site-nav__link--graphic" : ""}${
+                  tappedHref === href ? " site-nav__link--tapped" : ""
+                }`}
                 aria-current={isActive ? "page" : undefined}
-                onClick={() => setIsMenuOpen(false)}
+                aria-label={label}
+                onPointerDown={() => triggerTap(href)}
+                onClick={() => {
+                  triggerTap(href);
+                  setIsMenuOpen(false);
+                }}
               >
-                <span>{label}</span>
+                <span className="site-nav__label">{label}</span>
                 <span className="site-nav__indicator" aria-hidden="true" />
               </Link>
             </li>
