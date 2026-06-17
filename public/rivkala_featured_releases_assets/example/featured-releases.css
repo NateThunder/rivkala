@@ -61,6 +61,7 @@
   letter-spacing: .42em;
   text-transform: uppercase;
   font-weight: 700;
+  visibility: hidden;
 }
 
 .release-grid {
