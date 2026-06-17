@@ -73,7 +73,9 @@ export default function FeaturedReleases() {
           <span className={styles.titleCream}>Featured</span>
           <span className={styles.titlePink}>Releases</span>
         </h2>
-        <p className={styles.kicker}>New music, curated for your eyes and ears.</p>
+        <p className={styles.kicker} aria-hidden="true">
+          &nbsp;
+        </p>
 
         <div className={styles.releaseGrid}>
           {releases.map((release) => (
