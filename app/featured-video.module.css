@@ -1,11 +1,9 @@
 .featuredVideo {
   position: relative;
+  z-index: 1;
   overflow: hidden;
-  display: grid;
-  margin-top: clamp(-4rem, -5vw, -2.25rem);
-  min-height: 100svh;
-  align-items: center;
-  padding: clamp(4.9rem, 7vw, 6.8rem) clamp(1rem, 4.7vw, 4.5rem) clamp(1.45rem, 2.8vw, 2.45rem);
+  margin-top: clamp(-6.5rem, -7vw, -4.5rem);
+  padding-top: clamp(3rem, 5vw, 5rem);
   background-image: url("/Backgrounds/Greed-Fabric.png");
   background-position: top center;
   background-repeat: no-repeat;
@@ -14,56 +12,54 @@
   isolation: isolate;
 }
 
-.collage {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.inner {
+.artboard {
   position: relative;
-  z-index: 3;
-  display: grid;
-  width: min(100%, 76rem);
+  width: min(calc(100% - 1rem), 66rem);
+  aspect-ratio: 1.08;
   margin: 0 auto;
-  grid-template-areas:
-    "title"
-    "media"
-    "copy";
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  align-items: start;
-  row-gap: 0;
+  container-type: inline-size;
   isolation: isolate;
 }
 
-.copyBlock {
-  position: relative;
-  z-index: 7;
-  display: flex;
-  grid-area: copy;
-  max-width: 29rem;
-  flex-direction: column;
-  align-items: center;
-  margin-top: calc(-1 * clamp(2.4rem, 4.2vw, 3.8rem));
-  padding-top: 0;
+.visualCluster {
+  position: absolute;
+  top: 8%;
+  left: 3.5%;
+  z-index: 3;
+  width: 88.5%;
+  height: 87.5%;
+  transform-origin: top center;
+  isolation: isolate;
+}
+
+.backdrop {
+  position: absolute;
+  top: -7.5%;
+  left: -21%;
+  z-index: 1;
+  display: block;
+  width: 150%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
 }
 
 .title {
-  position: relative;
-  grid-area: title;
-  z-index: 6;
+  position: absolute;
+  top: 2.5%;
+  left: 50%;
+  z-index: 5;
   width: max-content;
-  max-width: min(100%, 46rem);
-  margin: 0 0 calc(-1 * clamp(3.5rem, 6vw, 5.9rem));
-  justify-self: center;
+  max-width: 68%;
+  margin: 0;
   color: #17120e;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 6.2vw, 5.8rem);
+  font-size: clamp(2.3rem, 10cqw, 6.6rem);
   font-weight: 600;
   line-height: 0.82;
   text-align: center;
+  translate: -50% 0;
 }
 
 .titleLine {
@@ -81,7 +77,7 @@
 
 .titleLinePink {
   margin-top: -0.08em;
-  margin-left: min(1.08em, 25vw);
+  margin-left: 0.88em;
   transform: rotate(1.2deg);
 }
 
@@ -97,109 +93,36 @@
   z-index: 1;
 }
 
-.description {
-  position: relative;
-  z-index: 6;
-  width: min(100%, 24rem);
-  margin: 0 0 clamp(0.9rem, 1.4vw, 1.2rem);
-  color: #201812;
-  font-family: var(--font-geist-mono), "Arial Narrow", Arial, sans-serif;
-  font-size: clamp(0.82rem, 1vw, 0.95rem);
-  font-weight: 700;
-  line-height: 1.5;
-  text-align: center;
-}
-
-.actions {
-  position: relative;
-  z-index: 6;
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(0.86rem, 1.4vw, 1.3rem);
-  align-items: center;
-  justify-content: center;
-}
-
-.videoButton {
-  display: inline-flex;
-  min-height: 2.95rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.78rem;
-  padding: 0.82rem 1.35rem 0.76rem;
-  border: 1px solid rgba(22, 18, 14, 0.62);
-  color: #17120e;
-  font-family: var(--font-geist-mono), "Arial Narrow", Arial, sans-serif;
-  font-size: clamp(0.66rem, 0.88vw, 0.78rem);
-  font-weight: 900;
-  letter-spacing: 0.28em;
-  line-height: 1;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    color 160ms ease,
-    transform 160ms ease;
-}
-
-.videoButton::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-block: 0.3rem solid transparent;
-  border-inline-start: 0.42rem solid currentColor;
-}
-
-.videoButtonPrimary {
-  border-color: rgba(91, 8, 14, 0.84);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
-    #6d1018;
-  box-shadow: 0 0.55rem 0.65rem rgba(54, 23, 15, 0.24);
-  color: #fff7e8;
-}
-
-.videoButtonSecondary {
-  background: rgba(244, 233, 215, 0.72);
-  color: #17120e;
-}
-
-.videoButton:hover,
-.videoButton:focus-visible {
-  border-color: rgba(22, 18, 14, 0.92);
-  box-shadow: 0 0.68rem 0.9rem rgba(54, 23, 15, 0.22);
-  transform: translateY(-0.1rem);
-}
-
-.videoButtonPrimary:hover,
-.videoButtonPrimary:focus-visible {
-  color: #fffaf0;
-}
-
-.videoButton:focus-visible {
-  outline: 0.14rem solid rgba(22, 18, 14, 0.88);
-  outline-offset: 0.28rem;
-}
-
 .mediaBlock {
-  position: relative;
-  grid-area: media;
-  z-index: 5;
+  position: absolute;
+  top: 6.5%;
+  left: 52.55%;
+  z-index: 6;
+  width: 83.62%;
   min-width: 0;
-  width: min(100%, 66rem, 82svh);
-  margin-top: 0;
+  translate: -50% 0;
 }
 
 .tvFrame {
   position: relative;
   display: block;
-  width: min(100%, 66rem, 82svh);
-  margin: 0 auto;
+  width: 100%;
   color: inherit;
   text-decoration: none;
   filter: drop-shadow(0 1.28rem 1.05rem rgba(35, 21, 14, 0.32));
-  transform: rotate(0.4deg);
+  transform: rotate(0.35deg);
+}
+
+.tvFrame::before {
+  position: absolute;
+  top: 21.3%;
+  left: 12.8%;
+  z-index: 0;
+  width: 60.8%;
+  height: 48%;
+  border-radius: 16% / 19%;
+  background: #080604;
+  content: "";
 }
 
 .crt {
@@ -255,102 +178,96 @@
   pointer-events: none;
 }
 
-.flower,
-.tilePatch,
-.redScrap,
-.ragScrap,
-.fluffyBall,
-.gramps,
-.bottomFabric {
+.copyBlock {
   position: absolute;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
+  bottom: 7%;
+  left: 50%;
+  z-index: 8;
+  width: min(76%, 38rem);
+  translate: -50% 0;
 }
 
-.flower {
-  left: calc(50% - clamp(35rem, 46vw, 43rem));
-  top: clamp(19rem, 37vw, 29rem);
-  z-index: 1;
-  width: clamp(4.6rem, 7vw, 6.4rem);
-  filter: drop-shadow(0 0.45rem 0.34rem rgba(43, 29, 20, 0.2));
-  transform: rotate(-7deg) translate(390px, -250px);
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.45rem, 1.3cqw, 0.9rem);
 }
 
-.tilePatch {
-  top: clamp(2.1rem, 4vw, 3.8rem);
-  left: calc(50% + clamp(22rem, 30vw, 32rem));
-  z-index: 4;
-  width: clamp(9.88rem, 14.3vw, 15.6rem);
-  transform: rotate(0deg) translate(-260px, 140px);
+.videoButton {
+  display: inline-flex;
+  min-height: clamp(2.5rem, 4.8cqw, 3rem);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.42rem, 1cqw, 0.7rem);
+  padding: clamp(0.65rem, 1.25cqw, 0.82rem) clamp(0.72rem, 2cqw, 1.35rem);
+  border: 1px solid rgba(22, 18, 14, 0.62);
+  color: #17120e;
+  font-family: var(--font-geist-mono), "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(0.56rem, 1.15cqw, 0.76rem);
+  font-weight: 900;
+  letter-spacing: clamp(0.16em, 0.35cqw, 0.28em);
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
-.redScrap {
-  left: calc(50% - clamp(6rem, 10vw, 10rem));
-  bottom: clamp(2.2rem, 5vw, 4.8rem);
-  z-index: 1;
-  width: clamp(22.4rem, 35.7vw, 33.6rem);
-  opacity: 0.96;
-  filter: drop-shadow(0 0.75rem 0.58rem rgba(43, 29, 20, 0.24));
-  transform: none;
+.videoButton::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-block: 0.3rem solid transparent;
+  border-inline-start: 0.42rem solid currentColor;
 }
 
-.ragScrap {
-  right: calc(50% - clamp(22rem, 32vw, 33rem));
-  bottom: clamp(4.2rem, 8vw, 7.4rem);
-  z-index: 2;
-  width: clamp(7.4rem, 10vw, 10.4rem);
-  opacity: 0.98;
-  filter: drop-shadow(0 0.65rem 0.46rem rgba(43, 29, 20, 0.22));
-  transform: rotate(0deg)translate(-190px, 50px);
+.videoButtonPrimary {
+  border-color: rgba(91, 8, 14, 0.84);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
+    #6d1018;
+  box-shadow: 0 0.55rem 0.65rem rgba(54, 23, 15, 0.24);
+  color: #fff7e8;
 }
 
-.fluffyBall {
-  left: calc(50% - clamp(33rem, 44vw, 40rem));
-  top: clamp(14rem, 25vw, 21rem);
-  z-index: 2;
-  width: clamp(5.2rem, 8vw, 8.8rem);
-  filter: drop-shadow(0 0.55rem 0.5rem rgba(43, 29, 20, 0.25));
-  transform: rotate(-10deg) translate(390px, 430px);;
+.videoButtonSecondary {
+  background: rgba(244, 233, 215, 0.78);
+  color: #17120e;
 }
 
-.gramps {
-  right: calc(50% + clamp(21rem, 31vw, 33rem));
-  top: clamp(4.8rem, 9vw, 7.7rem);
-  z-index: 2;
-  width: clamp(5.4rem, 7.6vw, 7.8rem);
-  filter: drop-shadow(0 0.58rem 0.5rem rgba(43, 29, 20, 0.24));
-  transform: rotate(-5deg) translate(200px, 200px);;
+.videoButton:hover,
+.videoButton:focus-visible {
+  border-color: rgba(22, 18, 14, 0.92);
+  box-shadow: 0 0.68rem 0.9rem rgba(54, 23, 15, 0.22);
+  transform: translateY(-0.1rem);
 }
 
-.bottomFabric {
-  left: calc(50% - clamp(30rem, 43vw, 39rem));
-  bottom: clamp(0.4rem, 3vw, 2.8rem);
-  z-index: 0;
-  width: clamp(17rem, 27vw, 26rem);
-  opacity: 0.92;
-  clip-path: polygon(10% 9%, 86% 0, 100% 91%, 15% 100%, 0 65%);
-  filter: drop-shadow(0 0.7rem 0.5rem rgba(43, 29, 20, 0.18));
-  transform: rotate(-9deg)translate(220px, -8px);
+.videoButtonPrimary:hover,
+.videoButtonPrimary:focus-visible {
+  color: #fffaf0;
+}
+
+.videoButton:focus-visible {
+  outline: 0.14rem solid rgba(22, 18, 14, 0.88);
+  outline-offset: 0.28rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .title,
-  .description,
-  .actions,
-  .mediaBlock {
+  .mediaBlock,
+  .actions {
     animation: featured-video-rise 560ms ease both;
   }
 
-  .description {
-    animation-delay: 80ms;
+  .mediaBlock {
+    animation-delay: 110ms;
   }
 
   .actions {
-    animation-delay: 150ms;
-  }
-
-  .mediaBlock {
     animation-delay: 190ms;
   }
 }
@@ -369,233 +286,48 @@
 
 @media (max-width: 1020px) {
   .featuredVideo {
-    padding-top: clamp(4.6rem, 8vw, 6.1rem);
-  }
-
-  .inner {
-    width: min(100%, 58rem);
-    grid-template-areas:
-      "title"
-      "media"
-      "copy";
-    grid-template-columns: 1fr;
-  }
-
-  .title {
-    justify-self: center;
-    max-width: min(100%, 38rem);
-    margin-bottom: calc(-1 * clamp(4.15rem, 8vw, 6rem));
-    font-size: clamp(2.8rem, 8.4vw, 5.35rem);
-  }
-
-  .copyBlock {
-    max-width: none;
-    margin-top: calc(-1 * clamp(2rem, 4.8vw, 3.25rem));
-  }
-
-  .description {
-    width: min(100%, 26rem);
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .actions {
-    justify-content: center;
-  }
-
-  .mediaBlock {
-    width: min(100%, 56rem, 86svh);
-  }
-
-  .tvFrame {
-    width: min(100%, 56rem, 86svh);
-    margin: 0 auto;
-  }
-
-  .flower {
-    top: clamp(17rem, 37vw, 24rem);
-    left: calc(50% - 30rem);
-    transform: rotate(-7deg);
-  }
-
-  .tilePatch {
-    top: clamp(2rem, 4vw, 3.2rem);
-    left: calc(50% + 20rem);
-    right: auto;
-  }
-
-  .redScrap {
-    left: calc(50% - 5rem);
-    right: auto;
-    bottom: clamp(2.5rem, 6vw, 5rem);
-    width: clamp(18.2rem, 37.8vw, 25.2rem);
-  }
-
-  .ragScrap {
-    right: calc(50% - 26rem);
-    left: auto;
-    bottom: clamp(4.2rem, 8vw, 6.2rem);
-  }
-
-  .fluffyBall {
-    left: calc(50% - 28rem);
-    top: clamp(12rem, 29vw, 18rem);
-    
-  }
-
-  .glasses {
-    left: calc(50% + 22rem);
-    right: auto;
-    top: clamp(15rem, 32vw, 21rem);
-  }
-
-  .gramps {
-    right: calc(50% + 21rem);
-    left: auto;
-  }
-
-  .bottomFabric {
-    left: calc(50% - 29rem);
-    bottom: clamp(1rem, 4vw, 3rem);
-    width: clamp(15rem, 31vw, 22rem);
+    padding-top: clamp(2.75rem, 5vw, 4rem);
   }
 }
 
 @media (max-width: 640px) {
   .featuredVideo {
-    margin-top: -2.5rem;
-    min-height: auto;
-    padding: 5.4rem clamp(0.9rem, 4.8vw, 1.35rem) 2.6rem;
+    margin-top: -4.5rem;
+    padding-top: 2.75rem;
   }
 
-  .inner {
-    gap: 3px;
+  .artboard {
+    width: min(calc(100% - 0.5rem), 32rem);
   }
 
   .title {
-    max-width: calc(100% - 1rem);
-    margin-bottom: 0;
-    font-size: clamp(2.25rem, 11.5vw, 3.25rem);
-  }
-
-  .titleLinePink {
-    margin-left: min(0.72em, 18vw);
-  }
-
-  .description {
-    max-width: 20.5rem;
-    font-size: 0.82rem;
-    line-height: 1.45;
-  }
-
-  .actions {
-    width: min(100%, 20rem);
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.72rem;
-  }
-
-  .videoButton {
-    width: 100%;
-    min-height: 3.02rem;
-    padding: 0.84rem 0.9rem 0.78rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
-  }
-
-  .videoButtonSecondary {
-    background: rgba(244, 233, 215, 0.88);
-  }
-
-  .mediaBlock {
-    width: 100%;
-    margin-top: -4.15rem;
-  }
-
-  .tvFrame {
-    width: min(112%, 32rem);
+    max-width: 72%;
   }
 
   .copyBlock {
-    margin-top: 0;
+    bottom: 1.5%;
+    width: 88%;
   }
 
-  .screen {
-    top: 22.2%;
-    left: 13.45%;
-    width: 59.25%;
-    height: 46.3%;
+  .actions {
+    gap: 0.45rem;
   }
 
-  .flower {
-    left: 0.2rem;
-    top: 10.9rem;
-    width: clamp(3.4rem, 14vw, 4.5rem);
+  .videoButton {
+    min-height: 2.45rem;
+    padding-inline: 0.7rem;
+    font-size: 0.54rem;
+    letter-spacing: 0.15em;
   }
 
-  .tilePatch {
-    left: auto;
-    right: -2.5rem;
-    width: 6.6rem;
-  }
-
-  .redScrap {
-    left: auto;
-    right: -11.5rem;
-    bottom: 3.9rem;
-    width: 16.1rem;
-  }
-
-  .ragScrap {
-    left: auto;
-    right: -0.4rem;
-    bottom: 2.6rem;
-    width: 6.6rem;
-  }
-
-  .fluffyBall {
-    left: 0.4rem;
-    top: 48%;
-    width: 4.8rem;
-  }
-
-  .glasses {
-    left: auto;
-    right: 0.2rem;
-    top: 42%;
-    width: 4.9rem;
-  }
-
-  .gramps {
-    left: 0.65rem;
-    right: auto;
-    top: 7rem;
-    width: 4.4rem;
-  }
-
-  .bottomFabric {
-    left: -5.5rem;
-    bottom: 3.2rem;
-    width: 15rem;
+  .videoButtonSecondary {
+    background: rgba(244, 233, 215, 0.9);
   }
 }
 
 @media (max-width: 360px) {
-  .featuredVideo {
-    padding-inline: 0.76rem;
-  }
-
-  .title {
-    font-size: 2.32rem;
-  }
-
-  .description {
-    font-size: 0.78rem;
-  }
-
   .videoButton {
-    font-size: 0.56rem;
-    letter-spacing: 0.18em;
+    padding-inline: 0.56rem;
+    font-size: 0.5rem;
   }
 }
