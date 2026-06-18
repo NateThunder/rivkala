@@ -38,12 +38,6 @@ export default function VideoRoomPage({ className = "" }: VideoRoomPageProps) {
           <TornPaperLabel as="p" tone="pink" className={styles.subTitle}>
             All Videos
           </TornPaperLabel>
-
-          <TornPaperLabel as="p" tone="burgundy" className={styles.heroCaption}>
-            Step in. Press play.
-            <br />
-            Watch the transmissions.
-          </TornPaperLabel>
         </div>
 
       </section>

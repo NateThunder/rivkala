@@ -57,7 +57,7 @@ export default function HomeView() {
       </section>
 
       <section className="home__paper">
-        <FeaturedReleases />
+        <FeaturedReleases enableCollageParallax />
         <FeaturedVideo />
       </section>
     </main>

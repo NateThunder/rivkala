@@ -1,6 +1,7 @@
 import Image, { type StaticImageData } from "next/image";
 import type { CSSProperties } from "react";
 import styles from "./featured-releases.module.css";
+import FeaturedReleasesCollage from "./featured-releases-collage";
 import chessCover from "../public/Album covers/Chess.png";
 import crushedVelvetCover from "../public/Album covers/Crushed Velvet.png";
 import zipLockTeethCover from "../public/Album covers/Zip Lock Teeth.png";
@@ -47,7 +48,13 @@ const releases: Release[] = [
 
 const bandcampRoot = "https://rivkala.bandcamp.com/";
 
-export default function FeaturedReleases() {
+type FeaturedReleasesProps = {
+  enableCollageParallax?: boolean;
+};
+
+export default function FeaturedReleases({
+  enableCollageParallax = false,
+}: FeaturedReleasesProps) {
   return (
     <section
       className={styles.featuredReleases}
@@ -60,13 +67,17 @@ export default function FeaturedReleases() {
         aria-hidden="true"
         sizes="(max-width: 700px) 86px, (max-width: 1100px) 11vw, 138px"
       />
-      <Image
-        className={styles.faceCollage}
-        src={faceCollage}
-        alt=""
-        aria-hidden="true"
-        sizes="(max-width: 700px) 190px, (max-width: 1100px) 25vw, 330px"
-      />
+      {enableCollageParallax ? (
+        <FeaturedReleasesCollage />
+      ) : (
+        <Image
+          className={styles.faceCollage}
+          src={faceCollage}
+          alt=""
+          aria-hidden="true"
+          sizes="(max-width: 700px) 190px, (max-width: 1100px) 25vw, 330px"
+        />
+      )}
 
       <div className={styles.inner}>
         <h2 id="featured-releases-title" className={styles.title}>

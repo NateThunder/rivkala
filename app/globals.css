@@ -196,6 +196,18 @@ body.site-nav-drawer-open {
   isolation: isolate;
 }
 
+.section-page--contact {
+  background-color: #421019;
+  background-image: url("/Backgrounds/red%20carped.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.section-page--contact .section-page__bg {
+  display: none;
+}
+
 .section-page__bg {
   position: absolute;
   inset-inline: 0;
@@ -318,7 +330,7 @@ body.site-nav-drawer-open {
     display: block;
     width: 100%;
     aspect-ratio: 425 / 190;
-    background: url("/collage/rivkala-drawer-music-paper.png") center / cover no-repeat;
+    background: transparent;
     filter: drop-shadow(0 13px 18px rgba(0, 0, 0, 0.28));
     pointer-events: none;
   }
