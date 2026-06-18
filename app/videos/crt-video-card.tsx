@@ -11,18 +11,6 @@ type CRTVideoCardProps = {
   video: VideoItem;
 };
 
-const scrapClasses: Record<VideoItem["scrapVariant"], string> = {
-  "orange-paper": styles.scrapOrangePaper,
-  "burgundy-velvet": styles.scrapBurgundyVelvet,
-  "newspaper-olive": styles.scrapNewspaperOlive,
-};
-
-const tapeAssets = [
-  { src: "/TV Room/small white tape.PNG", width: 175, height: 74 },
-  { src: "/TV Room/red fabric tape.PNG", width: 377, height: 161 },
-  { src: "/TV Room/pink tape.PNG", width: 322, height: 88 },
-] as const;
-
 export default function CRTVideoCard({
   index,
   isPlaying,
@@ -30,26 +18,12 @@ export default function CRTVideoCard({
   video,
 }: CRTVideoCardProps) {
   const titleId = `video-title-${video.id}`;
-  const tape = tapeAssets[index] ?? tapeAssets[0];
-
   return (
     <article
-      className={`${styles.videoCard} ${scrapClasses[video.scrapVariant]}`}
+      className={styles.videoCard}
       style={{ "--card-index": index } as React.CSSProperties}
       aria-labelledby={titleId}
     >
-      <div className={styles.scrapSurface} aria-hidden="true" />
-
-      <Image
-        className={`${styles.cardTape} ${styles[`cardTape${index + 1}`]}`}
-        src={tape.src}
-        width={tape.width}
-        height={tape.height}
-        alt=""
-        aria-hidden="true"
-        sizes="10rem"
-      />
-
       {index === 1 ? (
         <Image
           className={styles.cardFlower}
@@ -79,6 +53,17 @@ export default function CRTVideoCard({
       </h2>
 
       <div className={styles.videoPrimaryAction}>
+        <button
+          type="button"
+          className={styles.videoTitleAction}
+          aria-label={`Play ${video.title} inside the television`}
+          onClick={() => onPlay(video)}
+        >
+          <TornPaperLabel as="span" tone="cream" className={styles.videoTitleLabel}>
+            {video.title}
+          </TornPaperLabel>
+        </button>
+
         <span className={styles.tvFrame}>
           <span className={styles.tvScreen}>
             {isPlaying ? (
@@ -102,9 +87,6 @@ export default function CRTVideoCard({
                 <span className={styles.screenWarmth} aria-hidden="true" />
                 <span className={styles.playButton} aria-hidden="true">
                   <span className={styles.playTriangle} />
-                </span>
-                <span className={styles.vevoMark} aria-hidden="true">
-                  vevo
                 </span>
               </>
             )}
@@ -130,17 +112,6 @@ export default function CRTVideoCard({
             />
           ) : null}
         </span>
-
-        <button
-          type="button"
-          className={styles.videoTitleAction}
-          aria-label={`Play ${video.title} inside the television`}
-          onClick={() => onPlay(video)}
-        >
-          <TornPaperLabel as="span" tone="cream" className={styles.videoTitleLabel}>
-            {video.title}
-          </TornPaperLabel>
-        </button>
       </div>
 
       <button

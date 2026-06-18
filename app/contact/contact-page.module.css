@@ -1,0 +1,536 @@
+.page {
+  --contact-burgundy: #3d0c16;
+  --contact-burgundy-deep: #21070d;
+  --contact-cream: #ead9bd;
+  --contact-rose: #c36e65;
+  --contact-gold: #bd8c55;
+  position: relative;
+  width: 100%;
+  color: var(--contact-cream);
+  font-family: var(--font-contact-serif), Georgia, serif;
+}
+
+.poster {
+  position: relative;
+  width: min(100% - 2rem, 76rem);
+  min-height: 104rem;
+  margin: 0 auto;
+}
+
+.titleBlock {
+  position: relative;
+  z-index: 5;
+  width: min(50rem, 62%);
+  padding: clamp(2rem, 4vw, 4rem) 0 0 clamp(0rem, 2vw, 1.5rem);
+  animation: title-enter 720ms 80ms both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.titleImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0.85rem 0.8rem rgba(13, 2, 5, 0.28));
+}
+
+.formPosition {
+  position: absolute;
+  z-index: 4;
+  top: 28rem;
+  left: 0.5rem;
+  width: min(35rem, 48%);
+  animation: paper-enter 760ms 240ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.formPaper {
+  position: relative;
+  min-height: 48rem;
+  filter: drop-shadow(0 1.35rem 1.35rem rgba(22, 2, 7, 0.28));
+}
+
+.paperTexture {
+  z-index: 0;
+  object-fit: fill;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 48rem;
+  flex-direction: column;
+  padding: 4.9rem clamp(3.15rem, 5vw, 4.6rem) 3.7rem;
+  color: #281c18;
+  font-family: var(--font-contact-typewriter), "Courier New", monospace;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+  margin-bottom: 1.45rem;
+}
+
+.field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #241814;
+  font: 400 1rem/1.45 var(--font-contact-typewriter), "Courier New", monospace;
+  outline: none;
+}
+
+.field input {
+  height: 2rem;
+  border-bottom: 1px solid rgba(55, 37, 30, 0.52);
+}
+
+.field textarea {
+  min-height: 10.5rem;
+  resize: vertical;
+  border: 1px solid rgba(55, 37, 30, 0.62);
+  padding: 0.75rem;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  border-color: #7d1f2e;
+  box-shadow: 0 0 0 2px rgba(125, 31, 46, 0.2);
+}
+
+.messageField {
+  margin-bottom: 1.3rem;
+}
+
+.sendButton {
+  align-self: center;
+  min-width: 10.5rem;
+  border: 1px solid rgba(233, 211, 180, 0.18);
+  background: var(--contact-burgundy);
+  color: #efe1ca;
+  padding: 0.9rem 1.6rem 0.82rem;
+  font-family: var(--font-contact-serif), Georgia, serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.26em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.sendButton:disabled {
+  cursor: not-allowed;
+  filter: saturate(0.82);
+  opacity: 0.88;
+}
+
+.formStatus {
+  max-width: 24rem;
+  margin: 0.9rem auto 0;
+  color: rgba(42, 28, 23, 0.82);
+  font-size: 0.69rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.formStatus a {
+  color: #6c1724;
+  font-weight: 700;
+  text-underline-offset: 0.16em;
+}
+
+.formStatus a:focus-visible {
+  outline: 2px solid #6c1724;
+  outline-offset: 3px;
+}
+
+.socialNav {
+  align-self: center;
+  margin-top: 0.9rem;
+}
+
+.socialList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.55rem, 2vw, 0.9rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.socialLink {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid rgba(108, 23, 36, 0.68);
+  border-radius: 50%;
+  color: #6c1724;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.socialLink svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.socialLink .iconFill,
+.socialLink .iconDot {
+  fill: currentColor;
+  stroke: none;
+}
+
+.socialLink .iconCutout {
+  fill: var(--contact-cream);
+  stroke: none;
+}
+
+.socialLink:hover .iconCutout,
+.socialLink:focus-visible .iconCutout {
+  fill: var(--contact-burgundy);
+}
+
+.socialLink:hover {
+  border-color: var(--contact-burgundy);
+  background: var(--contact-burgundy);
+  color: var(--contact-cream);
+  transform: translateY(-0.125rem);
+}
+
+.socialLink:focus-visible {
+  border-color: var(--contact-burgundy);
+  background: var(--contact-burgundy);
+  color: var(--contact-cream);
+  outline: 2px solid #8f3140;
+  outline-offset: 3px;
+  transform: translateY(-0.125rem);
+}
+
+.artStage {
+  --contact-scroll: 0;
+  --contact-pointer-x: 0;
+  --contact-pointer-y: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.artLayer {
+  position: absolute;
+  will-change: transform;
+}
+
+.artLayer img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 1.4rem 1.5rem rgba(17, 2, 5, 0.34));
+}
+
+.lampArtwork {
+  top: 0.5rem;
+  right: -2.5rem;
+  width: min(36.4rem, 48.3%);
+  transform: translate3d(
+      calc(var(--contact-pointer-x) * 1.1rem),
+      calc(
+        var(--contact-scroll) * -3rem + var(--contact-pointer-y) * 0.65rem
+      ),
+      0
+    )
+    rotate(calc(var(--contact-pointer-x) * 0.7deg));
+  transition: transform 120ms linear;
+  animation: lamp-enter 900ms 180ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lashArtwork {
+  top: 45rem;
+  right: 24rem;
+  width: 18rem;
+  transform: translate3d(
+      calc(var(--contact-pointer-x) * -0.65rem),
+      calc(var(--contact-scroll) * 2rem + var(--contact-pointer-y) * -0.45rem),
+      0
+    )
+    rotate(calc(-5deg + var(--contact-pointer-x) * -0.9deg));
+  transition: transform 140ms linear;
+  animation: accent-enter 760ms 520ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.figureArtwork {
+  top: 54rem;
+  right: -0.75rem;
+  width: min(27rem, 35%);
+  transform: translate3d(
+      calc(var(--contact-pointer-x) * -0.45rem),
+      calc(var(--contact-scroll) * 1.5rem + var(--contact-pointer-y) * -0.3rem),
+      0
+    )
+    rotate(calc(2deg + var(--contact-pointer-x) * -0.5deg));
+  transition: transform 150ms linear;
+  animation: figure-enter 820ms 580ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eyeArtwork {
+  bottom: 0;
+  left: -2rem;
+  width: min(38rem, 52%);
+  transform: translate3d(
+      calc(var(--contact-pointer-x) * 0.55rem),
+      calc(var(--contact-scroll) * -1.55rem + var(--contact-pointer-y) * 0.4rem),
+      0
+    )
+    rotate(
+      calc(
+        -4deg + var(--contact-scroll) * 20deg +
+          var(--contact-pointer-x) * 0.45deg
+      )
+    );
+  transition: transform 150ms linear;
+  animation: accent-enter 780ms 620ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes title-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(-1.5rem, 0.8rem, 0) rotate(-1deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+}
+
+@keyframes paper-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2.5rem, 0) rotate(-1.5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+}
+
+@keyframes figure-enter {
+  from {
+    opacity: 0;
+    translate: 1.5rem 2.5rem;
+    scale: 0.94;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes lamp-enter {
+  from {
+    opacity: 0;
+    translate: 3rem 1.5rem;
+    scale: 0.96;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes accent-enter {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+    scale: 0.94;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@media (max-width: 980px) {
+  .poster {
+    min-height: 96rem;
+  }
+
+  .titleBlock {
+    width: 66%;
+  }
+
+  .formPosition {
+    top: 27rem;
+    width: 49%;
+  }
+
+  .lampArtwork {
+    right: -2.5rem;
+    width: 50.4%;
+  }
+
+  .lashArtwork {
+    right: 18rem;
+  }
+
+  .figureArtwork {
+    top: 52.5rem;
+    right: -1.5rem;
+    width: min(25rem, 39%);
+  }
+}
+
+@media (max-width: 760px) {
+  .poster {
+    display: flex;
+    width: min(100% - 1.25rem, 35rem);
+    min-height: 0;
+    flex-direction: column;
+    padding-bottom: 4rem;
+  }
+
+  .titleBlock {
+    width: 100%;
+    padding: 1.25rem 0 0;
+  }
+
+  .formPosition {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .formPosition {
+    z-index: 4;
+    margin-top: 2.5rem;
+  }
+
+  .formPaper {
+    min-height: 43rem;
+  }
+
+  .form {
+    min-height: 43rem;
+    padding: 4.2rem clamp(2.35rem, 10vw, 3.4rem) 3.35rem;
+  }
+
+  .field {
+    margin-bottom: 1.1rem;
+  }
+
+  .field textarea {
+    min-height: 8.75rem;
+  }
+
+  .artStage {
+    position: relative;
+    inset: auto;
+    z-index: 2;
+    width: 100%;
+    height: clamp(36rem, 140vw, 50rem);
+    margin-top: 0.75rem;
+  }
+
+  .lampArtwork {
+    top: 0;
+    right: -2%;
+    width: 78.4%;
+  }
+
+  .lashArtwork {
+    top: 48%;
+    right: auto;
+    left: 0;
+    width: 45%;
+  }
+
+  .figureArtwork {
+    display: none;
+  }
+
+  .eyeArtwork {
+    bottom: 0;
+    left: -7%;
+    width: 98%;
+  }
+}
+
+@media (max-width: 410px) {
+  .formPaper,
+  .form {
+    min-height: 42rem;
+  }
+
+  .form {
+    padding-right: 2.15rem;
+    padding-left: 2.15rem;
+  }
+
+  .field label {
+    font-size: 0.75rem;
+  }
+
+  .sendButton {
+    min-width: 9rem;
+  }
+
+  .socialList {
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .titleBlock,
+  .formPosition,
+  .artLayer {
+    animation: none;
+  }
+
+  .lampArtwork,
+  .lashArtwork,
+  .figureArtwork,
+  .eyeArtwork {
+    transform: none;
+    transition: none;
+  }
+
+  .socialLink {
+    transition: none;
+  }
+
+  .socialLink:hover,
+  .socialLink:focus-visible {
+    transform: none;
+  }
+}

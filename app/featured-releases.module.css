@@ -265,11 +265,38 @@
 }
 
 .faceCollage {
+  --featured-scroll: 0;
+  --featured-pointer-x: 0;
+  --featured-pointer-y: 0;
   top: clamp(2.7rem, 4.5vw, 4rem);
   right: clamp(0.45rem, 1.4vw, 1.2rem);
   width: clamp(11.5rem, 22vw, 18.5rem);
   filter: drop-shadow(0 1rem 1rem rgba(43, 29, 20, 0.24));
-  transform: rotate(4deg);
+  transform: translate3d(
+      calc(var(--featured-pointer-x) * 0.55rem),
+      calc(
+        var(--featured-scroll) * -1.55rem +
+          var(--featured-pointer-y) * 0.4rem
+      ),
+      0
+    )
+    rotate(
+      calc(
+        4deg + var(--featured-scroll) * 20deg +
+          var(--featured-pointer-x) * 0.45deg
+      )
+    );
+}
+
+.faceCollageMotion {
+  transition: transform 150ms linear;
+  will-change: transform;
+}
+
+.faceCollageImage {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -411,5 +438,12 @@
   .allReleasesLink {
     font-size: 0.58rem;
     letter-spacing: 0.2em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faceCollageMotion {
+    transform: rotate(4deg);
+    transition: none;
   }
 }

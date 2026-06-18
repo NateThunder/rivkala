@@ -66,12 +66,15 @@
   width: min(calc(100% - 3rem), 73.75rem);
   min-height: 0;
   margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 0;
 }
 
 .heroCopy {
   position: relative;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: fit-content;
   max-width: 100%;
   margin: 0 auto;
@@ -169,32 +172,19 @@
 }
 
 .subTitle {
-  margin-top: -0.12em;
+  margin-top: clamp(-0.9rem, -1.9vw, -0.35rem);
   margin-right: auto;
   margin-left: auto;
   padding: 0.05em 0.32em 0.14em;
   font-size: clamp(2.8rem, 5.3vw, 4.7rem);
   line-height: 0.96;
-  transform: rotate(0.8deg);
+  transform: translateX(-3.5%) rotate(0.8deg);
 }
 
 .subTitle::before {
   inset: -0.05em -0.08em;
   background: url("/TV Room/pink tape.PNG") center / 100% 100% no-repeat;
   clip-path: none;
-}
-
-.heroCaption {
-  margin-top: clamp(1.3rem, 2.8vw, 2.25rem);
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0.82rem 1.35rem 0.9rem;
-  color: var(--cream);
-  font-family: var(--font-tv-typewriter), "Courier New", monospace;
-  font-size: clamp(0.82rem, 1.25vw, 1rem);
-  letter-spacing: 0.08em;
-  line-height: 1.55;
-  transform: rotate(-0.6deg);
 }
 
 .heroCollage {
@@ -371,13 +361,14 @@
   z-index: 4;
   width: min(calc(100% - 2rem), 73.75rem);
   margin: 0 auto;
-  padding: 1rem 0 4rem;
+  padding: 0 0 4rem;
 }
 
 .videoGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2.6rem, 5.5vw, 5rem) clamp(1.1rem, 2.8vw, 2.4rem);
+  gap: clamp(0.65rem, 1.375vw, 1.25rem) clamp(1.1rem, 2.8vw, 2.4rem);
+  margin-top: -2.5rem;
 }
 
 .videoCard {
@@ -401,98 +392,6 @@
   grid-column: 1 / -1;
   width: calc(50% - clamp(0.55rem, 1.4vw, 1.2rem));
   justify-self: center;
-}
-
-.scrapSurface {
-  position: absolute;
-  inset: 0.7rem -0.1rem 0.2rem;
-  z-index: -2;
-  filter: drop-shadow(0 1.05rem 0.75rem rgba(0, 0, 0, 0.28));
-  transition: transform 240ms ease;
-}
-
-.scrapSurface::before,
-.scrapSurface::after {
-  position: absolute;
-  content: "";
-}
-
-.scrapSurface::before {
-  inset: 0;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
-
-.scrapSurface::after {
-  inset: 12% 2% 4%;
-  z-index: -1;
-  opacity: 0.68;
-}
-
-.scrapOrangePaper .scrapSurface::before {
-  background-image: url("/TV Room/TV backdrop 1 babe.PNG");
-}
-
-.scrapOrangePaper .scrapSurface::after {
-  left: -4%;
-  background: url("/video_section_separated_assets/orange-tiles.png") center / cover;
-  clip-path: polygon(0 12%, 92% 2%, 100% 92%, 7% 100%);
-  transform: rotate(-1.5deg);
-}
-
-.scrapBurgundyVelvet .scrapSurface::before {
-  background-image: url("/TV Room/TV backdrop 2.PNG");
-}
-
-.scrapBurgundyVelvet .scrapSurface::after {
-  right: -4%;
-  background: url("/video_section_separated_assets/red-texture.png") center / cover;
-  clip-path: polygon(6% 0, 100% 8%, 94% 100%, 0 91%);
-  transform: rotate(1.4deg);
-}
-
-.scrapNewspaperOlive .scrapSurface::before {
-  background-image: url("/TV Room/cluster.PNG");
-}
-
-.scrapNewspaperOlive .scrapSurface::after {
-  right: -2%;
-  left: 4%;
-  background:
-    linear-gradient(rgba(47, 54, 23, 0.28), rgba(47, 54, 23, 0.28)),
-    url("/TV Room/book.PNG") center / cover;
-  clip-path: polygon(3% 8%, 96% 0, 100% 93%, 12% 100%, 0 68%);
-  transform: rotate(-1deg);
-}
-
-.cardTape {
-  position: absolute;
-  z-index: 8;
-  height: auto;
-  pointer-events: none;
-  filter: drop-shadow(0 0.3rem 0.24rem rgba(0, 0, 0, 0.2));
-}
-
-.cardTape1 {
-  top: -0.8rem;
-  left: 42%;
-  width: 8.5rem;
-  transform: translateX(-50%) rotate(-5deg);
-}
-
-.cardTape2 {
-  top: -1.5rem;
-  right: 10%;
-  width: 9.5rem;
-  transform: rotate(5deg);
-}
-
-.cardTape3 {
-  top: -1rem;
-  left: 12%;
-  width: 8.8rem;
-  transform: rotate(-8deg);
 }
 
 .cardFlower,
@@ -533,7 +432,7 @@
 .tvFrame {
   position: relative;
   display: block;
-  width: min(100%, 37rem);
+  width: min(115%, 42.55rem);
   filter: drop-shadow(0 1.15rem 0.85rem rgba(0, 0, 0, 0.42));
   transform-origin: 50% 85%;
   transition:
@@ -663,25 +562,11 @@
   border-inline-start: 0.82rem solid #fff;
 }
 
-.vevoMark {
-  position: absolute;
-  bottom: 7%;
-  left: 7%;
-  z-index: 8;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(0.72rem, 1.85vw, 1.25rem);
-  font-style: italic;
-  font-weight: 900;
-  letter-spacing: -0.12em;
-  line-height: 1;
-  text-shadow: 0 0.16rem 0.25rem rgba(0, 0, 0, 0.62);
-}
-
 .videoTitleLabel {
   max-width: 88%;
-  margin-top: clamp(-1.25rem, -2vw, -0.75rem);
-  padding: 0.72rem clamp(1rem, 2.8vw, 1.75rem) 0.8rem;
+  margin-top: 0;
+  min-width: clamp(11rem, 24vw, 18rem);
+  padding: 0.8rem clamp(1.1rem, 3vw, 2rem) 0.9rem;
   color: var(--ink);
   font-family: var(--font-tv-typewriter), "Courier New", monospace;
   font-size: clamp(0.72rem, 1.38vw, 0.98rem);
@@ -692,11 +577,22 @@
   transform: rotate(0.3deg);
 }
 
+.videoTitleLabel::before {
+  inset: -0.15rem -0.45rem;
+  background: url("/TV Room/small white tape.PNG") center / 100% 100% no-repeat;
+  clip-path: none;
+}
+
+.videoTitleLabel::after {
+  display: none;
+}
+
 .videoTitleAction {
   position: relative;
   z-index: 7;
   display: block;
   max-width: 100%;
+  margin-bottom: clamp(-4.5rem, -7vw, -3.4rem);
   padding: 0;
   border: 0;
   background: transparent;
@@ -778,10 +674,6 @@
 .videoPrimaryAction:focus-within .playButton {
   background: #ff2028;
   transform: translate(-50%, -50%) scale(1.08);
-}
-
-.videoCard:hover .scrapSurface {
-  transform: rotate(0.65deg) scale(1.006);
 }
 
 .tvActivateButton:focus-visible,
@@ -899,17 +791,12 @@
 @media (prefers-reduced-motion: no-preference) {
   .mainTitle,
   .subTitle,
-  .heroCaption,
   .heroCollage {
     animation: settle-in 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .subTitle {
     animation-delay: 70ms;
-  }
-
-  .heroCaption {
-    animation-delay: 130ms;
   }
 
   .videoCard {
@@ -949,7 +836,7 @@
 
   .hero {
     width: min(calc(100% - 2.5rem), 73.75rem);
-    padding-top: 2.8rem;
+    padding-top: 2.35rem;
   }
 
   .mainTitle {
@@ -961,7 +848,7 @@
   }
 
   .videoGrid {
-    gap: 3rem 0.75rem;
+    gap: 0.75rem 0.75rem;
   }
 }
 
@@ -979,7 +866,7 @@
     display: block;
     width: min(calc(100% - 2rem), 35rem);
     min-height: 0;
-    padding: 2.5rem 0 3.2rem;
+    padding: 2.15rem 0 0;
   }
 
   .heroCopy {
@@ -993,12 +880,9 @@
   }
 
   .subTitle {
+    margin-top: -0.6rem;
     font-size: clamp(2.75rem, 13.5vw, 4.25rem);
-  }
-
-  .heroCaption {
-    padding: 0.72rem 1rem 0.78rem;
-    font-size: 0.76rem;
+    transform: translateX(-2.5%) rotate(0.8deg);
   }
 
   .videoSection {
@@ -1010,6 +894,11 @@
     display: flex;
     flex-direction: column;
     gap: 3.25rem;
+    margin-top: -2rem;
+  }
+
+  .videoCard:nth-child(3) {
+    margin-top: -2.4375rem;
   }
 
   .videoCard,
@@ -1018,10 +907,17 @@
     padding-inline: 0;
   }
 
+  .tvFrame {
+    width: 108%;
+  }
+
   .videoTitleLabel {
     max-width: 84%;
-    margin-top: -1.1rem;
     font-size: clamp(0.72rem, 3.5vw, 0.9rem);
+  }
+
+  .videoTitleAction {
+    margin-bottom: -3.7rem;
   }
 
   .playButton {
@@ -1076,10 +972,6 @@
 
   .subTitle {
     font-size: 2.65rem;
-  }
-
-  .heroCaption {
-    font-size: 0.68rem;
   }
 
   .videoSection {
