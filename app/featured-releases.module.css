@@ -8,12 +8,26 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: #17120e;
-  isolation: isolate;
+}
+
+.featuredReleases::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  height: clamp(4.5rem, 7vw, 6.5rem);
+  background-image: url("/Backgrounds/Greed-Fabric.png");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
 }
 
 .inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: min(100%, 74rem);
   margin: 0 auto;
 }
@@ -329,6 +343,10 @@
 @media (max-width: 640px) {
   .featuredReleases {
     padding: 5.1rem clamp(1.05rem, 5vw, 1.6rem) 4.7rem;
+  }
+
+  .featuredReleases::after {
+    height: 4.5rem;
   }
 
   .title {

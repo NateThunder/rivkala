@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./home.css";
 import bannerText from "../public/banner text.png";
 import headshot from "../public/Bex photos/headshot transparent background.png";
+import FeaturedVideo from "./featured-video";
 import FeaturedReleases from "./featured-releases";
 import SiteNav from "./site-nav";
 
@@ -57,6 +58,7 @@ export default function HomeView() {
 
       <section className="home__paper">
         <FeaturedReleases />
+        <FeaturedVideo />
       </section>
     </main>
   );
