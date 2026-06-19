@@ -38,9 +38,13 @@ export default function HomeView() {
               <Link className="home__cta home__cta--dark home__cta--play" href="/videos">
                 <span>Watch</span>
               </Link>
-              <Link className="home__cta home__cta--paper home__cta--download" href="/epk">
+              <a
+                className="home__cta home__cta--paper home__cta--download"
+                href="/RIVKALA%20EPK%20OFFICIAL.pdf"
+                download="RIVKALA EPK OFFICIAL.pdf"
+              >
                 <span>Download EPK</span>
-              </Link>
+              </a>
             </nav>
           </div>
 

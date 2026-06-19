@@ -81,6 +81,42 @@
   text-align: center;
 }
 
+.heroDecor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroFlower,
+.heroGramps,
+.collageTiles,
+.collageRag,
+.collageBall,
+.collageGramps {
+  position: absolute;
+  display: block;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.heroFlower {
+  top: 0.5rem;
+  left: clamp(-4.5rem, -4vw, -2rem);
+  width: clamp(5.8rem, 9vw, 8.5rem);
+  filter: drop-shadow(0.45rem 0.75rem 0.55rem rgba(0, 0, 0, 0.34));
+  transform: rotate(-13deg);
+}
+
+.heroGramps {
+  top: 2rem;
+  right: clamp(-4.8rem, -4.5vw, -2.1rem);
+  width: clamp(6rem, 9vw, 8.2rem);
+  filter: drop-shadow(-0.4rem 0.8rem 0.55rem rgba(0, 0, 0, 0.3));
+  transform: rotate(7deg);
+}
+
 .tornPaperLabel {
   position: relative;
   display: block;
@@ -364,11 +400,56 @@
   padding: 0 0 4rem;
 }
 
+.videoCollage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.collageTiles {
+  top: 3%;
+  right: -12.5rem;
+  width: clamp(14rem, 22vw, 20rem);
+  opacity: 0.88;
+  filter: saturate(0.86) brightness(0.82) drop-shadow(-0.8rem 1rem 0.7rem rgba(0, 0, 0, 0.28));
+  transform: rotate(5deg);
+}
+
+.collageRag {
+  top: 34%;
+  left: -13.5rem;
+  width: clamp(14rem, 23vw, 20rem);
+  opacity: 0.86;
+  filter: saturate(0.8) brightness(0.72) drop-shadow(0.8rem 1rem 0.8rem rgba(0, 0, 0, 0.32));
+  transform: rotate(11deg);
+}
+
+.collageBall {
+  top: 48%;
+  right: -4rem;
+  width: clamp(6rem, 9vw, 8.5rem);
+  opacity: 0.94;
+  filter: drop-shadow(-0.6rem 0.9rem 0.65rem rgba(0, 0, 0, 0.38));
+  transform: rotate(-8deg);
+}
+
+.collageGramps {
+  bottom: 3%;
+  left: -5.5rem;
+  width: clamp(7.5rem, 12vw, 10.5rem);
+  opacity: 0.9;
+  filter: saturate(0.86) brightness(0.82) drop-shadow(0.6rem 0.9rem 0.65rem rgba(0, 0, 0, 0.34));
+  transform: rotate(-10deg);
+}
+
 .videoGrid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(0.65rem, 1.375vw, 1.25rem) clamp(1.1rem, 2.8vw, 2.4rem);
-  margin-top: -2.5rem;
+  margin-top: -1rem;
 }
 
 .videoCard {
@@ -432,7 +513,7 @@
 .tvFrame {
   position: relative;
   display: block;
-  width: min(115%, 42.55rem);
+  width: min(105%, 42.55rem);
   filter: drop-shadow(0 1.15rem 0.85rem rgba(0, 0, 0, 0.42));
   transform-origin: 50% 85%;
   transition:
@@ -451,11 +532,11 @@
 
 .tvScreen {
   position: absolute;
-  top: 21.4%;
-  left: 13.1%;
+  top: 11.5%;
+  left: 8.7%;
   z-index: 2;
-  width: 60.3%;
-  height: 47.3%;
+  width: 66.6%;
+  height: 66.4%;
   overflow: hidden;
   border-radius: 15% / 18%;
   background: #090705;
@@ -563,10 +644,14 @@
 }
 
 .videoTitleLabel {
+  display: flex;
   max-width: 88%;
   margin-top: 0;
   min-width: clamp(11rem, 24vw, 18rem);
-  padding: 0.8rem clamp(1.1rem, 3vw, 2rem) 0.9rem;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem clamp(1.1rem, 3vw, 2rem) 0.6rem;
   color: var(--ink);
   font-family: var(--font-tv-typewriter), "Courier New", monospace;
   font-size: clamp(0.72rem, 1.38vw, 0.98rem);
@@ -592,7 +677,8 @@
   z-index: 7;
   display: block;
   max-width: 100%;
-  margin-bottom: clamp(-4.5rem, -7vw, -3.4rem);
+  margin-top: -1rem;
+  margin-bottom: 0;
   padding: 0;
   border: 0;
   background: transparent;
@@ -609,7 +695,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 0.7rem;
+  margin-top: -0.25rem;
   padding: 0.84rem 1.45rem 0.78rem;
   border: 0;
   background:
@@ -690,92 +776,6 @@
   transform: translateY(-0.15rem) rotate(0.3deg);
 }
 
-.comingSoon {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  width: min(calc(100% - 3rem), 43rem);
-  min-height: 8.6rem;
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2rem);
-  margin: clamp(0.5rem, 3vw, 2rem) auto clamp(4rem, 8vw, 7rem);
-  padding: 1.35rem clamp(1.25rem, 3.5vw, 2.3rem);
-  color: var(--ink);
-  filter: drop-shadow(0 1rem 0.8rem rgba(0, 0, 0, 0.3));
-  isolation: isolate;
-  transform: rotate(0.5deg);
-}
-
-.comingSoon::before,
-.comingSoon::after {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: "";
-}
-
-.comingSoon::before {
-  background: var(--dusty-pink);
-  clip-path: polygon(2% 8%, 9% 3%, 19% 6%, 31% 1%, 42% 5%, 55% 2%, 69% 6%, 81% 1%, 98% 7%, 100% 91%, 90% 96%, 76% 92%, 62% 98%, 48% 93%, 34% 97%, 18% 92%, 1% 96%);
-}
-
-.comingSoon::after {
-  inset: 0.25rem;
-  opacity: 0.24;
-  background:
-    repeating-linear-gradient(5deg, transparent 0 6px, rgba(41, 20, 19, 0.12) 6px 7px),
-    radial-gradient(circle, rgba(59, 12, 17, 0.2) 0 1px, transparent 1.4px) 0 0 / 0.8rem 0.8rem;
-  mix-blend-mode: multiply;
-}
-
-.comingSoonTv {
-  position: relative;
-  flex: 0 0 auto;
-  width: clamp(4.5rem, 10vw, 6.6rem);
-  filter: drop-shadow(0 0.55rem 0.45rem rgba(0, 0, 0, 0.3));
-}
-
-.comingSoonTv img {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.comingSoonTv span {
-  position: absolute;
-  top: 23%;
-  left: 14%;
-  z-index: 1;
-  width: 58%;
-  height: 44%;
-  border-radius: 18%;
-  background:
-    radial-gradient(ellipse, rgba(154, 101, 31, 0.2), transparent 55%),
-    #10100d;
-  box-shadow: inset 0 0 0.6rem #000;
-}
-
-.comingSoon p {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  margin: 0;
-  font-family: var(--font-tv-typewriter), "Courier New", monospace;
-}
-
-.comingSoon strong {
-  font-size: clamp(0.95rem, 2.2vw, 1.3rem);
-  letter-spacing: 0.08em;
-  line-height: 1.25;
-}
-
-.comingSoon p span {
-  font-size: clamp(0.78rem, 1.6vw, 0.95rem);
-  letter-spacing: 0.11em;
-}
-
 .srOnly {
   position: absolute;
   width: 1px;
@@ -791,7 +791,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .mainTitle,
   .subTitle,
-  .heroCollage {
+  .heroDecor {
     animation: settle-in 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
@@ -799,9 +799,29 @@
     animation-delay: 70ms;
   }
 
+  .heroDecor {
+    animation-delay: 130ms;
+  }
+
+  .videoCollage {
+    animation: collage-settle 900ms cubic-bezier(0.16, 1, 0.3, 1) 220ms both;
+  }
+
   .videoCard {
     animation: transmission-rise 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: calc(180ms + var(--card-index) * 95ms);
+  }
+}
+
+@keyframes collage-settle {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
   }
 }
 
@@ -850,6 +870,15 @@
   .videoGrid {
     gap: 0.75rem 0.75rem;
   }
+
+  .collageTiles {
+    right: -9rem;
+  }
+
+  .collageRag {
+    left: -10rem;
+  }
+
 }
 
 @media (max-width: 700px) {
@@ -873,6 +902,20 @@
     padding: 0;
   }
 
+  .heroFlower {
+    top: 1rem;
+    left: -2.5rem;
+    width: 5.4rem;
+    opacity: 0.78;
+  }
+
+  .heroGramps {
+    top: 2.9rem;
+    right: -2.2rem;
+    width: 5.2rem;
+    opacity: 0.74;
+  }
+
   .mainTitle {
     max-width: calc(100vw - 2rem);
     padding-inline: 0.2em;
@@ -894,7 +937,35 @@
     display: flex;
     flex-direction: column;
     gap: 3.25rem;
-    margin-top: -2rem;
+    margin-top: -0.5rem;
+  }
+
+  .collageTiles {
+    top: 1%;
+    right: -5.8rem;
+    width: 9rem;
+    opacity: 0.62;
+  }
+
+  .collageRag {
+    top: 33%;
+    left: -6.6rem;
+    width: 10rem;
+    opacity: 0.62;
+  }
+
+  .collageBall {
+    top: 62%;
+    right: -1.7rem;
+    width: 4.5rem;
+    opacity: 0.72;
+  }
+
+  .collageGramps {
+    bottom: 1%;
+    left: -2.2rem;
+    width: 5.6rem;
+    opacity: 0.7;
   }
 
   .videoCard:nth-child(3) {
@@ -917,7 +988,8 @@
   }
 
   .videoTitleAction {
-    margin-bottom: -3.7rem;
+    margin-top: -0.8rem;
+    margin-bottom: 0;
   }
 
   .playButton {
@@ -940,21 +1012,6 @@
     width: 5.2rem;
   }
 
-  .comingSoon {
-    width: min(calc(100% - 2rem), 32rem);
-    min-height: 7.6rem;
-    margin-bottom: 4rem;
-    padding: 1.15rem;
-  }
-
-  .comingSoon strong {
-    font-size: clamp(0.82rem, 4vw, 1.05rem);
-  }
-
-  .comingSoon p span {
-    font-size: 0.75rem;
-  }
-
 }
 
 @media (max-width: 370px) {
@@ -974,6 +1031,11 @@
     font-size: 2.65rem;
   }
 
+  .heroFlower,
+  .heroGramps {
+    opacity: 0.58;
+  }
+
   .videoSection {
     width: 100%;
   }
@@ -984,13 +1046,4 @@
     font-size: 0.67rem;
   }
 
-  .comingSoon {
-    width: calc(100% - 1.2rem);
-    gap: 0.7rem;
-    padding-inline: 0.8rem;
-  }
-
-  .comingSoonTv {
-    width: 4.3rem;
-  }
 }

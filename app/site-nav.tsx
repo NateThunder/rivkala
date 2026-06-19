@@ -5,13 +5,18 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import logo from "../public/Gemini_Generated_Image_4mr1b44mr1b44mr1-removebg-preview.png";
+import contactRag from "../public/collage/Contact-Rag-Nav-Bar.png";
+import epkRag from "../public/collage/EPK-Rag-Nav-Bar.png";
+import musicRag from "../public/collage/Music-Rag-Nav-Bar.png";
+import shopRag from "../public/collage/Shop-Rag-Nav-Bar.png";
+import videoRag from "../public/collage/Video-Rag-Nav-Bar.png";
 
 const navItems = [
-  { href: "/music", label: "Music", graphic: true },
-  { href: "/videos", label: "Videos" },
-  { href: "/epk", label: "EPK" },
-  { href: "/shop", label: "Shop" },
-  { href: "/contact", label: "Contact" },
+  { href: "/music", label: "Music", rag: musicRag, tone: "dark" },
+  { href: "/videos", label: "Videos", rag: videoRag, tone: "light" },
+  { href: "/epk", label: "EPK", rag: epkRag, tone: "dark" },
+  { href: "/shop", label: "Shop", rag: shopRag, tone: "dark" },
+  { href: "/contact", label: "Contact", rag: contactRag, tone: "light" },
 ];
 
 export default function SiteNav() {
@@ -102,19 +107,16 @@ export default function SiteNav() {
         id="primary-navigation-menu"
         className={`site-nav__list${isMenuOpen ? " site-nav__list--open" : ""}`}
       >
-        {navItems.map(({ href, label, graphic }) => {
+        {navItems.map(({ href, label, rag, tone }) => {
           const isActive = pathname === href;
 
           return (
-            <li
-              key={href}
-              className={`site-nav__item${graphic ? " site-nav__item--graphic" : ""}`}
-            >
+            <li key={href} className="site-nav__item site-nav__item--graphic">
               <Link
                 href={href}
                 className={`site-nav__link${
                   isActive ? " site-nav__link--active" : ""
-                }${graphic ? " site-nav__link--graphic" : ""}${
+                } site-nav__link--graphic site-nav__link--${tone}${
                   tappedHref === href ? " site-nav__link--tapped" : ""
                 }`}
                 aria-current={isActive ? "page" : undefined}
@@ -125,6 +127,12 @@ export default function SiteNav() {
                   setIsMenuOpen(false);
                 }}
               >
+                <Image
+                  className="site-nav__rag"
+                  src={rag}
+                  alt=""
+                  sizes="(max-width: 640px) 1px, (max-width: 1100px) 11vw, 9rem"
+                />
                 <span className="site-nav__label">{label}</span>
                 <span className="site-nav__indicator" aria-hidden="true" />
               </Link>
