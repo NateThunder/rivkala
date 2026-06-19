@@ -20,7 +20,6 @@ export default function SectionPage({
           : "section-page"
       }
     >
-      <div className="section-page__bg section-page__bg--hero" aria-hidden="true" />
       <div className="section-page__bg section-page__bg--paper" aria-hidden="true" />
 
       <header className="section-page__header">

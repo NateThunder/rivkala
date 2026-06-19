@@ -1,5 +1,4 @@
 import Image from "next/image";
-import crt from "../../public/video_section_separated_assets/CRT.png";
 import type { VideoItem } from "./video-data";
 import TornPaperLabel from "./torn-paper-label";
 import styles from "./video-room.module.css";
@@ -53,17 +52,6 @@ export default function CRTVideoCard({
       </h2>
 
       <div className={styles.videoPrimaryAction}>
-        <button
-          type="button"
-          className={styles.videoTitleAction}
-          aria-label={`Play ${video.title} inside the television`}
-          onClick={() => onPlay(video)}
-        >
-          <TornPaperLabel as="span" tone="cream" className={styles.videoTitleLabel}>
-            {video.title}
-          </TornPaperLabel>
-        </button>
-
         <span className={styles.tvFrame}>
           <span className={styles.tvScreen}>
             {isPlaying ? (
@@ -96,10 +84,12 @@ export default function CRTVideoCard({
 
           <Image
             className={styles.crtImage}
-            src={crt}
+            src="/TV Room/CRT-bigger.PNG"
+            width={587}
+            height={452}
             alt=""
             aria-hidden="true"
-            priority={index < 2}
+            loading={index < 2 ? "eager" : "lazy"}
             sizes="(max-width: 700px) 96vw, (max-width: 1100px) 48vw, 37rem"
           />
 
@@ -112,6 +102,17 @@ export default function CRTVideoCard({
             />
           ) : null}
         </span>
+
+        <button
+          type="button"
+          className={styles.videoTitleAction}
+          aria-label={`Play ${video.title} inside the television`}
+          onClick={() => onPlay(video)}
+        >
+          <TornPaperLabel as="span" tone="cream" className={styles.videoTitleLabel}>
+            {video.title}
+          </TornPaperLabel>
+        </button>
       </div>
 
       <button

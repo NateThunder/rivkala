@@ -2,8 +2,12 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import flower from "../../public/video_section_separated_assets/flower.png";
+import fluffyBall from "../../public/video_section_separated_assets/fluffy-ball.png";
+import gramps from "../../public/video_section_separated_assets/Gramps.png";
+import orangeTiles from "../../public/video_section_separated_assets/orange-tiles.png";
+import rag from "../../public/video_section_separated_assets/rag.png";
 import SiteNav from "../site-nav";
-import crt from "../../public/video_section_separated_assets/CRT.png";
 import CRTVideoCard from "./crt-video-card";
 import TornPaperLabel from "./torn-paper-label";
 import { videos } from "./video-data";
@@ -40,9 +44,20 @@ export default function VideoRoomPage({ className = "" }: VideoRoomPageProps) {
           </TornPaperLabel>
         </div>
 
+        <div className={styles.heroDecor} aria-hidden="true">
+          <Image className={styles.heroFlower} src={flower} alt="" sizes="10rem" />
+          <Image className={styles.heroGramps} src={gramps} alt="" sizes="9rem" />
+        </div>
       </section>
 
       <section className={styles.videoSection} aria-label="Rivkala videos">
+        <div className={styles.videoCollage} aria-hidden="true">
+          <Image className={styles.collageTiles} src={orangeTiles} alt="" sizes="18rem" />
+          <Image className={styles.collageRag} src={rag} alt="" sizes="17rem" />
+          <Image className={styles.collageBall} src={fluffyBall} alt="" sizes="9rem" />
+          <Image className={styles.collageGramps} src={gramps} alt="" sizes="11rem" />
+        </div>
+
         <div className={styles.videoGrid}>
           {videos.map((video, index) => (
             <CRTVideoCard
@@ -55,17 +70,6 @@ export default function VideoRoomPage({ className = "" }: VideoRoomPageProps) {
           ))}
         </div>
       </section>
-
-      <aside className={styles.comingSoon} aria-label="More videos coming soon">
-        <div className={styles.comingSoonTv} aria-hidden="true">
-          <span />
-          <Image src={crt} alt="" sizes="6rem" />
-        </div>
-        <p>
-          <strong>More transmissions coming soon...</strong>
-          <span>Stay tuned.</span>
-        </p>
-      </aside>
     </main>
   );
 }
