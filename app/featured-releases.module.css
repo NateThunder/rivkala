@@ -46,27 +46,35 @@
   text-align: center;
 }
 
-.title span {
+.titleLine {
+  position: relative;
   display: block;
   width: max-content;
   max-width: 100%;
   padding: 0.08em 0.3em 0.15em;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
   filter: drop-shadow(0 0.62rem 0.72rem rgba(43, 29, 20, 0.2));
 }
 
 .titleCream {
-  background-image: url("/rivkala_featured_releases_assets/decor/torn-paper-strip-cream-long.png");
   transform: rotate(-1.2deg);
 }
 
 .titlePink {
   margin-top: -0.1em;
   margin-left: min(1.5em, 27vw);
-  background-image: url("/rivkala_featured_releases_assets/decor/torn-paper-strip-dusty-pink.png");
   transform: rotate(1.2deg);
+}
+
+.titleTape {
+  z-index: -1;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.titleText {
+  position: relative;
+  z-index: 1;
 }
 
 .kicker {

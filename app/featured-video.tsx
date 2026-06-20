@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./featured-video.module.css";
 import poster from "../public/Bex photos/Rivkala-creditMarianaPires-3.jpg";
+import pinkTitleTape from "../public/TV Room/pink-tape.png";
+import whiteTitleTape from "../public/TV Room/white tape.png";
 import backdrop from "../public/video_section_separated_assets/backdrop.png";
 import crt from "../public/video_section_separated_assets/CRT.png";
-import creamStrip from "../public/rivkala_featured_releases_assets/decor/torn-paper-strip-cream-long.png";
-import pinkStrip from "../public/rivkala_featured_releases_assets/decor/torn-paper-strip-dusty-pink.png";
 
 const featuredVideoEmbedUrl = "https://www.youtube.com/embed/LK7PeIOZiVY?rel=0&modestbranding=1";
 
@@ -17,7 +17,7 @@ export default function FeaturedVideo() {
           <span className={`${styles.titleLine} ${styles.titleLineCream}`}>
             <Image
               className={styles.titlePaper}
-              src={creamStrip}
+              src={whiteTitleTape}
               alt=""
               aria-hidden="true"
               fill
@@ -28,7 +28,7 @@ export default function FeaturedVideo() {
           <span className={`${styles.titleLine} ${styles.titleLinePink}`}>
             <Image
               className={styles.titlePaper}
-              src={pinkStrip}
+              src={pinkTitleTape}
               alt=""
               aria-hidden="true"
               fill

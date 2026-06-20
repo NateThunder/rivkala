@@ -1,0 +1,400 @@
+.page {
+  --cream: #eadbbf;
+  --burgundy: #3a0812;
+  --red: #bd2929;
+  width: 100%;
+  color: var(--cream);
+  font-family: var(--font-bio-typewriter), "Courier New", monospace;
+}
+
+.poster {
+  --bio-depth: 0;
+  position: relative;
+  width: min(100%, 107.5rem);
+  min-height: 56rem;
+  margin: 0 auto;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.poster::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+  background:
+    linear-gradient(rgba(45, 3, 12, 0.15), rgba(45, 3, 12, 0.28)),
+    url("/Backgrounds/red%20carped.png") center / cover;
+}
+
+.intro {
+  position: absolute;
+  top: 1rem;
+  left: 5.5%;
+  z-index: 8;
+  animation: enter-left 700ms 80ms both cubic-bezier(.16, 1, .3, 1);
+}
+
+.ransomTitle {
+  display: flex;
+  align-items: flex-end;
+  height: 9rem;
+  gap: .22rem;
+  font-family: Georgia, serif;
+  font-size: clamp(4.8rem, 6.4vw, 7.2rem);
+  font-weight: 900;
+  line-height: .88;
+  color: #171512;
+  letter-spacing: -.07em;
+}
+
+.ransomTitle span {
+  display: grid;
+  min-width: .72em;
+  height: .98em;
+  place-items: center;
+  padding: .02em .08em .08em;
+  background: #d6c4a4;
+  box-shadow: 0 .5rem .7rem rgba(0, 0, 0, .27);
+  clip-path: polygon(3% 3%, 96% 0, 100% 92%, 6% 100%, 0 10%);
+}
+
+.ransomTitle span:nth-child(2) { transform: rotate(-2deg); background: #cfc2aa; }
+.ransomTitle span:nth-child(3) { transform: rotate(1.5deg); background: #d8c5a8; }
+.ransomTitle span:nth-child(4) { transform: rotate(3deg); background: #d9b9af; }
+.ransomTitle span:nth-child(5) { transform: rotate(2deg); }
+.ransomTitle .red { color: var(--red); }
+
+.ransomTitle em {
+  margin: 0 0 -.1em .08em;
+  padding: .06em .14em .14em;
+  background: #d1b8bc;
+  font-family: var(--font-bio-display), Georgia, serif;
+  font-size: .58em;
+  font-style: normal;
+  letter-spacing: -.08em;
+  clip-path: polygon(2% 8%, 98% 0, 100% 92%, 0 100%);
+}
+
+.tagline {
+  margin: 1.25rem 0 0 .6rem;
+  font-size: clamp(.9rem, 1.2vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1.4;
+}
+
+.tagline strong { color: #e23b38; font-weight: 700; }
+
+.bioPaper {
+  position: absolute;
+  top: 16.5rem;
+  left: 4.5%;
+  z-index: 6;
+  width: 31%;
+  min-height: 33.5rem;
+  padding: 2rem 2.25rem 2.35rem;
+  color: #281d17;
+  background:
+    linear-gradient(rgba(239, 221, 190, .88), rgba(226, 207, 174, .9)),
+    url("/Backgrounds/white%20paper%20more%20suare.PNG") center / cover;
+  filter: drop-shadow(0 1rem 1rem rgba(12, 0, 3, .27));
+  clip-path: polygon(1% 2%, 8% 0, 17% 2%, 28% 0, 39% 1%, 49% 0, 62% 2%, 74% 0, 87% 1%, 99% 0, 100% 97%, 90% 99%, 78% 98%, 67% 100%, 54% 98%, 42% 100%, 31% 98%, 18% 100%, 5% 98%, 0 100%);
+  font-size: clamp(.72rem, .87vw, .91rem);
+  line-height: 1.32;
+  animation: enter-up 760ms 180ms both cubic-bezier(.16, 1, .3, 1);
+}
+
+.bioPaper p { margin: 0 0 1.2rem; }
+.bioPaper h3 {
+  display: table;
+  margin: .25rem 0 .7rem;
+  padding: .32rem .55rem .22rem;
+  background: #d8a5ac;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: rotate(-1deg);
+}
+
+.photo {
+  position: absolute;
+  z-index: 5;
+  margin: 0;
+  padding: .65rem;
+  background: #eee1c9;
+  box-shadow: 0 1rem 1.2rem rgba(12, 0, 3, .38);
+  transition: transform 240ms cubic-bezier(.2, .8, .2, 1), filter 240ms ease;
+  animation: photo-enter 780ms both cubic-bezier(.16, 1, .3, 1);
+}
+
+.photo:hover { filter: brightness(1.04); transform: translateY(-.35rem) rotate(0deg); }
+.photoInner { position: relative; width: 100%; height: 100%; overflow: hidden; background: #15170d; }
+.photoInner img { object-fit: cover; }
+.tape {
+  position: absolute;
+  top: -1.1rem;
+  left: 50%;
+  z-index: 2;
+  width: 38%;
+  height: 2.1rem;
+  background: rgba(199, 185, 143, .78);
+  box-shadow: inset 0 0 .5rem rgba(255,255,255,.25);
+  clip-path: polygon(3% 5%, 98% 0, 95% 100%, 0 91%);
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.heroPhoto {
+  top: 5.3rem;
+  left: 40.1%;
+  width: 23.5%;
+  height: 27rem;
+  transform: rotate(.5deg);
+  animation-delay: 260ms;
+}
+.heroPhoto .photoInner img { object-position: 50% 42%; }
+.seatedPhoto {
+  top: 5.8rem;
+  left: 64.5%;
+  width: 16.3%;
+  height: 15.3rem;
+  transform: rotate(-.7deg);
+  animation-delay: 360ms;
+}
+.seatedPhoto .photoInner img { filter: sepia(.45) contrast(1.1); object-position: 52% 40%; }
+.livePhoto {
+  top: 22.5rem;
+  left: 64.5%;
+  width: 16.3%;
+  height: 14.6rem;
+  transform: rotate(.7deg);
+  animation-delay: 440ms;
+}
+.livePhoto .photoInner img { filter: sepia(.65) contrast(1.12); object-position: 52% 74%; }
+.chessPhoto {
+  top: 34.1rem;
+  left: 37.3%;
+  width: 14.7%;
+  height: 13.5rem;
+  transform: rotate(-1.2deg);
+  animation-delay: 500ms;
+}
+.chessPhoto .photoInner img { object-position: 68% 50%; }
+
+.quote {
+  position: absolute;
+  top: 38.3rem;
+  left: 53.1%;
+  z-index: 6;
+  width: 18.7rem;
+  margin: 0;
+  padding: 2.25rem 2rem;
+  color: #eadbc6;
+  background: #151515 url("/Backgrounds/black%20paper.png") center / cover;
+  clip-path: polygon(2% 4%, 98% 0, 100% 92%, 3% 100%, 0 25%);
+  font-size: .88rem;
+  line-height: 1.45;
+  transform: rotate(.5deg);
+  animation: enter-up 700ms 580ms both cubic-bezier(.16, 1, .3, 1);
+}
+.quote strong { color: #df3434; font-weight: 400; }
+
+.surreal {
+  position: absolute;
+  top: 2rem;
+  right: -1.5rem;
+  z-index: 4;
+  width: 21%;
+  height: 39rem;
+  transform: translate3d(0, calc(var(--bio-depth) * -1.1rem), 0);
+  animation: enter-right 900ms 420ms both cubic-bezier(.16, 1, .3, 1);
+}
+.lamp { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 1rem 1rem rgba(0,0,0,.35)); }
+.faceCrop {
+  position: absolute;
+  top: 6.6rem;
+  left: 7%;
+  width: 82%;
+  height: 10rem;
+  overflow: hidden;
+  border-radius: 48% 52% 42% 45%;
+  transform: rotate(6deg) scaleX(1.13);
+  mix-blend-mode: normal;
+}
+.faceCrop img { object-fit: cover; object-position: 50% 28%; filter: saturate(1.35) contrast(1.05); transform: scale(1.28, .95); }
+
+.flower {
+  position: absolute;
+  right: 10.5%;
+  bottom: -1rem;
+  z-index: 3;
+  width: 8rem;
+  height: auto;
+  transform: translateY(calc(var(--bio-depth) * 1rem)) rotate(-7deg);
+  filter: hue-rotate(295deg) saturate(.75) brightness(.7) drop-shadow(0 1rem 1rem rgba(0,0,0,.3));
+}
+
+.tornBottom {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 10;
+  height: 2.4rem;
+  background: #444329 url("/Backgrounds/Greed-Fabric.png") center 58% / cover;
+  clip-path: polygon(0 35%, 2% 16%, 4% 43%, 7% 20%, 10% 48%, 13% 30%, 17% 55%, 20% 26%, 24% 48%, 28% 20%, 32% 48%, 36% 25%, 40% 53%, 44% 28%, 48% 46%, 53% 18%, 58% 47%, 62% 21%, 67% 50%, 72% 24%, 77% 46%, 82% 20%, 87% 51%, 92% 24%, 96% 45%, 100% 27%, 100% 100%, 0 100%);
+}
+
+@keyframes enter-left { from { opacity: 0; transform: translate(-2rem, 1rem) rotate(-1deg); } }
+@keyframes enter-right { from { opacity: 0; translate: 3rem 1rem; } }
+@keyframes enter-up { from { opacity: 0; transform: translateY(2rem) rotate(-1deg); } }
+@keyframes photo-enter { from { opacity: 0; translate: 0 2rem; scale: .95; } }
+
+@media (max-width: 1100px) {
+  .poster { min-height: 63rem; }
+  .bioPaper { width: 35%; }
+  .heroPhoto { left: 42%; width: 27%; }
+  .seatedPhoto, .livePhoto { left: 70%; width: 18%; }
+  .surreal { opacity: .86; right: -5%; width: 24%; }
+  .chessPhoto { top: 48.5rem; left: 38%; width: 22%; }
+  .quote { top: 49rem; left: 61%; }
+}
+
+@media (max-width: 760px) {
+  .poster {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    grid-template-rows: auto auto auto auto auto auto;
+    align-items: start;
+    min-height: 68rem;
+    padding: .5rem .45rem 4rem;
+    overflow: hidden;
+  }
+  .intro, .bioPaper, .photo, .quote, .surreal, .flower {
+    position: relative;
+    inset: auto;
+  }
+  .intro {
+    z-index: 8;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    width: 64%;
+    padding-top: .85rem;
+  }
+  .ransomTitle {
+    height: auto;
+    justify-content: flex-start;
+    gap: .08rem;
+    font-size: clamp(3rem, 14vw, 4.6rem);
+  }
+  .ransomTitle em {
+    position: absolute;
+    top: 4.25rem;
+    left: 2.9rem;
+    font-size: .55em;
+  }
+  .tagline {
+    margin: 3.3rem 0 0 .25rem;
+    font-size: clamp(.62rem, 2.5vw, .78rem);
+    line-height: 1.35;
+  }
+  .bioPaper {
+    z-index: 5;
+    grid-column: 1;
+    grid-row: 2 / 6;
+    width: calc(100% - .3rem);
+    min-height: 46rem;
+    margin-top: 1rem;
+    padding: 1.35rem .7rem 1.7rem;
+    font-size: clamp(.48rem, 2.05vw, .64rem);
+    line-height: 1.24;
+  }
+  .bioPaper p { margin-bottom: .75rem; }
+  .bioPaper h3 {
+    margin: .12rem 0 .45rem;
+    padding: .24rem .38rem .18rem;
+    font-size: .56rem;
+  }
+  .heroPhoto,
+  .seatedPhoto,
+  .livePhoto,
+  .chessPhoto {
+    z-index: 6;
+    grid-column: 2;
+    width: calc(100% - .4rem);
+    height: auto;
+    aspect-ratio: .78;
+    margin: 0 0 0 .1rem;
+    padding: .35rem;
+  }
+  .photo .tape {
+    top: -.65rem;
+    height: 1.15rem;
+  }
+  .heroPhoto {
+    grid-row: 2;
+    margin-top: .65rem;
+  }
+  .heroPhoto .photoInner img { object-position: 50% 38%; }
+  .seatedPhoto {
+    grid-row: 3;
+    margin-top: -.25rem;
+    transform: rotate(-1.5deg);
+  }
+  .livePhoto {
+    grid-row: 4;
+    margin-top: -.2rem;
+    transform: rotate(1.2deg);
+  }
+  .chessPhoto {
+    grid-row: 5;
+    aspect-ratio: 1 / .85;
+    margin-top: -.25rem;
+    transform: rotate(-1.3deg);
+  }
+  .quote {
+    z-index: 7;
+    grid-column: 2;
+    grid-row: 6;
+    width: calc(100% + 1rem);
+    margin: -1.8rem 0 0 -1rem;
+    padding: 1.35rem .9rem 1.25rem;
+    font-size: clamp(.54rem, 2.15vw, .68rem);
+  }
+  .surreal {
+    z-index: 7;
+    grid-column: 2;
+    grid-row: 1;
+    width: 118%;
+    height: 17rem;
+    margin: -1.25rem 0 -5rem -1.6rem;
+    transform: rotate(2deg);
+  }
+  .faceCrop {
+    top: 3.2rem;
+    left: 6%;
+    width: 86%;
+    height: 5.2rem;
+  }
+  .flower {
+    z-index: 8;
+    grid-column: 1;
+    grid-row: 6;
+    width: 4.7rem;
+    margin: -1rem 0 -1.5rem -1.1rem;
+  }
+  .tornBottom { position: absolute; }
+}
+
+@media (max-width: 390px) {
+  .poster { min-height: 66rem; }
+  .ransomTitle { font-size: 3.15rem; }
+  .ransomTitle em { top: 3.75rem; left: 2.5rem; }
+  .tagline { margin-top: 3rem; }
+  .bioPaper { padding-inline: .62rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro, .bioPaper, .photo, .quote, .surreal { animation: none; }
+  .photo, .surreal, .flower { transition: none; transform: none; }
+  .photo:hover { transform: none; }
+}

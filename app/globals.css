@@ -49,7 +49,8 @@ body.site-nav-drawer-open {
   order: 1;
   display: inline-flex;
   width: clamp(7.77rem, 15.96vw, 11.34rem);
-  height: clamp(2.35rem, 3.35vw, 3rem);
+  aspect-ratio: 3.78 / 1;
+  height: auto;
   flex: 0 0 auto;
   align-self: flex-start;
   align-items: center;
@@ -201,12 +202,18 @@ body.site-nav-drawer-open {
   aspect-ratio: 885 / 356;
 }
 
-.site-nav__link[href="/shop"] {
+.site-nav__link[href="https://rivkala.bandcamp.com/merch"] {
   aspect-ratio: 1236 / 485;
 }
 
 .site-nav__link[href="/contact"] {
   aspect-ratio: 912 / 345;
+}
+
+.site-nav__link[href="/bio"] {
+  height: clamp(3.24rem, 4.61vw, 4.13rem);
+  aspect-ratio: 1058 / 575;
+  margin-top: -0.55rem;
 }
 
 .site-nav__label {
@@ -322,7 +329,7 @@ body.site-nav-drawer-open {
   border: 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 745px) {
   .site-nav {
     align-items: flex-start;
     justify-content: space-between;
@@ -330,14 +337,14 @@ body.site-nav-drawer-open {
   }
 
   .site-nav__brand {
-    width: auto;
+    width: clamp(8.25rem, 44vw, 10.5rem);
     height: auto;
-    aspect-ratio: auto;
+    aspect-ratio: 3.78 / 1;
     margin-top: 0.5rem;
   }
 
   .site-nav__brand::before {
-    display: none;
+    display: block;
   }
 
   .site-nav__list {
@@ -447,8 +454,8 @@ body.site-nav-drawer-open {
   }
 
   .site-nav__logo {
-    width: clamp(6.09rem, 35.28vw, 7.98rem);
-    filter: none;
+    width: 77%;
+    filter: brightness(0) contrast(1.15);
   }
 
   .site-nav__item {
@@ -556,7 +563,7 @@ body.site-nav-drawer-open {
     display: none;
   }
 
-  .site-nav__link[href="/shop"] {
+  .site-nav__link[href="https://rivkala.bandcamp.com/merch"] {
     position: relative;
     display: block;
     min-height: clamp(4.25rem, 13vw, 5.7rem);
@@ -570,7 +577,7 @@ body.site-nav-drawer-open {
     aspect-ratio: 1680 / 558;
   }
 
-  .site-nav__link[href="/shop"] > span:first-child {
+  .site-nav__link[href="https://rivkala.bandcamp.com/merch"] > span:first-child {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -582,7 +589,7 @@ body.site-nav-drawer-open {
     border: 0;
   }
 
-  .site-nav__link[href="/shop"] .site-nav__indicator {
+  .site-nav__link[href="https://rivkala.bandcamp.com/merch"] .site-nav__indicator {
     display: none;
   }
 
@@ -616,12 +623,45 @@ body.site-nav-drawer-open {
     display: none;
   }
 
+  .site-nav__link[href="/bio"] {
+    position: relative;
+    display: block;
+    min-height: clamp(4.25rem, 13vw, 5.7rem);
+    margin-top: 0;
+    padding: 0;
+    background-image: url("/collage/Bio-sticker.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: transparent;
+    text-shadow: none;
+    aspect-ratio: 4 / 1;
+  }
+
+  .site-nav__link[href="/bio"] > span:first-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .site-nav__link[href="/bio"] .site-nav__indicator {
+    display: none;
+  }
+
   .site-nav__indicator {
     width: 1.65rem;
     height: 0.12rem;
     border-radius: 999px;
   }
+}
 
+@media (max-width: 640px) {
   .section-page__bg--hero {
     height: 10rem;
     background-size: cover;
