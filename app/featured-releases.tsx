@@ -5,6 +5,8 @@ import FeaturedReleasesCollage from "./featured-releases-collage";
 import chessCover from "../public/Album covers/Chess.png";
 import crushedVelvetCover from "../public/Album covers/Crushed Velvet.png";
 import zipLockTeethCover from "../public/Album covers/Zip Lock Teeth.png";
+import pinkTitleTape from "../public/TV Room/pink-tape.png";
+import whiteTitleTape from "../public/TV Room/white tape.png";
 import beigeTape from "../public/rivkala_featured_releases_assets/decor/beige-tape.png";
 import blackTape from "../public/rivkala_featured_releases_assets/decor/black-tape.png";
 import faceCollage from "../public/rivkala_featured_releases_assets/decor/surreal-eyes-lips-collage-web.png";
@@ -81,8 +83,28 @@ export default function FeaturedReleases({
 
       <div className={styles.inner}>
         <h2 id="featured-releases-title" className={styles.title}>
-          <span className={styles.titleCream}>Featured</span>
-          <span className={styles.titlePink}>Releases</span>
+          <span className={`${styles.titleLine} ${styles.titleCream}`}>
+            <Image
+              className={styles.titleTape}
+              src={whiteTitleTape}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 640px) 14rem, 29rem"
+            />
+            <span className={styles.titleText}>Featured</span>
+          </span>
+          <span className={`${styles.titleLine} ${styles.titlePink}`}>
+            <Image
+              className={styles.titleTape}
+              src={pinkTitleTape}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 640px) 12rem, 24rem"
+            />
+            <span className={styles.titleText}>Releases</span>
+          </span>
         </h2>
         <p className={styles.kicker} aria-hidden="true">
           &nbsp;

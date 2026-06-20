@@ -24,7 +24,7 @@
   z-index: -2;
   background-image:
     linear-gradient(rgba(15, 17, 10, 0.2), rgba(15, 17, 10, 0.2)),
-    url("/Backgrounds/Greed-Fabric.png");
+    url("/Backgrounds/Green%20Background.png");
   background-position: center top;
   background-repeat: repeat-y;
   background-size: max(100%, 62rem) auto;
@@ -219,7 +219,7 @@
 
 .subTitle::before {
   inset: -0.05em -0.08em;
-  background: url("/TV Room/pink tape.PNG") center / 100% 100% no-repeat;
+  background: url("/TV Room/pink-tape.png") center / 100% 100% no-repeat;
   clip-path: none;
 }
 

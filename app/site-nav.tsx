@@ -10,13 +10,20 @@ import epkRag from "../public/collage/EPK-Rag-Nav-Bar.png";
 import musicRag from "../public/collage/Music-Rag-Nav-Bar.png";
 import shopRag from "../public/collage/Shop-Rag-Nav-Bar.png";
 import videoRag from "../public/collage/Video-Rag-Nav-Bar.png";
+import bioRag from "../public/collage/Bio-Rag-Nav-Bar.png";
 
 const navItems = [
   { href: "/music", label: "Music", rag: musicRag, tone: "dark" },
   { href: "/videos", label: "Videos", rag: videoRag, tone: "light" },
   { href: "/epk", label: "EPK", rag: epkRag, tone: "dark" },
-  { href: "/shop", label: "Shop", rag: shopRag, tone: "dark" },
+  {
+    href: "https://rivkala.bandcamp.com/merch",
+    label: "Shop",
+    rag: shopRag,
+    tone: "dark",
+  },
   { href: "/contact", label: "Contact", rag: contactRag, tone: "light" },
+  { href: "/bio", label: "Bio", rag: bioRag, tone: "dark" },
 ];
 
 export default function SiteNav() {
@@ -114,6 +121,8 @@ export default function SiteNav() {
             <li key={href} className="site-nav__item site-nav__item--graphic">
               <Link
                 href={href}
+                target={label === "Shop" ? "_blank" : undefined}
+                rel={label === "Shop" ? "noopener noreferrer" : undefined}
                 className={`site-nav__link${
                   isActive ? " site-nav__link--active" : ""
                 } site-nav__link--graphic site-nav__link--${tone}${
