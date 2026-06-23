@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Bodoni_Moda, Courier_Prime } from "next/font/google";
-import contactPaper from "../../public/Backgrounds/contact paper.png";
+import epkHeader from "../../public/About Page/EPK.png";
+import pressPhotosHeader from "../../public/About Page/Press Photos.png";
+import greenRippedPaper from "../../public/Backgrounds/green ripped paper.png";
+import pinkRippedPaper from "../../public/Backgrounds/pink ripped paper.png";
+import pinnedPaper from "../../public/Backgrounds/paper with pin.png";
+import pinnedStoryPaper from "../../public/Backgrounds/paper with pin 2.png";
+import redRippedPaper from "../../public/Backgrounds/red ripped papers.png";
 import socialImage from "../../public/IMAGES OF ME/Rivkala-creditMarianaPires-4.jpg";
+import yellowRippedPaper from "../../public/Backgrounds/yellow ripped paper.png";
 import SiteNav from "../site-nav";
 import { epk, pressPhotos } from "./epk-data";
 import styles from "./epk-page.module.css";
@@ -62,35 +69,47 @@ function ActionLink({
 export default function EpkPage() {
   return (
     <main className={`${styles.page} ${bodoniModa.variable} ${courierPrime.variable}`}>
+      <video
+        className={styles.videoBackground}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source
+          src="/Stop%20Motion/My_Stop_Motion_Movie.mp4"
+          type="video/mp4"
+        />
+      </video>
       <div className={styles.wall} aria-hidden="true" />
 
       <header className={styles.siteHeader}>
         <SiteNav />
       </header>
 
-      <section className={styles.hero} aria-labelledby="epk-title">
-        <div className={styles.heroPhoto}>
-          <video autoPlay muted loop playsInline preload="auto" aria-label="Rivkala stop-motion film">
-            <source
-              src="/Stop%20Motion/My_Stop_Motion_Movie.mp4"
-              type="video/mp4"
-            />
-            <source
-              src="/Stop%20Motion/My_Stop_Motion_Movie.mov"
-              type="video/quicktime"
-            />
-          </video>
-        </div>
+      <div className={styles.epkHeader}>
+        <Image
+          src={epkHeader}
+          alt="EPK"
+          priority
+          sizes="(max-width: 760px) 94vw, 54rem"
+        />
+      </div>
 
+      <section className={styles.hero} aria-labelledby="epk-title">
         <div className={styles.heroCopy}>
           <Image
             className={styles.heroPaperTexture}
-            src={contactPaper}
+            src={pinnedPaper}
             alt=""
             fill
             priority
             sizes="(max-width: 760px) calc(100vw - 1.5rem), 44vw"
           />
+          <div className={styles.heroContent}>
           <p className={styles.kicker}>Official electronic press kit</p>
           <h1 id="epk-title">Rivkala</h1>
           <p className={styles.pronunciation}>
@@ -109,6 +128,7 @@ export default function EpkPage() {
             </ActionLink>
             <ActionLink href={`mailto:${epk.contactEmail}`}>Book / press</ActionLink>
           </nav>
+          </div>
         </div>
       </section>
 
@@ -116,7 +136,7 @@ export default function EpkPage() {
         <div className={styles.storyPaper}>
           <Image
             className={styles.storyPaperTexture}
-            src={contactPaper}
+            src={pinnedStoryPaper}
             alt=""
             fill
             sizes="(max-width: 760px) calc(100vw - 2rem), 46rem"
@@ -135,6 +155,13 @@ export default function EpkPage() {
         </div>
 
         <div className={styles.proof} aria-labelledby="proof-title">
+          <Image
+            className={styles.proofPaperTexture}
+            src={greenRippedPaper}
+            alt=""
+            fill
+            sizes="(max-width: 760px) calc(100vw - 2rem), 32rem"
+          />
           <h2 id="proof-title">Selected credits</h2>
           <ul>
             {epk.achievements.map((achievement) => (
@@ -151,6 +178,33 @@ export default function EpkPage() {
             style={{ "--quote-index": index } as React.CSSProperties}
             key={quote.text}
           >
+            {index === 0 && (
+              <Image
+                className={styles.quotePaperTexture}
+                src={pinkRippedPaper}
+                alt=""
+                fill
+                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
+              />
+            )}
+            {index === 1 && (
+              <Image
+                className={styles.quotePaperTexture}
+                src={redRippedPaper}
+                alt=""
+                fill
+                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
+              />
+            )}
+            {index === 2 && (
+              <Image
+                className={styles.quotePaperTexture}
+                src={yellowRippedPaper}
+                alt=""
+                fill
+                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
+              />
+            )}
             <blockquote>“{quote.text}”</blockquote>
             <figcaption>— {quote.source}</figcaption>
           </figure>
@@ -159,11 +213,19 @@ export default function EpkPage() {
 
       <section className={styles.photos} aria-labelledby="photos-title">
         <div className={styles.photosHeading}>
-          <h2 id="photos-title">Press photos</h2>
-          <p>Editorial use permitted with the displayed photographer credit.</p>
+          <h2 className="sr-only" id="photos-title">
+            Press photos
+          </h2>
+          <Image
+            className={styles.photosTitle}
+            src={pressPhotosHeader}
+            alt=""
+            aria-hidden="true"
+            sizes="(max-width: 760px) 72vw, 34rem"
+          />
         </div>
 
-        <div className={styles.photoGrid}>
+        <div className={styles.photoGrid} id="press-photo-grid">
           {pressPhotos.map((photo, index) => (
             <figure
               className={styles.photoCard}
