@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Courier_Prime } from "next/font/google";
+import { Bodoni_Moda } from "next/font/google";
 import SectionPage from "../section-page";
 import { epk } from "../epk/epk-data";
-import BioDepth from "./bio-depth";
+import BioPosterParallax from "./bio-poster-parallax";
 import styles from "./bio-page.module.css";
 
-import portrait from "../../public/IMAGES OF ME/DSC02103.jpg";
-import seated from "../../public/IMAGES OF ME/DSC02478 (1).jpg";
-import performance from "../../public/IMAGES OF ME/DTD02673.jpg";
-import chessStill from "../../public/IMAGES OF ME/Martini 1.jpg";
-import aboutCollage from "../../public/About Page/about collage 2.png";
-import faceCollage from "../../public/collage/Untitled_Artwork 7.png";
+import edgeFigure from "../../public/collage/Untitled_Artwork 3.png";
+import edgeLamp from "../../public/collage/Untitled_Artwork 4.png";
+import edgeEyelashes from "../../public/collage/Untitled_Artwork 5.png";
+import edgeEyeLips from "../../public/collage/Untitled_Artwork 6.png";
+import edgeFace from "../../public/collage/Untitled_Artwork 7.png";
+import autograph from "../../public/collage/autograph.png";
 
-const typewriter = Courier_Prime({
-  variable: "--font-bio-typewriter",
+const serif = Bodoni_Moda({
+  variable: "--font-bio-serif",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: "variable",
 });
 
 export const metadata: Metadata = {
@@ -25,63 +25,111 @@ export const metadata: Metadata = {
     "Meet Rivkala, a singer and storyteller weaving vintage soul with bold theatrical flair.",
 };
 
-function Photo({
-  className,
-  image,
-  alt,
-  priority = false,
-}: {
-  className: string;
-  image: typeof portrait;
-  alt: string;
-  priority?: boolean;
-}) {
-  return (
-    <figure className={`${styles.photo} ${className}`}>
-      <span className={styles.tape} aria-hidden="true" />
-      <div className={styles.photoInner}>
-        <Image src={image} alt={alt} fill priority={priority} sizes="(max-width: 760px) 88vw, 30vw" />
-      </div>
-    </figure>
-  );
-}
-
 export default function BioPage() {
   return (
-    <SectionPage title="About Rivkala" variant="contact">
-      <div className={`${styles.page} ${typewriter.variable}`}>
-        <BioDepth>
-          <header className={styles.intro}>
+    <SectionPage title="Rivkala" variant="contact">
+      <div className={`${styles.page} ${serif.variable}`}>
+        <BioPosterParallax className={styles.poster}>
+          <div
+            className={`${styles.lampFrame} ${styles.lampLeft}`}
+            aria-hidden="true"
+          >
             <Image
-              className={styles.aboutTitle}
-              src={aboutCollage}
-              alt="About me"
+              src={edgeFigure}
+              alt=""
+              fill
+              sizes="(max-width: 900px) 22vw, 14rem"
               priority
             />
-            <h2 className="sr-only">About me</h2>
-          </header>
+          </div>
 
-          <article className={styles.bioPaper}>
-            <p>{epk.shortBio}</p>
-            {epk.longBio.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-            <h3>Selected credits</h3>
-            <p>{epk.achievements.slice(0, 5).join(" · ")}</p>
-          </article>
-
-          <Photo className={styles.heroPhoto} image={portrait} alt="Rivkala in a pinstripe suit looking to the side" priority />
-          <Photo className={styles.seatedPhoto} image={seated} alt="Rivkala seated in a black-and-white studio portrait" />
-          <Photo className={styles.livePhoto} image={performance} alt="Rivkala singing live beneath stage lights" />
-          <Photo className={styles.chessPhoto} image={chessStill} alt="Rivkala in a cinematic scene beside a fringed lamp" />
-
-          <Image
-            className={styles.faceCollage}
-            src={faceCollage}
-            alt=""
+          <div
+            className={`${styles.edgeCollage} ${styles.edgeLamp}`}
             aria-hidden="true"
-          />
-        </BioDepth>
+          >
+            <Image
+              src={edgeLamp}
+              alt=""
+              sizes="(max-width: 820px) 34vw, (max-width: 1100px) 24vw, 19rem"
+            />
+          </div>
+
+          <div
+            className={`${styles.edgeCollage} ${styles.edgeFace}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={edgeFace}
+              alt=""
+              sizes="(max-width: 820px) 52vw, (max-width: 1100px) 28vw, 23rem"
+            />
+          </div>
+
+          <div
+            className={`${styles.edgeCollage} ${styles.mobileBottomCollage} ${styles.bottomEyelashes}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={edgeEyelashes}
+              alt=""
+              sizes="(max-width: 820px) 34vw, 1px"
+            />
+          </div>
+
+          <div
+            className={`${styles.edgeCollage} ${styles.mobileBottomCollage} ${styles.bottomEyeLips}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={edgeEyeLips}
+              alt=""
+              sizes="(max-width: 820px) 38vw, 1px"
+            />
+          </div>
+
+          <section className={styles.titleBlock} aria-labelledby="bio-title">
+            <h2 id="bio-title" className="sr-only">
+              Rivkala biography
+            </h2>
+            <Image
+              className={styles.signature}
+              src={autograph}
+              alt=""
+              priority
+              sizes="(max-width: 820px) calc(100vw - 3rem), 43rem"
+            />
+
+            <p className={styles.pronunciation}>
+              <span>{epk.pronunciation}</span>
+              <span className={styles.pronouns}>she/her</span>
+            </p>
+          </section>
+
+          <section className={styles.copyBlock} aria-label="Biography">
+            <p>
+              <strong>Showgirl, singer and storyteller,</strong> Rivkala is an
+              award-winning multidisciplinary jazz/soul artist, vocalist, writer
+              and bandleader, gaining growing regional attention through TV
+              features on <strong>BBC Look North</strong> and{" "}
+              <strong>ITV Tyne Tees</strong>, and national radio coverage on{" "}
+              <strong>BBC Radio 3</strong>, <strong>JazzFM</strong>,{" "}
+              <strong>Selector Radio</strong> and{" "}
+              <strong>BBC Introducing Manchester/NE</strong>.
+            </p>
+
+            <p>
+              Within the campy vessel of her{" "}
+              <strong>larger than life cabaret bar,</strong>{" "}
+              <strong>Crushed Velvet</strong>, Rivkala and her esteemed 6 piece
+              band blend{" "}
+              <strong>influences of jazz, soul, funk, and klezmer</strong> to
+              orchestrate provocatively playful social commentaries on{" "}
+              <strong>gender, wealth inequality and mental health</strong>.
+              Under the warm glow of her beloved lamp Lucille, they balance
+              serious grooves with comedic theatricality.
+            </p>
+          </section>
+        </BioPosterParallax>
       </div>
     </SectionPage>
   );
