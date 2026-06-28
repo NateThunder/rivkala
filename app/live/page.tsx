@@ -4,7 +4,7 @@ import { Courier_Prime } from "next/font/google";
 import SectionPage from "../section-page";
 import bookingsBanner from "../../public/Live Page/rivkala_live_page_assets/bookings_enquiries_banner_transparent.png";
 import headingArt from "../../public/Live Page/rivkala_live_page_assets/live_gigs_heading_transparent.png";
-import portraitCollage from "../../public/Live Page/rivkala_live_page_assets/portrait_mic_collage_transparent.png";
+import livePoster from "../../public/Live Page/live poster.png";
 import styles from "./live-page.module.css";
 
 const liveType = Courier_Prime({
@@ -153,7 +153,7 @@ export default function LivePage() {
           <div className={styles.collage} aria-hidden="true">
             <Image
               className={styles.collageImage}
-              src={portraitCollage}
+              src={livePoster}
               alt=""
               sizes="(max-width: 900px) min(92vw, 28rem), (max-width: 1300px) 36vw, 34rem"
             />

@@ -13,13 +13,13 @@ export default function HomeView() {
       <div className="home__bg home__bg--paper" aria-hidden="true" />
       <div className="home__bg home__bg--hero" aria-hidden="true" />
 
-      <section className="home__hero">
-        <div className="home__masthead">
-          <div className="home__masthead-inner">
-            <SiteNav />
-          </div>
+      <div className="home__masthead">
+        <div className="home__masthead-inner">
+          <SiteNav />
         </div>
+      </div>
 
+      <section className="home__hero">
         <div className="home__inner">
           <h1 className="home__sr-only">Rivkala</h1>
 
