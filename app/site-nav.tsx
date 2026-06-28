@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import logo from "../public/Gemini_Generated_Image_4mr1b44mr1b44mr1-removebg-preview.png";
 import contactRag from "../public/collage/Contact-Rag-Nav-Bar.png";
 import epkRag from "../public/collage/EPK-Rag-Nav-Bar.png";
+import liveRag from "../public/collage/live-rag-nav-bar-short.png";
 import musicRag from "../public/collage/Music-Rag-Nav-Bar.png";
 import shopRag from "../public/collage/Shop-Rag-Nav-Bar.png";
 import videoRag from "../public/collage/Video-Rag-Nav-Bar.png";
@@ -15,6 +16,7 @@ import bioRag from "../public/collage/Bio-Rag-Nav-Bar.png";
 const navItems = [
   { href: "/music", label: "Music", rag: musicRag, tone: "dark" },
   { href: "/videos", label: "Videos", rag: videoRag, tone: "light" },
+  { href: "/live", label: "Live", rag: liveRag, tone: "light" },
   { href: "/epk", label: "EPK", rag: epkRag, tone: "dark" },
   {
     href: "https://rivkala.bandcamp.com/merch",

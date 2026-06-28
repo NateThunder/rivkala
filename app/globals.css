@@ -135,6 +135,7 @@ body.site-nav-drawer-open {
 
 .site-nav__item {
   display: flex;
+  flex: 0 0 auto;
 }
 
 .site-nav__link {
@@ -196,6 +197,10 @@ body.site-nav-drawer-open {
 
 .site-nav__link[href="/videos"] {
   aspect-ratio: 1061 / 408;
+}
+
+.site-nav__link[href="/live"] {
+  aspect-ratio: 1313 / 553;
 }
 
 .site-nav__link[href="/epk"] {
@@ -282,7 +287,26 @@ body.site-nav-drawer-open {
   background-size: cover;
 }
 
+.section-page--live {
+  background-color: #111111;
+  background-image: url("/Backgrounds/Live%20page%20background.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.section-page--live::before {
+  display: none;
+}
+
 .section-page--contact .section-page__bg {
+  display: none;
+}
+
+.section-page--live .section-page__bg {
   display: none;
 }
 
@@ -315,6 +339,10 @@ body.site-nav-drawer-open {
   position: relative;
   z-index: 1;
   min-height: calc(100vh - 5rem);
+}
+
+.section-page--live .section-page__content {
+  z-index: 2;
 }
 
 .sr-only {
@@ -361,7 +389,7 @@ body.site-nav-drawer-open {
     justify-content: flex-start;
     gap: 0.2rem;
     margin: 0;
-    padding: 1.75rem 1.35rem 2rem;
+    padding: clamp(4.35rem, 15vw, 4.85rem) 1.35rem 2rem;
     border-left: 1px solid rgba(185, 134, 42, 0.62);
     background-color: var(--site-nav-drawer-fallback);
     background-image: var(--site-nav-drawer-background);
@@ -378,18 +406,6 @@ body.site-nav-drawer-open {
       transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
       visibility 260ms ease;
     visibility: hidden;
-  }
-
-  .site-nav__list::before {
-    content: "";
-    flex: 0 0 auto;
-    align-self: center;
-    width: min(8.5rem, 52%);
-    aspect-ratio: 417 / 521;
-    margin: 0 auto 0.8rem;
-    background: url("/rivkala-dada-menu-kit/poleroid.png") center top / contain no-repeat;
-    filter: drop-shadow(0 1rem 1.5rem rgba(0, 0, 0, 0.28));
-    pointer-events: none;
   }
 
   .site-nav__item--graphic {
@@ -530,6 +546,39 @@ body.site-nav-drawer-open {
   }
 
   .site-nav__link[href="/music"] .site-nav__indicator {
+    display: none;
+  }
+
+  .site-nav__link[href="/live"] {
+    position: relative;
+    display: block;
+    min-height: clamp(4.25rem, 13vw, 5.7rem);
+    margin-inline: 0;
+    padding: 0;
+    background-image: url("/collage/live-rag-nav-bar.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #fff3dc;
+    text-shadow: 0 0.08rem 0.08rem rgba(46, 10, 17, 0.32);
+    aspect-ratio: 1920 / 539;
+  }
+
+  .site-nav__link[href="/live"] .site-nav__label {
+    position: absolute;
+    top: 50%;
+    left: 38%;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    transform: translate(-50%, -54%);
+  }
+
+  .site-nav__link[href="/live"] .site-nav__indicator {
     display: none;
   }
 

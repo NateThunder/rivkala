@@ -1,256 +1,390 @@
 .page {
-  --cream: #eadbbf;
-  --burgundy: #3a0812;
-  --red: #bd2929;
+  --bio-ink: #17110d;
+  --bio-paper-shadow: rgba(44, 22, 10, 0.28);
   width: 100%;
-  color: var(--cream);
-  font-family: var(--font-bio-typewriter), "Courier New", monospace;
+  padding: clamp(0.5rem, 1.2vw, 1rem) clamp(0.5rem, 2vw, 1.5rem)
+    clamp(3rem, 6vw, 5rem);
+  color: var(--bio-ink);
+  overflow-x: clip;
 }
 
 .poster {
-  --bio-depth: 0;
+  --bio-paper-width: 100%;
+  --parallax-x: 0;
+  --parallax-y: 0;
+  --parallax-scroll: 0;
   position: relative;
-  width: min(100%, 107.5rem);
-  min-height: 52rem;
+  display: grid;
+  min-height: clamp(42rem, 68vw, 55rem);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  gap: clamp(1rem, 2vw, 2rem) clamp(1rem, 2.5vw, 2.6rem);
+  align-items: start;
+  width: min(100%, 64rem);
   margin: 0 auto;
-  overflow: hidden;
+  padding: clamp(2rem, 3.6vw, 4.2rem) clamp(1.2rem, 2.8vw, 2.8rem)
+    clamp(2rem, 3.8vw, 3.7rem);
   isolation: isolate;
 }
 
-.intro {
+.poster::before {
+  content: "";
   position: absolute;
-  top: 1.3rem;
-  left: 5.5%;
-  z-index: 8;
-  animation: enter-left 700ms 80ms both cubic-bezier(.16, 1, .3, 1);
-}
-
-.aboutTitle {
-  display: block;
-  width: clamp(25rem, 32vw, 34rem);
-  height: auto;
-  filter: drop-shadow(0 .5rem .7rem rgba(0, 0, 0, .27));
-}
-
-.bioPaper {
-  position: absolute;
-  top: 15.4rem;
-  left: 4.5%;
-  z-index: 6;
-  width: 30.5%;
-  min-height: 32.5rem;
-  padding: 1.8rem 2.15rem 2.15rem;
-  color: #281d17;
+  inset-block: 0;
+  left: 0;
+  width: var(--bio-paper-width);
   background: url("/Backgrounds/contact%20paper.png") center / 100% 100% no-repeat;
-  filter: drop-shadow(0 1rem 1rem rgba(12, 0, 3, .27));
-  font-size: clamp(.72rem, .87vw, .91rem);
-  line-height: 1.32;
-  animation: enter-up 760ms 180ms both cubic-bezier(.16, 1, .3, 1);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.bioPaper p { margin: 0 0 1.2rem; }
-.bioPaper h3 {
-  display: table;
-  margin: .25rem 0 .7rem;
-  padding: .32rem .55rem .22rem;
-  background: #d8a5ac;
-  font-size: .82rem;
-  letter-spacing: .04em;
-  line-height: 1;
-  text-transform: uppercase;
-  transform: rotate(-1deg);
-}
-
-.photo {
-  position: absolute;
-  z-index: 5;
-  margin: 0;
-  padding: .65rem;
-  background:
-    linear-gradient(rgba(239, 225, 199, .72), rgba(232, 215, 185, .82)),
-    url("/rivkala_featured_releases_assets/backgrounds/cream-paper-background.png") center / cover;
-  box-shadow: 0 1rem 1.2rem rgba(12, 0, 3, .38);
-  transition: transform 240ms cubic-bezier(.2, .8, .2, 1), filter 240ms ease;
-  animation: photo-enter 780ms both cubic-bezier(.16, 1, .3, 1);
-}
-
-.photo:hover { filter: brightness(1.04); transform: translateY(-.35rem) rotate(0deg); }
-.photoInner { position: relative; width: 100%; height: 100%; overflow: hidden; background: #15170d; }
-.photoInner img { object-fit: cover; }
-.tape {
-  position: absolute;
-  top: -1.1rem;
-  left: 50%;
+.poster > * {
+  position: relative;
   z-index: 2;
-  width: 38%;
-  height: 2.1rem;
-  background: rgba(199, 185, 143, .78);
-  box-shadow: inset 0 0 .5rem rgba(255,255,255,.25);
-  clip-path: polygon(3% 5%, 98% 0, 95% 100%, 0 91%);
-  transform: translateX(-50%) rotate(2deg);
 }
 
-.heroPhoto {
-  top: 5.2rem;
-  left: 40.2%;
-  width: 24.5%;
-  height: 27.4rem;
-  transform: rotate(.5deg);
-  animation-delay: 260ms;
-}
-.heroPhoto .photoInner img { object-position: 50% 42%; }
-.seatedPhoto {
-  top: 5.7rem;
-  left: 66.4%;
-  width: 17%;
-  height: 14.6rem;
-  transform: rotate(-.7deg);
-  animation-delay: 360ms;
-}
-.seatedPhoto .photoInner img { filter: sepia(.45) contrast(1.1); object-position: 52% 40%; }
-.livePhoto {
-  top: 21.9rem;
-  left: 66.2%;
-  width: 17.2%;
-  height: 14.4rem;
-  transform: rotate(.7deg);
-  animation-delay: 440ms;
-}
-.livePhoto .photoInner img { filter: sepia(.65) contrast(1.12); object-position: 52% 74%; }
-.chessPhoto {
-  top: 34rem;
-  left: 37.5%;
-  width: 15.4%;
-  height: 13.2rem;
-  transform: rotate(-1.2deg);
-  animation-delay: 500ms;
-}
-.chessPhoto .photoInner img { object-position: 68% 50%; }
-
-.faceCollage {
+.lampFrame {
+  --parallax-depth-x: -0.7rem;
+  --parallax-depth-y: -0.45rem;
+  --parallax-scroll-depth: 1.35rem;
   position: absolute;
-  top: 6.1rem;
-  right: -3%;
-  z-index: 4;
-  width: 20.5%;
-  height: auto;
-  transform: translateY(calc(var(--bio-depth) * -.8rem)) rotate(3deg);
-  filter: drop-shadow(0 1rem 1rem rgba(0, 0, 0, .28));
-  animation: enter-right 900ms 480ms both cubic-bezier(.16, 1, .3, 1);
+  z-index: 1;
+  top: -1.3rem;
+  width: clamp(8.5rem, 18vw, 14rem);
+  height: clamp(22rem, 48vw, 34rem);
+  pointer-events: none;
+  opacity: 0.95;
+  filter: drop-shadow(0 0.75rem 1.35rem rgba(19, 8, 4, 0.3));
+  transform: translate3d(
+    calc(var(--parallax-x) * var(--parallax-depth-x)),
+    calc(
+      var(--parallax-y) * var(--parallax-depth-y) +
+        var(--parallax-scroll) * var(--parallax-scroll-depth)
+    ),
+    0
+  );
+  transition: transform 220ms ease-out;
+  will-change: transform;
 }
 
-@keyframes enter-left { from { opacity: 0; transform: translate(-2rem, 1rem) rotate(-1deg); } }
-@keyframes enter-right { from { opacity: 0; translate: 3rem 1rem; } }
-@keyframes enter-up { from { opacity: 0; transform: translateY(2rem) rotate(-1deg); } }
-@keyframes photo-enter { from { opacity: 0; translate: 0 2rem; scale: .95; } }
+.lampFrame img {
+  object-fit: contain;
+  object-position: top center;
+}
+
+.lampLeft img {
+  object-position: top left;
+}
+
+.lampLeft {
+  left: clamp(-4rem, -3.8vw, -2rem);
+}
+
+.edgeCollage {
+  --parallax-depth-x: 0.8rem;
+  --parallax-depth-y: 0.55rem;
+  --parallax-scroll-depth: -1rem;
+  --collage-rotation: 0deg;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 1.15rem 1.15rem rgba(19, 8, 4, 0.28));
+  transform: translate3d(
+      calc(var(--parallax-x) * var(--parallax-depth-x)),
+      calc(
+        var(--parallax-y) * var(--parallax-depth-y) +
+          var(--parallax-scroll) * var(--parallax-scroll-depth)
+      ),
+      0
+    )
+    rotate(var(--collage-rotation));
+  transition: transform 220ms ease-out;
+  will-change: transform;
+}
+
+.edgeCollage img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.edgeLamp {
+  --parallax-depth-x: 1.05rem;
+  --parallax-depth-y: 0.65rem;
+  --parallax-scroll-depth: -1.6rem;
+  --collage-rotation: 7deg;
+  top: clamp(5.75rem, 10vw, 8.8rem);
+  right: clamp(-5.4rem, -6.4vw, -3.4rem);
+  width: clamp(13rem, 24vw, 19rem);
+  opacity: 0.94;
+}
+
+.edgeFace {
+  --parallax-depth-x: -0.85rem;
+  --parallax-depth-y: 0.75rem;
+  --parallax-scroll-depth: 1.15rem;
+  --collage-rotation: -5deg;
+  bottom: clamp(-1.2rem, -1.4vw, -0.4rem);
+  left: clamp(-3.4rem, -3.8vw, -1.8rem);
+  width: clamp(15rem, 31vw, 23rem);
+  opacity: 0.92;
+}
+
+.mobileBottomCollage {
+  display: none;
+}
+
+.titleBlock {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  align-self: start;
+  max-width: 44rem;
+  padding-top: 0.1rem;
+  margin-left: clamp(4.5rem, 10vw, 9.5rem);
+}
+
+.signature {
+  display: block;
+  width: min(100%, 43rem);
+  height: auto;
+  filter: drop-shadow(0 0.08rem 0 rgba(255, 247, 231, 0.35));
+}
+
+.pronunciation {
+  margin: -0.45rem 0 0 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: var(--font-bio-serif), "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.75vw, 1.7rem);
+  letter-spacing: 0.01em;
+}
+
+.pronunciation span:first-child {
+  font-weight: 600;
+}
+
+.pronouns {
+  font-size: 0.88em;
+  font-weight: 400;
+}
+
+.copyBlock {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  align-self: start;
+  min-width: 0;
+  max-width: 41rem;
+  padding-top: 2.4rem;
+  margin-left: clamp(4rem, 7vw, 7.5rem);
+  font-family: var(--font-bio-serif), "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.45vw, 1.44rem);
+  line-height: 1.32;
+  letter-spacing: 0.005em;
+}
+
+.copyBlock p {
+  margin: 0;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+.copyBlock p + p {
+  margin-top: 1.7rem;
+}
+
+.copyBlock strong {
+  font-weight: 700;
+}
 
 @media (max-width: 1100px) {
-  .poster { min-height: 58rem; }
-  .bioPaper { width: 35%; }
-  .heroPhoto { left: 42%; width: 27%; }
-  .seatedPhoto, .livePhoto { left: 70%; width: 18%; }
-  .chessPhoto { top: 48.5rem; left: 38%; width: 22%; }
-  .faceCollage { right: -7%; width: 24%; }
-}
-
-@media (max-width: 760px) {
   .poster {
-    display: grid;
-    grid-template-columns: 55% 45%;
-    grid-template-rows: auto auto auto auto auto auto;
-    align-items: start;
-    min-height: 68rem;
-    padding: 2rem .45rem 4rem;
-    overflow: hidden;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem 1.4rem;
+    padding-inline: clamp(1rem, 2vw, 1.8rem);
   }
-  .intro, .bioPaper, .photo, .faceCollage {
-    position: relative;
-    inset: auto;
+
+  .titleBlock {
+    margin-left: clamp(3.8rem, 8vw, 6.2rem);
   }
-  .intro {
-    z-index: 8;
-    grid-column: 1 / 3;
-    grid-row: 1;
-    width: 64%;
-    justify-self: center;
-    padding-top: .85rem;
-    margin-bottom: -5rem;
+
+  .copyBlock {
+    padding-top: 1.6rem;
+    margin-left: clamp(2.2rem, 4.5vw, 3.4rem);
   }
-  .aboutTitle {
-    width: min(100%, 29rem);
+
+  .edgeLamp {
+    right: -3.2rem;
+    width: clamp(11rem, 22vw, 15rem);
   }
-  .bioPaper {
-    z-index: 5;
-    grid-column: 1;
-    grid-row: 2 / 6;
-    width: calc(100% - .3rem);
-    min-height: 46rem;
-    margin-top: 1rem;
-    padding: 1.35rem .7rem 1.7rem;
-    font-size: clamp(.48rem, 2.05vw, .64rem);
-    line-height: 1.24;
-  }
-  .bioPaper p { margin-bottom: .75rem; }
-  .bioPaper h3 {
-    margin: .12rem 0 .45rem;
-    padding: .24rem .38rem .18rem;
-    font-size: .56rem;
-  }
-  .heroPhoto,
-  .seatedPhoto,
-  .livePhoto,
-  .chessPhoto {
-    z-index: 6;
-    grid-column: 2;
-    width: calc(100% - .4rem);
-    height: auto;
-    aspect-ratio: .78;
-    margin: 0 0 0 .1rem;
-    padding: .35rem;
-  }
-  .photo .tape {
-    top: -.65rem;
-    height: 1.15rem;
-  }
-  .heroPhoto {
-    grid-row: 2;
-    margin-top: .65rem;
-  }
-  .heroPhoto .photoInner img { object-position: 50% 38%; }
-  .seatedPhoto {
-    grid-row: 3;
-    margin-top: -.25rem;
-    transform: rotate(-1.5deg);
-  }
-  .livePhoto {
-    grid-row: 4;
-    margin-top: -.2rem;
-    transform: rotate(1.2deg);
-  }
-  .chessPhoto {
-    grid-row: 5;
-    aspect-ratio: 1 / .85;
-    margin-top: -.25rem;
-    transform: rotate(-1.3deg);
-  }
-  .faceCollage {
-    z-index: 4;
-    grid-column: 1 / 3;
-    grid-row: 6;
-    justify-self: end;
-    width: 58%;
-    margin: 1.5rem -5% -3rem 0;
-    transform: rotate(2deg);
+
+  .edgeFace {
+    left: -2.9rem;
+    width: clamp(13rem, 28vw, 18rem);
   }
 }
 
-@media (max-width: 390px) {
-  .poster { min-height: 66rem; }
-  .bioPaper { padding-inline: .62rem; }
+@media (max-width: 820px) {
+  .page {
+    padding: 0.35rem;
+  }
+
+  .poster {
+    --bio-paper-width: 100%;
+    min-height: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    padding: 1.5rem clamp(1.2rem, 4.8vw, 1.65rem) 4.2rem;
+  }
+
+  .lampFrame {
+    top: -1rem;
+    width: 7.2rem;
+    height: 19rem;
+    opacity: 1;
+  }
+
+  .lampLeft {
+    left: -3rem;
+  }
+
+  .edgeLamp {
+    top: 3.25rem;
+    right: -1.15rem;
+    width: clamp(7.75rem, 28vw, 12rem);
+    opacity: 1;
+  }
+
+  .edgeFace {
+    bottom: -1.35rem;
+    left: -1.15rem;
+    width: clamp(10.5rem, 50vw, 17rem);
+    opacity: 1;
+  }
+
+  .mobileBottomCollage {
+    display: block;
+    opacity: 1;
+  }
+
+  .bottomEyelashes {
+    --parallax-depth-x: 0.45rem;
+    --parallax-depth-y: -0.25rem;
+    --parallax-scroll-depth: 0.85rem;
+    --collage-rotation: -8deg;
+    bottom: -4.3rem;
+    right: clamp(7rem, 28vw, 12rem);
+    width: clamp(6.2rem, 27vw, 11.5rem);
+  }
+
+  .bottomEyeLips {
+    --parallax-depth-x: -0.4rem;
+    --parallax-depth-y: 0.35rem;
+    --parallax-scroll-depth: 0.55rem;
+    --collage-rotation: 6deg;
+    bottom: -2.15rem;
+    right: -1.15rem;
+    width: clamp(7.8rem, 34vw, 13.5rem);
+  }
+
+  .titleBlock {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .signature {
+    width: min(100%, 39rem);
+  }
+
+  .pronunciation {
+    margin-top: -0.25rem;
+    font-size: clamp(0.95rem, 4vw, 1.35rem);
+  }
+
+  .copyBlock {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 38rem;
+    padding-top: 0.2rem;
+    margin-left: 0;
+    font-size: clamp(0.92rem, 2.8vw, 1.12rem);
+    line-height: 1.38;
+  }
+
+  .copyBlock p + p {
+    margin-top: 1.2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .poster {
+    padding-inline: clamp(1.65rem, 7vw, 2.05rem);
+  }
+
+  .lampFrame {
+    display: none;
+  }
+
+  .edgeLamp {
+    display: none;
+  }
+
+  .edgeFace {
+    bottom: -2.35rem;
+    left: -2.4rem;
+    width: clamp(9.5rem, 43vw, 14rem);
+    opacity: 1;
+  }
+
+  .bottomEyelashes {
+    bottom: -4.15rem;
+    right: clamp(6.4rem, 30vw, 9rem);
+    width: clamp(5.3rem, 29vw, 9rem);
+  }
+
+  .bottomEyeLips {
+    bottom: -2.05rem;
+    right: -1.9rem;
+    width: clamp(6.4rem, 35vw, 10.8rem);
+  }
+
+  .signature {
+    width: min(100%, 32rem);
+  }
+
+  .copyBlock {
+    padding-top: 0;
+    font-size: clamp(0.84rem, 3.45vw, 0.92rem);
+    line-height: 1.42;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .intro, .bioPaper, .photo, .faceCollage { animation: none; }
-  .photo, .faceCollage { transition: none; transform: none; }
-  .photo:hover { transform: none; }
+  .lampFrame,
+  .edgeCollage {
+    transition: none;
+    transform: rotate(var(--collage-rotation, 0deg));
+    will-change: auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .poster {
+    padding: 1.25rem 1.35rem 3.7rem;
+  }
+
+  .signature {
+    width: min(100%, 27rem);
+  }
+
+  .pronunciation {
+    font-size: 0.9rem;
+  }
+
+  .copyBlock {
+    font-size: 0.82rem;
+  }
 }

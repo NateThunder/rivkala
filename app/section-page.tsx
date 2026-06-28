@@ -3,7 +3,7 @@ import SiteNav from "./site-nav";
 
 type SectionPageProps = {
   title: string;
-  variant?: "default" | "contact";
+  variant?: "default" | "contact" | "live";
   children?: ReactNode;
 };
 
@@ -14,11 +14,9 @@ export default function SectionPage({
 }: SectionPageProps) {
   return (
     <main
-      className={
-        variant === "contact"
-          ? "section-page section-page--contact"
-          : "section-page"
-      }
+      className={`section-page ${
+        variant === "default" ? "" : `section-page--${variant}`
+      }`}
     >
       <div className="section-page__bg section-page__bg--paper" aria-hidden="true" />
 
