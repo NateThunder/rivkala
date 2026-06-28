@@ -674,11 +674,9 @@
   gap: 3rem;
   margin: 1rem auto;
   padding: clamp(3.5rem, 6vw, 5.5rem) clamp(2rem, 5vw, 5rem);
-  background:
-    linear-gradient(rgba(45, 8, 15, 0.08), rgba(45, 8, 15, 0.16)),
-    url("/Backgrounds/red%20ripped%20papers.png") center / 100% 100% no-repeat;
+  background: url("/Backgrounds/red%20ripped%20papers.png") center / 100% 100%
+    no-repeat;
   color: var(--cream);
-  filter: drop-shadow(0 1rem 1rem rgba(25, 4, 9, 0.28));
 }
 
 .contact .sectionKicker {

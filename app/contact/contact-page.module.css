@@ -20,7 +20,7 @@
 .titleBlock {
   position: relative;
   z-index: 5;
-  width: min(50rem, 62%);
+  width: min(40rem, 49.6%);
   padding: clamp(2rem, 4vw, 4rem) 0 0 clamp(0rem, 2vw, 1.5rem);
   animation: title-enter 720ms 80ms both cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -35,7 +35,7 @@
 .formPosition {
   position: absolute;
   z-index: 4;
-  top: 28rem;
+  top: 22rem;
   left: 0.5rem;
   width: min(35rem, 48%);
   animation: paper-enter 760ms 240ms both cubic-bezier(0.16, 1, 0.3, 1);
@@ -387,11 +387,11 @@
   }
 
   .titleBlock {
-    width: 66%;
+    width: 52.8%;
   }
 
   .formPosition {
-    top: 27rem;
+    top: 21rem;
     width: 49%;
   }
 
@@ -421,7 +421,7 @@
   }
 
   .titleBlock {
-    width: 100%;
+    width: 80%;
     padding: 1.25rem 0 0;
   }
 
@@ -433,7 +433,7 @@
 
   .formPosition {
     z-index: 4;
-    margin-top: 2.5rem;
+    margin-top: 0.75rem;
   }
 
   .formPaper {

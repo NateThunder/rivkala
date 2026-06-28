@@ -37,7 +37,7 @@
 .headingCluster {
   position: relative;
   z-index: 3;
-  width: min(37.4rem, 100%);
+  width: min(31.79rem, 100%);
   margin-left: clamp(0rem, 2.5vw, 2.2rem);
   animation: heading-enter 620ms 80ms both cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -224,7 +224,7 @@
   width: min(100%, 34rem);
   align-self: start;
   justify-self: end;
-  margin-top: clamp(0rem, 1.7vw, 1.4rem);
+  margin-top: clamp(-1.25rem, -1.2vw, -0.35rem);
   animation: collage-enter 760ms 220ms both cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -316,7 +316,7 @@
   }
 
   .headingCluster {
-    width: min(33.15rem, 100%);
+    width: min(28.18rem, 100%);
     margin-left: 0;
   }
 
@@ -339,7 +339,7 @@
   }
 
   .headingCluster {
-    width: min(100%, 37rem);
+    width: min(100%, 31.45rem);
     margin: 0 auto;
   }
 
@@ -402,7 +402,7 @@
 
   .collage {
     width: min(28rem, 96%);
-    margin: clamp(1.4rem, 6vw, 2.4rem) auto 0;
+    margin: clamp(0.4rem, 3vw, 1.2rem) auto 0;
   }
 
   .bookingLink {

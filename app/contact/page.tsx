@@ -104,7 +104,7 @@ function ContactTitle() {
         src={contactHeader}
         alt=""
         priority
-        sizes="(max-width: 760px) calc(100vw - 1.5rem), 49rem"
+        sizes="(max-width: 760px) calc(80vw - 1.2rem), 40rem"
       />
     </div>
   );
