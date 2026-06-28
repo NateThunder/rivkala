@@ -1,0 +1,471 @@
+.page {
+  --live-cream: #ead9bd;
+  --live-paper: #efe0c4;
+  --live-ink: #1c1713;
+  --live-burgundy: #5b1420;
+  --live-olive: #29351e;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  color: var(--live-ink);
+  font-family: var(--font-live-typewriter), "Courier New", monospace;
+}
+
+.poster {
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    "gigs collage"
+    "gigs booking";
+  grid-template-columns: minmax(0, 1fr) minmax(21rem, 34rem);
+  column-gap: clamp(1rem, 2.2vw, 2.4rem);
+  row-gap: clamp(0.4rem, 1vw, 0.9rem);
+  width: min(100% - clamp(2rem, 5vw, 5rem), 94rem);
+  min-height: calc(100svh - 7rem);
+  margin: 0 auto;
+  padding: clamp(0.1rem, 1vw, 0.9rem) 0 clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.gigPanel {
+  grid-area: gigs;
+  width: 100%;
+  max-width: 55rem;
+  align-self: start;
+  justify-self: start;
+}
+
+.headingCluster {
+  position: relative;
+  z-index: 3;
+  width: min(37.4rem, 100%);
+  margin-left: clamp(0rem, 2.5vw, 2.2rem);
+  animation: heading-enter 620ms 80ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.headingArt {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0.55rem 0.2rem rgba(0, 0, 0, 0.24));
+}
+
+.eventList {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  width: min(100%, 52rem);
+  flex-direction: column;
+  gap: clamp(0.38rem, 0.8vw, 0.65rem);
+  margin: clamp(0.35rem, 1vw, 0.8rem) 0 0;
+  padding: 0;
+  list-style: none;
+  animation: list-enter 700ms 180ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.eventItem {
+  position: relative;
+}
+
+.eventLink {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: clamp(3.65rem, 4.75vw, 4.55rem);
+  grid-template-columns:
+    12.5%
+    minmax(0, 1fr)
+    clamp(4rem, 6.5vw, 5.3rem)
+    clamp(4.4rem, 7vw, 5.7rem)
+    14.5%;
+  align-items: center;
+  padding: 0 clamp(0.45rem, 0.9vw, 0.8rem);
+  color: var(--live-ink);
+  text-decoration: none;
+  transform-origin: center;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.eventLink > :not(.eventSticker) {
+  position: relative;
+  z-index: 1;
+}
+
+.eventLink:hover,
+.eventLink:focus-visible {
+  filter: brightness(1.04) drop-shadow(0 0.55rem 0.28rem rgba(0, 0, 0, 0.22));
+  transform: translateX(0.22rem) rotate(-0.25deg);
+}
+
+.eventLink:focus-visible,
+.bookingLink:focus-visible {
+  outline: 0.14rem solid rgba(249, 236, 206, 0.9);
+  outline-offset: 0.16rem;
+}
+
+.eventSticker {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  background-image: url("/Live%20Page/gig%20sticker.PNG?v=2");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: drop-shadow(0 0.4rem 0.18rem rgba(0, 0, 0, 0.28));
+  pointer-events: none;
+}
+
+.eventDate {
+  display: grid;
+  width: clamp(2.55rem, 4.2vw, 3.35rem);
+  aspect-ratio: 0.8;
+  place-items: center;
+  justify-self: center;
+  line-height: 1;
+}
+
+.eventDay {
+  align-self: end;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.18rem, 2.2vw, 1.7rem);
+  letter-spacing: 0;
+}
+
+.eventMonth {
+  align-self: start;
+  font-size: clamp(0.58rem, 1vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.eventDetails {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.12rem;
+  padding-left: clamp(1.1rem, 2vw, 1.7rem);
+}
+
+.eventTitle {
+  overflow: hidden;
+  color: var(--live-burgundy);
+  font-size: clamp(0.82rem, 1.15vw, 1.08rem);
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eventLocation {
+  overflow: hidden;
+  color: #1f1814;
+  font-size: clamp(0.62rem, 0.95vw, 0.82rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lineupTag {
+  min-width: clamp(2.8rem, 4.6vw, 3.9rem);
+  justify-self: center;
+  padding: 0.34rem 0.5rem 0.3rem;
+  color: #f7ecd5;
+  font-size: clamp(0.56rem, 0.9vw, 0.78rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(-1deg);
+}
+
+.lineupSolo {
+  background: #775165;
+}
+
+.lineupTrio {
+  background: #bf7e83;
+  color: #1f1714;
+}
+
+.lineupDuo {
+  background: #344326;
+}
+
+.eventTime {
+  justify-self: center;
+  color: #17120f;
+  font-size: clamp(0.62rem, 0.92vw, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ticketHitArea {
+  justify-self: center;
+  color: #15110e;
+  font-size: clamp(0.74rem, 1.14vw, 0.96rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.collage {
+  grid-area: collage;
+  width: min(100%, 34rem);
+  align-self: start;
+  justify-self: end;
+  margin-top: clamp(0rem, 1.7vw, 1.4rem);
+  animation: collage-enter 760ms 220ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.collageImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0.75rem 0.36rem rgba(0, 0, 0, 0.28));
+}
+
+.bookingLink {
+  grid-area: booking;
+  display: block;
+  width: min(28rem, 100%);
+  align-self: start;
+  justify-self: center;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+  animation: banner-enter 700ms 360ms both cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bookingLink:hover {
+  filter: brightness(1.04) drop-shadow(0 0.55rem 0.22rem rgba(0, 0, 0, 0.24));
+  transform: translateY(-0.12rem) rotate(-0.4deg);
+}
+
+.bookingLink img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes heading-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(-1.4rem, 0.8rem, 0) rotate(-1.5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+}
+
+@keyframes list-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(-0.7rem, 1.1rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes collage-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(1.4rem, 1.6rem, 0) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes banner-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.9rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 1120px) {
+  .poster {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
+    column-gap: clamp(0.8rem, 1.8vw, 1.4rem);
+    width: min(100% - 2rem, 76rem);
+  }
+
+  .headingCluster {
+    width: min(33.15rem, 100%);
+    margin-left: 0;
+  }
+
+  .eventList {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .poster {
+    display: flex;
+    width: min(100% - 1.25rem, 42rem);
+    min-height: 0;
+    flex-direction: column;
+    padding: clamp(0.5rem, 2vw, 1rem) 0 3rem;
+  }
+
+  .gigPanel {
+    max-width: none;
+  }
+
+  .headingCluster {
+    width: min(100%, 37rem);
+    margin: 0 auto;
+  }
+
+  .eventList {
+    gap: clamp(0.34rem, 1.5vw, 0.52rem);
+    margin-top: clamp(0.35rem, 2vw, 0.8rem);
+  }
+
+  .eventLink {
+    min-height: clamp(4.15rem, 18vw, 5rem);
+    grid-template-columns: 14% minmax(0, 1fr) 14% 15% 13%;
+    padding: 0 clamp(0.28rem, 1.5vw, 0.55rem);
+  }
+
+  .eventDate {
+    width: clamp(2.15rem, 10vw, 2.9rem);
+  }
+
+  .eventDay {
+    font-size: clamp(1rem, 5vw, 1.45rem);
+  }
+
+  .eventMonth {
+    font-size: clamp(0.5rem, 2.4vw, 0.68rem);
+  }
+
+  .eventTitle {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: clamp(0.62rem, 2.65vw, 0.84rem);
+    line-height: 1.05;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .eventLocation {
+    font-size: clamp(0.54rem, 2.35vw, 0.72rem);
+    line-height: 1.05;
+  }
+
+  .lineupTag {
+    min-width: clamp(2.25rem, 10vw, 3.1rem);
+    padding: 0.24rem 0.28rem 0.22rem;
+    font-size: clamp(0.48rem, 2vw, 0.62rem);
+    letter-spacing: 0.08em;
+  }
+
+  .eventTime {
+    font-size: clamp(0.48rem, 2vw, 0.64rem);
+    letter-spacing: 0.03em;
+  }
+
+  .ticketHitArea {
+    justify-self: start;
+    padding-left: 0.22rem;
+    font-size: clamp(0.48rem, 2vw, 0.6rem);
+    letter-spacing: 0;
+  }
+
+  .collage {
+    width: min(28rem, 96%);
+    margin: clamp(1.4rem, 6vw, 2.4rem) auto 0;
+  }
+
+  .bookingLink {
+    width: min(27rem, 92%);
+    margin: clamp(0.2rem, 1vw, 0.6rem) auto 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .poster {
+    width: min(100% - 0.75rem, 42rem);
+  }
+
+  .eventLink {
+    min-height: 4.55rem;
+    grid-template-columns: 14% minmax(0, 1fr) 13% 15% 12%;
+  }
+
+  .eventDetails {
+    padding-left: 0.75rem;
+  }
+
+  .eventTitle {
+    font-size: 0.66rem;
+    letter-spacing: 0.025em;
+  }
+
+  .eventLocation {
+    font-size: 0.56rem;
+    letter-spacing: 0;
+  }
+
+  .lineupTag {
+    min-width: 2.15rem;
+    font-size: 0.48rem;
+  }
+
+  .eventTime {
+    font-size: 0.48rem;
+  }
+
+  .ticketHitArea {
+    padding-left: 0.16rem;
+    font-size: 0.46rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headingCluster,
+  .eventList,
+  .collage,
+  .bookingLink {
+    animation: none;
+  }
+
+  .eventLink,
+  .bookingLink {
+    transition: none;
+  }
+
+  .eventLink:hover,
+  .eventLink:focus-visible,
+  .bookingLink:hover {
+    transform: none;
+  }
+}
