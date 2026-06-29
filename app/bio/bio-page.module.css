@@ -235,7 +235,7 @@
     min-height: 0;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-    padding: 1.5rem clamp(1.2rem, 4.8vw, 1.65rem) 4.2rem;
+    padding: 1.5rem clamp(1.2rem, 4.8vw, 1.65rem) 6rem;
   }
 
   .lampFrame {
@@ -257,7 +257,7 @@
   }
 
   .edgeFace {
-    bottom: -1.35rem;
+    bottom: -4.1rem;
     left: -1.15rem;
     width: clamp(10.5rem, 50vw, 17rem);
     opacity: 1;
@@ -333,7 +333,7 @@
   }
 
   .edgeFace {
-    bottom: -2.35rem;
+    bottom: -4.6rem;
     left: -2.4rem;
     width: clamp(9.5rem, 43vw, 14rem);
     opacity: 1;
