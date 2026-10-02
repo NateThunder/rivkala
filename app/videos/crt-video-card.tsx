@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { VideoItem } from "./video-data";
+import type { VideoItem } from "@/lib/admin/types";
 import TornPaperLabel from "./torn-paper-label";
 import styles from "./video-room.module.css";
 
@@ -85,8 +85,8 @@ export default function CRTVideoCard({
           <Image
             className={styles.crtImage}
             src="/TV Room/CRT-bigger.PNG"
-            width={587}
-            height={452}
+            width={1132}
+            height={866}
             alt=""
             aria-hidden="true"
             loading={index < 2 ? "eager" : "lazy"}

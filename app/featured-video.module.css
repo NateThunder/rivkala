@@ -14,7 +14,7 @@
 
 .artboard {
   position: relative;
-  width: min(calc(100% - 1rem), 66rem);
+  width: min(calc(95% - 1rem), 62.7rem);
   aspect-ratio: 1.08;
   margin: 0 auto;
   container-type: inline-size;
@@ -95,10 +95,10 @@
 
 .mediaBlock {
   position: absolute;
-  top: 6.5%;
-  left: 52.55%;
+  top: 19%;
+  left: 53.4%;
   z-index: 6;
-  width: 83.62%;
+  width: min(94%, 63.65vw, 52.25rem);
   min-width: 0;
   translate: -50% 0;
 }
@@ -115,12 +115,12 @@
 
 .tvFrame::before {
   position: absolute;
-  top: 21.3%;
-  left: 12.8%;
+  top: 8%;
+  left: 5%;
   z-index: 0;
-  width: 60.8%;
-  height: 48%;
-  border-radius: 16% / 19%;
+  width: 74%;
+  height: 74%;
+  border-radius: 12% / 15%;
   background: #080604;
   content: "";
 }
@@ -137,12 +137,12 @@
 
 .screen {
   position: absolute;
-  top: 22%;
-  left: 13.35%;
+  top: 11.5%;
+  left: 8.7%;
   z-index: 1;
   display: block;
-  width: 59.6%;
-  height: 46.8%;
+  width: 66.6%;
+  height: 66.4%;
   overflow: hidden;
   border-radius: 14% / 17%;
   background: #120d0b;
@@ -290,6 +290,12 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .mediaBlock {
+    width: min(94%, 50.92vw, 41.8rem);
+  }
+}
+
 @media (max-width: 640px) {
   .featuredVideo {
     margin-top: -4.5rem;
@@ -297,7 +303,7 @@
   }
 
   .artboard {
-    width: min(calc(100% - 0.5rem), 32rem);
+    width: min(calc(95% - 0.5rem), 30.4rem);
   }
 
   .title {

@@ -74,7 +74,7 @@
   grid-template-columns:
     12.5%
     minmax(0, 1fr)
-    clamp(4rem, 6.5vw, 5.3rem)
+    clamp(4.8rem, 7.2vw, 6.8rem)
     clamp(4.4rem, 7vw, 5.7rem)
     14.5%;
   align-items: center;
@@ -96,6 +96,11 @@
 .eventLink:focus-visible {
   filter: brightness(1.04) drop-shadow(0 0.55rem 0.28rem rgba(0, 0, 0, 0.22));
   transform: translateX(0.22rem) rotate(-0.25deg);
+}
+
+.eventLinkFree:hover {
+  filter: none;
+  transform: none;
 }
 
 .eventLink:focus-visible,
@@ -197,6 +202,15 @@
   background: #344326;
 }
 
+.lineupFullBand,
+.lineupOther {
+  background: #6e171e;
+}
+
+.lineupOther {
+  color: #f7ecd5;
+}
+
 .eventTime {
   justify-self: center;
   color: #17120f;
@@ -217,6 +231,35 @@
   line-height: 1;
   text-align: center;
   white-space: nowrap;
+}
+
+.emptyState {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  width: min(100%, 34rem);
+  gap: 0.85rem;
+  margin: clamp(0.9rem, 2vw, 1.5rem) 0 0 clamp(0.35rem, 2vw, 2rem);
+  padding: clamp(1.2rem, 3vw, 1.75rem);
+  background: rgba(239, 224, 196, 0.88);
+  box-shadow: 0 0.65rem 0.4rem rgba(0, 0, 0, 0.2);
+  clip-path: polygon(2% 5%, 98% 0, 100% 91%, 93% 100%, 4% 97%, 0 18%);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.emptyState p {
+  margin: 0;
+  color: var(--live-burgundy);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  letter-spacing: 0.08em;
+}
+
+.emptyState a {
+  width: fit-content;
+  color: var(--live-ink);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
 }
 
 .collage {

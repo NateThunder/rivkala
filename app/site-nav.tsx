@@ -17,15 +17,15 @@ const navItems = [
   { href: "/music", label: "Music", rag: musicRag, tone: "dark" },
   { href: "/videos", label: "Videos", rag: videoRag, tone: "light" },
   { href: "/live", label: "Live", rag: liveRag, tone: "light" },
+  { href: "/bio", label: "Bio", rag: bioRag, tone: "dark" },
   { href: "/epk", label: "EPK", rag: epkRag, tone: "dark" },
   {
-    href: "https://rivkala.bandcamp.com/merch",
+    href: "/shop",
     label: "Shop",
     rag: shopRag,
     tone: "dark",
   },
   { href: "/contact", label: "Contact", rag: contactRag, tone: "light" },
-  { href: "/bio", label: "Bio", rag: bioRag, tone: "dark" },
 ];
 
 export default function SiteNav() {
@@ -117,14 +117,12 @@ export default function SiteNav() {
         className={`site-nav__list${isMenuOpen ? " site-nav__list--open" : ""}`}
       >
         {navItems.map(({ href, label, rag, tone }) => {
-          const isActive = pathname === href;
+          const isActive = pathname === href || pathname.startsWith(`${href}/`);
 
           return (
             <li key={href} className="site-nav__item site-nav__item--graphic">
               <Link
                 href={href}
-                target={label === "Shop" ? "_blank" : undefined}
-                rel={label === "Shop" ? "noopener noreferrer" : undefined}
                 className={`site-nav__link${
                   isActive ? " site-nav__link--active" : ""
                 } site-nav__link--graphic site-nav__link--${tone}${

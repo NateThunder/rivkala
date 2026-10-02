@@ -1,10 +1,10 @@
 import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
+import { getMusicLinks } from "@/lib/admin/content";
+import type { MusicLink } from "@/lib/admin/types";
 import styles from "./featured-releases.module.css";
 import FeaturedReleasesCollage from "./featured-releases-collage";
-import chessCover from "../public/Album covers/Chess.png";
-import crushedVelvetCover from "../public/Album covers/Crushed Velvet.png";
-import zipLockTeethCover from "../public/Album covers/Zip Lock Teeth.png";
 import pinkTitleTape from "../public/TV Room/pink-tape.png";
 import whiteTitleTape from "../public/TV Room/white tape.png";
 import beigeTape from "../public/rivkala_featured_releases_assets/decor/beige-tape.png";
@@ -15,48 +15,42 @@ import lamp from "../public/rivkala_featured_releases_assets/decor/vintage-fring
 type Release = {
   title: string;
   href: string;
-  cover: StaticImageData;
+  cover: string;
+  coverAlt: string;
   tape: StaticImageData;
   tilt: string;
   tapeTilt: string;
 };
 
-const releases: Release[] = [
-  {
-    title: "Crushed Velvet",
-    href: "https://rivkala.bandcamp.com/album/crushed-velvet",
-    cover: crushedVelvetCover,
-    tape: beigeTape,
-    tilt: "-2.2deg",
-    tapeTilt: "3deg",
-  },
-  {
-    title: "Chess",
-    href: "https://rivkala.bandcamp.com/track/chess",
-    cover: chessCover,
-    tape: blackTape,
-    tilt: "1.4deg",
-    tapeTilt: "-2.5deg",
-  },
-  {
-    title: "Zip Lock Teeth",
-    href: "https://rivkala.bandcamp.com/track/zip-lock-teeth",
-    cover: zipLockTeethCover,
-    tape: beigeTape,
-    tilt: "-1.2deg",
-    tapeTilt: "5deg",
-  },
-];
+const musicPath = "/music";
+const tilts = ["-2.2deg", "1.4deg", "-1.2deg", "1.8deg", "-1.6deg"];
+const tapeTilts = ["3deg", "-2.5deg", "5deg", "-4deg", "2deg"];
 
-const bandcampRoot = "https://rivkala.bandcamp.com/";
+function toRelease(link: MusicLink, index: number): Release {
+  return {
+    title: link.title,
+    href: `${musicPath}#release-${link.id}`,
+    cover: link.thumbnail_src,
+    coverAlt: link.thumbnail_alt || `${link.title} cover artwork`,
+    tape: index % 2 === 0 ? beigeTape : blackTape,
+    tilt: tilts[index % tilts.length],
+    tapeTilt: tapeTilts[index % tapeTilts.length],
+  };
+}
 
 type FeaturedReleasesProps = {
   enableCollageParallax?: boolean;
 };
 
-export default function FeaturedReleases({
+export default async function FeaturedReleases({
   enableCollageParallax = false,
 }: FeaturedReleasesProps) {
+  const releases = (await getMusicLinks())
+    .filter((release) => release.is_featured)
+    .map(toRelease);
+
+  if (!releases.length) return null;
+
   return (
     <section
       className={styles.featuredReleases}
@@ -122,17 +116,18 @@ export default function FeaturedReleases({
                 } as CSSProperties
               }
             >
-              <a
+              <Link
                 className={styles.coverLink}
                 href={release.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Listen to ${release.title} on Bandcamp`}
+                aria-label={`View ${release.title} on the Music page`}
               >
                 <Image
                   className={styles.releaseCover}
                   src={release.cover}
-                  alt={`${release.title} cover artwork`}
+                  alt={release.coverAlt}
+                  width={800}
+                  height={800}
+                  unoptimized={release.cover.startsWith("/api/media/")}
                   sizes="(max-width: 760px) 76vw, (max-width: 1100px) 27vw, 320px"
                 />
                 <Image
@@ -142,30 +137,26 @@ export default function FeaturedReleases({
                   aria-hidden="true"
                   sizes="120px"
                 />
-              </a>
+              </Link>
 
               <h3 className={styles.releaseName}>{release.title}</h3>
-              <a
+              <Link
                 className={styles.releaseButton}
                 href={release.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Listen to ${release.title} on Bandcamp`}
+                aria-label={`Listen to ${release.title} on the Music page`}
               >
                 <span>Listen</span>
-              </a>
+              </Link>
             </article>
           ))}
         </div>
 
-        <a
+        <Link
           className={styles.allReleasesLink}
-          href={bandcampRoot}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={musicPath}
         >
           <span>View all releases</span>
-        </a>
+        </Link>
       </div>
     </section>
   );

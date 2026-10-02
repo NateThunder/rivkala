@@ -11,9 +11,15 @@ import pinnedStoryPaper from "../../public/Backgrounds/paper with pin 2.png";
 import redRippedPaper from "../../public/Backgrounds/red ripped papers.png";
 import socialImage from "../../public/IMAGES OF ME/Rivkala-creditMarianaPires-4.jpg";
 import yellowRippedPaper from "../../public/Backgrounds/yellow ripped paper.png";
+import {
+  getBioCore,
+  getEpkPdf,
+  getEpkPhotoSlots,
+} from "@/lib/admin/content";
+import { epkStatic } from "@/lib/admin/defaults";
 import SiteNav from "../site-nav";
-import { epk, pressPhotos } from "./epk-data";
 import styles from "./epk-page.module.css";
+import KitSignupForm from "./kit-signup-form";
 
 const bodoniModa = Bodoni_Moda({
   variable: "--font-epk-serif",
@@ -27,12 +33,14 @@ const courierPrime = Courier_Prime({
   weight: ["400", "700"],
 });
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Electronic Press Kit | Rivkala",
   description:
     "Rivkala's official electronic press kit: biography, selected credits, music, video, press photography and booking contact.",
   openGraph: {
-    title: "Rivkala — Electronic Press Kit",
+    title: "Rivkala - Electronic Press Kit",
     description:
       "Biography, selected credits, music, video, press photography and booking contact for Rivkala.",
     type: "website",
@@ -47,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rivkala — Electronic Press Kit",
+    title: "Rivkala - Electronic Press Kit",
     description:
       "Biography, selected credits, music, video, press photography and booking contact.",
     images: [socialImage.src],
@@ -66,7 +74,13 @@ function ActionLink({
   );
 }
 
-export default function EpkPage() {
+export default async function EpkPage() {
+  const [bio, pdf, pressPhotos] = await Promise.all([
+    getBioCore(),
+    getEpkPdf(),
+    getEpkPhotoSlots(),
+  ]);
+
   return (
     <main className={`${styles.page} ${bodoniModa.variable} ${courierPrime.variable}`}>
       <video
@@ -79,10 +93,7 @@ export default function EpkPage() {
         aria-hidden="true"
         tabIndex={-1}
       >
-        <source
-          src="/Stop%20Motion/My_Stop_Motion_Movie.mp4"
-          type="video/mp4"
-        />
+        <source src="/Stop%20Motion/My_Stop_Motion_Movie.mp4" type="video/mp4" />
       </video>
       <div className={styles.wall} aria-hidden="true" />
 
@@ -110,26 +121,68 @@ export default function EpkPage() {
             sizes="(max-width: 760px) calc(100vw - 1.5rem), 44vw"
           />
           <div className={styles.heroContent}>
-          <p className={styles.kicker}>Official electronic press kit</p>
-          <h1 id="epk-title">Rivkala</h1>
-          <p className={styles.pronunciation}>
-            {epk.pronunciation} <span>·</span> {epk.pronouns}
-          </p>
-          <p className={styles.strapline}>{epk.strapline}</p>
-          <p className={styles.heroIntro}>{epk.shortBio}</p>
+            <p className={styles.kicker}>Official electronic press kit</p>
+            <h1 id="epk-title">Rivkala</h1>
+            <p className={styles.pronunciation}>
+              {bio.pronunciation} <span>·</span> {bio.pronouns}
+            </p>
+            <p className={styles.strapline}>{bio.strapline}</p>
+            <p className={styles.heroIntro}>{bio.shortBio}</p>
 
-          <nav className={styles.heroActions} aria-label="EPK actions">
-            <ActionLink
-              className={styles.actionDark}
-              href={epk.pdfHref}
-              download="RIVKALA EPK OFFICIAL.pdf"
-            >
-              Download PDF
-            </ActionLink>
-            <ActionLink href={`mailto:${epk.contactEmail}`}>Book / press</ActionLink>
-          </nav>
+            <nav className={styles.heroActions} aria-label="EPK actions">
+              <ActionLink
+                className={styles.actionDark}
+                href={pdf.href}
+                download={pdf.downloadName}
+              >
+                Download PDF
+              </ActionLink>
+              <ActionLink href={`mailto:${epkStatic.contactEmail}`}>
+                Book / press
+              </ActionLink>
+            </nav>
           </div>
         </div>
+      </section>
+
+      <section className={styles.quotes} aria-label="Selected press quotes">
+        {epkStatic.quotes.map((quote, index) => (
+          <figure
+            className={styles.quote}
+            style={{ "--quote-index": index } as React.CSSProperties}
+            key={quote.text}
+          >
+            {index === 0 ? (
+              <Image
+                className={styles.quotePaperTexture}
+                src={pinkRippedPaper}
+                alt=""
+                fill
+                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
+              />
+            ) : null}
+            {index === 1 ? (
+              <Image
+                className={styles.quotePaperTexture}
+                src={redRippedPaper}
+                alt=""
+                fill
+                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
+              />
+            ) : null}
+            {index === 2 ? (
+              <Image
+                className={styles.quotePaperTexture}
+                src={yellowRippedPaper}
+                alt=""
+                fill
+                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
+              />
+            ) : null}
+            <blockquote>&quot;{quote.text}&quot;</blockquote>
+            <figcaption>- {quote.source}</figcaption>
+          </figure>
+        ))}
       </section>
 
       <section className={styles.story} aria-labelledby="story-title">
@@ -143,11 +196,11 @@ export default function EpkPage() {
           />
           <p className={styles.sectionKicker}>The story so far</p>
           <h2 id="story-title">Cabaret with teeth.</h2>
-          <p>{epk.shortBio}</p>
+          <p>{bio.shortBio}</p>
           <details className={styles.bioDisclosure}>
             <summary>Read full bio</summary>
             <div className={styles.longBio}>
-              {epk.longBio.map((paragraph) => (
+              {bio.longBio.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -164,51 +217,11 @@ export default function EpkPage() {
           />
           <h2 id="proof-title">Selected credits</h2>
           <ul>
-            {epk.achievements.map((achievement) => (
+            {epkStatic.achievements.map((achievement) => (
               <li key={achievement}>{achievement}</li>
             ))}
           </ul>
         </div>
-      </section>
-
-      <section className={styles.quotes} aria-label="Selected press quotes">
-        {epk.quotes.map((quote, index) => (
-          <figure
-            className={styles.quote}
-            style={{ "--quote-index": index } as React.CSSProperties}
-            key={quote.text}
-          >
-            {index === 0 && (
-              <Image
-                className={styles.quotePaperTexture}
-                src={pinkRippedPaper}
-                alt=""
-                fill
-                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
-              />
-            )}
-            {index === 1 && (
-              <Image
-                className={styles.quotePaperTexture}
-                src={redRippedPaper}
-                alt=""
-                fill
-                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
-              />
-            )}
-            {index === 2 && (
-              <Image
-                className={styles.quotePaperTexture}
-                src={yellowRippedPaper}
-                alt=""
-                fill
-                sizes="(max-width: 760px) calc(100vw - 2rem), 28rem"
-              />
-            )}
-            <blockquote>“{quote.text}”</blockquote>
-            <figcaption>— {quote.source}</figcaption>
-          </figure>
-        ))}
       </section>
 
       <section className={styles.photos} aria-labelledby="photos-title">
@@ -237,6 +250,7 @@ export default function EpkPage() {
                   src={photo.src}
                   alt={photo.alt}
                   fill
+                  unoptimized={photo.src.startsWith("/api/media/")}
                   sizes="(max-width: 620px) calc(100vw - 4rem), (max-width: 1000px) 42vw, 24rem"
                 />
               </div>
@@ -245,7 +259,7 @@ export default function EpkPage() {
                   <strong>{photo.label}</strong>
                   {photo.credit}
                 </span>
-                <a href={photo.src.src} download={photo.downloadName}>
+                <a href={photo.src} download={photo.download_name}>
                   Download
                 </a>
               </figcaption>
@@ -255,28 +269,34 @@ export default function EpkPage() {
       </section>
 
       <section className={styles.contact} aria-labelledby="contact-title">
-        <div>
+        <div className={styles.contactDetails}>
           <p className={styles.sectionKicker}>Bookings · press · collaborations</p>
           <h2 id="contact-title">Bring Rivkala into the room.</h2>
-          <a className={styles.email} href={`mailto:${epk.contactEmail}`}>
-            {epk.contactEmail}
+          <a className={styles.email} href={`mailto:${epkStatic.contactEmail}`}>
+            {epkStatic.contactEmail}
           </a>
         </div>
-        <nav className={styles.contactActions} aria-label="Professional contact options">
-          <ActionLink className={styles.actionCream} href={`mailto:${epk.contactEmail}`}>
-            Email directly
-          </ActionLink>
-          <Link className={`${styles.action} ${styles.actionCream}`} href="/contact">
-            Contact page
-          </Link>
-          <ActionLink
-            className={styles.actionOutline}
-            href={epk.pdfHref}
-            download="RIVKALA EPK OFFICIAL.pdf"
-          >
-            Download PDF
-          </ActionLink>
-        </nav>
+        <div className={styles.contactSignup}>
+          <nav className={styles.contactActions} aria-label="Professional contact options">
+            <ActionLink
+              className={styles.actionCream}
+              href={`mailto:${epkStatic.contactEmail}`}
+            >
+              Email directly
+            </ActionLink>
+            <Link className={`${styles.action} ${styles.actionCream}`} href="/contact">
+              Contact page
+            </Link>
+            <ActionLink
+              className={styles.actionOutline}
+              href={pdf.href}
+              download={pdf.downloadName}
+            >
+              Download PDF
+            </ActionLink>
+          </nav>
+          <KitSignupForm />
+        </div>
       </section>
     </main>
   );

@@ -1,0 +1,1388 @@
+.adminPage,
+.loginPage {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 88% -8%, rgba(215, 163, 74, 0.14), transparent 24rem),
+    linear-gradient(135deg, #0d0d10 0%, #111116 48%, #08080a 100%);
+  color: #f7efe2;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+
+.adminPage {
+  display: grid;
+  grid-template-columns: 17.5rem minmax(0, 1fr);
+}
+
+.loginPage {
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding: 1.35rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 13, 0.86);
+  backdrop-filter: blur(16px);
+}
+
+.sidebarBrand {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar h1,
+.workspace h2,
+.editPanel h3,
+.editorModal h3,
+.confirmDialog h3,
+.loginPanel h1 {
+  margin: 0;
+  color: #fff8ea;
+  letter-spacing: 0;
+  line-height: 1.05;
+}
+
+.sidebar h1 {
+  font-size: 1.55rem;
+}
+
+.workspace {
+  width: min(100%, 92rem);
+  padding: 1.75rem;
+}
+
+.mobileHeader,
+.sidebarClose,
+.drawerBackdrop {
+  display: none;
+}
+
+.eyebrow {
+  margin: 0 0 0.48rem;
+  color: #d7a34a;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.signedIn,
+.sectionIntro {
+  margin: 0.55rem 0 0;
+  color: rgba(247, 239, 226, 0.62);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tabs {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.tabs button,
+.secondaryButton,
+.primaryButton,
+.uploadButton,
+.dangerActionButton,
+.quickActions button {
+  min-height: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 750;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.tabs button {
+  position: relative;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  color: rgba(247, 239, 226, 0.76);
+  text-align: left;
+}
+
+.tabs button::before {
+  content: "";
+  position: absolute;
+  inset: 0.48rem auto 0.48rem 0;
+  width: 0.18rem;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.tabs button:hover,
+.tabs button:focus-visible,
+.tabs .activeTab,
+.secondaryButton:hover,
+.secondaryButton:focus-visible,
+.primaryButton:hover,
+.primaryButton:focus-visible,
+.uploadButton:hover,
+.uploadButton:focus-visible,
+.quickActions button:hover,
+.quickActions button:focus-visible {
+  border-color: rgba(215, 163, 74, 0.58);
+  background: rgba(215, 163, 74, 0.11);
+}
+
+.tabs .activeTab {
+  color: #fff8ea;
+}
+
+.tabs .activeTab::before {
+  background: #d7a34a;
+}
+
+.primaryButton {
+  border-color: rgba(215, 163, 74, 0.86);
+  background: #d7a34a;
+  color: #14100a;
+  padding: 0.72rem 1rem;
+}
+
+.primaryButton:hover,
+.primaryButton:focus-visible {
+  background: #e2b562;
+  box-shadow: 0 0.8rem 1.7rem rgba(215, 163, 74, 0.18);
+  color: #100d08;
+}
+
+.secondaryButton,
+.dangerActionButton {
+  padding: 0.72rem 1rem;
+}
+
+.buttonWithIcon,
+.quickActions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.buttonWithIcon svg,
+.quickActions svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dangerActionButton {
+  border-color: rgba(255, 118, 118, 0.38);
+  background: rgba(255, 118, 118, 0.12);
+  color: #ffd2d2;
+}
+
+.dangerActionButton:hover,
+.dangerActionButton:focus-visible {
+  border-color: rgba(255, 118, 118, 0.68);
+  background: rgba(255, 118, 118, 0.18);
+}
+
+.status,
+.error {
+  margin: 0 0 1rem;
+  border-radius: 8px;
+  padding: 0.82rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.status {
+  border: 1px solid rgba(92, 214, 147, 0.28);
+  background: rgba(92, 214, 147, 0.11);
+  color: #cbffdf;
+}
+
+.error {
+  border: 1px solid rgba(255, 111, 111, 0.34);
+  background: rgba(255, 111, 111, 0.12);
+  color: #ffd6d6;
+}
+
+.dashboard,
+.contentSection,
+.longForm {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.22);
+}
+
+.dashboard,
+.contentSection,
+.longForm {
+  padding: 1.2rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1.2rem;
+}
+
+.metricGrid button {
+  display: grid;
+  min-height: 9rem;
+  align-content: space-between;
+  gap: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(8, 8, 10, 0.62);
+  color: inherit;
+  cursor: pointer;
+  padding: 1rem;
+  text-align: left;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.metricGrid button:hover,
+.metricGrid button:focus-visible {
+  border-color: rgba(215, 163, 74, 0.52);
+  background: rgba(215, 163, 74, 0.1);
+  transform: translateY(-0.08rem);
+}
+
+.metricGrid span,
+.insightPanel span,
+.quickActions > span {
+  color: rgba(247, 239, 226, 0.58);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.metricGrid strong {
+  overflow-wrap: anywhere;
+  color: #f1c875;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 0.95;
+}
+
+.metricGrid small {
+  color: rgba(247, 239, 226, 0.62);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.insightGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+.insightPanel,
+.quickActions {
+  display: grid;
+  min-width: 0;
+  gap: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+}
+
+.insightPanel strong {
+  overflow-wrap: anywhere;
+  color: #fff8ea;
+  font-size: 1.05rem;
+}
+
+.insightPanel p {
+  margin: 0;
+  color: rgba(247, 239, 226, 0.62);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.quickActions div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.quickActions button {
+  min-height: 2.25rem;
+  padding: 0.5rem 0.72rem;
+}
+
+.tableWrap {
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(8, 8, 10, 0.4);
+}
+
+.tableWrap table {
+  width: 100%;
+  min-width: 44rem;
+  border-collapse: collapse;
+}
+
+.tableWrap th,
+.tableWrap td {
+  padding: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tableWrap tr:last-child td {
+  border-bottom: 0;
+}
+
+.tableWrap th {
+  color: rgba(247, 239, 226, 0.52);
+  font-size: 0.7rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.tableWrap strong,
+.tableWrap span {
+  display: block;
+}
+
+.tableWrap strong {
+  color: #fff8ea;
+  font-size: 0.94rem;
+}
+
+.tableWrap span {
+  margin-top: 0.24rem;
+  max-width: 28rem;
+  overflow: hidden;
+  color: rgba(247, 239, 226, 0.55);
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.urlCell {
+  max-width: 22rem;
+  overflow-wrap: anywhere;
+  color: rgba(247, 239, 226, 0.72);
+  font-size: 0.84rem;
+}
+
+.badge {
+  display: inline-flex !important;
+  width: fit-content;
+  margin: 0 !important;
+  border: 1px solid rgba(215, 163, 74, 0.38);
+  border-radius: 999px;
+  background: rgba(215, 163, 74, 0.12);
+  color: #f1c875 !important;
+  padding: 0.28rem 0.54rem;
+  font-size: 0.72rem !important;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.emptyTableCell {
+  color: rgba(247, 239, 226, 0.62);
+  text-align: center !important;
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+}
+
+.iconButton,
+.closeButton,
+.menuButton,
+.sidebarClose {
+  display: inline-grid;
+  width: 2.2rem;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #f7efe2;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.iconButton {
+  position: relative;
+}
+
+.iconButton::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 50%;
+  bottom: calc(100% + 0.42rem);
+  z-index: 2;
+  width: max-content;
+  max-width: 9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: #17171c;
+  color: #fff8ea;
+  padding: 0.28rem 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(50%, 0.18rem);
+  transition:
+    opacity 130ms ease,
+    transform 130ms ease;
+}
+
+.iconButton:hover::after,
+.iconButton:focus-visible::after {
+  opacity: 1;
+  transform: translate(50%, 0);
+}
+
+.iconButton svg,
+.closeButton svg,
+.menuButton svg,
+.sidebarClose svg {
+  width: 1.08rem;
+  height: 1.08rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+}
+
+.sidebarClose {
+  display: none;
+}
+
+.iconButton:hover,
+.iconButton:focus-visible,
+.closeButton:hover,
+.closeButton:focus-visible,
+.menuButton:hover,
+.menuButton:focus-visible,
+.sidebarClose:hover,
+.sidebarClose:focus-visible {
+  border-color: rgba(215, 163, 74, 0.58);
+  background: rgba(215, 163, 74, 0.12);
+  transform: translateY(-0.05rem);
+}
+
+.iconButtonDanger {
+  color: #ffbfc1;
+}
+
+.iconButtonDanger:hover,
+.iconButtonDanger:focus-visible {
+  border-color: rgba(255, 118, 118, 0.54);
+  background: rgba(255, 118, 118, 0.12);
+}
+
+.iconButton:disabled,
+.primaryButton:disabled,
+.uploadButton:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.42;
+  transform: none;
+}
+
+.iconButton:disabled::after {
+  display: none;
+}
+
+.editPanel,
+.longForm {
+  display: grid;
+  gap: 1rem;
+}
+
+.loginPanel label,
+.editPanel label,
+.longForm label {
+  display: grid;
+  gap: 0.38rem;
+  color: rgba(247, 239, 226, 0.72);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.loginPanel input,
+.editPanel input,
+.editPanel select,
+.editPanel textarea,
+.longForm input,
+.longForm textarea {
+  min-height: 2.7rem;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff8ea;
+  font: inherit;
+  font-size: 0.92rem;
+  letter-spacing: 0;
+  padding: 0.7rem 0.78rem;
+  outline: 0;
+}
+
+.editPanel select {
+  color-scheme: dark;
+}
+
+.editPanel textarea {
+  resize: vertical;
+}
+
+.loginPanel input:focus,
+.editPanel input:focus,
+.editPanel select:focus,
+.longForm input:focus,
+.longForm textarea:focus {
+  border-color: rgba(215, 163, 74, 0.78);
+  box-shadow: 0 0 0 3px rgba(215, 163, 74, 0.15);
+}
+
+.checkboxLabel {
+  display: flex !important;
+  align-items: center;
+  gap: 0.65rem !important;
+}
+
+.checkboxLabel input {
+  min-height: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+.uploadButton {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 1rem;
+  text-align: center;
+}
+
+.uploadButton input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.previewImage {
+  position: relative;
+  width: min(100%, 18rem);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: #000;
+}
+
+.previewImage img {
+  object-fit: cover;
+}
+
+.inlineFields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
+  gap: 1rem;
+}
+
+.photoSlotGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.photoSlot {
+  display: grid;
+  min-width: 0;
+  gap: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background: rgba(8, 8, 10, 0.34);
+  padding: 1rem;
+}
+
+.photoSlot legend {
+  padding: 0 0.4rem;
+  color: #d7a34a;
+  font-weight: 850;
+}
+
+.modalLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.modalScrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background:
+    radial-gradient(circle at 50% 0, rgba(215, 163, 74, 0.1), transparent 22rem),
+    rgba(0, 0, 0, 0.68);
+  cursor: pointer;
+}
+
+.editorModal {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(100%, 34rem);
+  max-height: min(90vh, 46rem);
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: #151519;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.52);
+}
+
+.modalHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.1rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(21, 21, 25, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.editorModal .editPanel {
+  padding: 1.1rem;
+}
+
+.modalActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.confirmDialog {
+  position: fixed;
+  z-index: 3;
+  display: grid;
+  width: min(calc(100% - 2rem), 26rem);
+  gap: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  background: #18181d;
+  box-shadow: 0 1.8rem 4rem rgba(0, 0, 0, 0.55);
+  padding: 1.1rem;
+}
+
+.confirmDialog p {
+  margin: 0;
+  color: rgba(247, 239, 226, 0.68);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.loginPanel {
+  display: grid;
+  width: min(100%, 28rem);
+  gap: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.34);
+  padding: 1.5rem;
+}
+
+.loginPanel h1 {
+  font-size: 1.8rem;
+}
+
+.shopAdmin {
+  display: grid;
+  gap: 1rem;
+}
+
+.shopSubnav {
+  display: flex;
+  gap: 0.45rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  padding-bottom: 0.8rem;
+}
+
+.shopSubnav button {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(247, 239, 226, 0.62);
+  padding: 0.55rem 0.82rem;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.shopSubnav button:hover,
+.shopSubnav button:focus-visible,
+.shopSubnav .shopSubnavActive {
+  border-color: rgba(215, 163, 74, 0.46);
+  background: rgba(215, 163, 74, 0.11);
+  color: #fff8ea;
+}
+
+.shopToolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.shopToolbar label {
+  display: grid;
+  width: min(100%, 28rem);
+  gap: 0.25rem;
+}
+
+.shopToolbar .eyebrow {
+  margin-bottom: 0;
+}
+
+.shopToolbar input {
+  min-height: 2.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff8ea;
+  padding: 0.65rem 0.78rem;
+  outline: 0;
+}
+
+.shopToolbar > span {
+  color: rgba(247, 239, 226, 0.55);
+  font-size: 0.8rem;
+}
+
+.shopCallout {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+  border: 1px solid rgba(215, 163, 74, 0.25);
+  border-radius: 8px;
+  background: rgba(215, 163, 74, 0.07);
+  padding: 1rem;
+}
+
+.shopCallout p {
+  margin: 0;
+  color: rgba(247, 239, 226, 0.64);
+}
+
+.shopRowActions,
+.shopMiniActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.shopRowActions button,
+.shopMiniActions button,
+.shopRemoveVariant {
+  min-height: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #f7efe2;
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.shopRowActions button:hover,
+.shopMiniActions button:hover,
+.shopRemoveVariant:hover {
+  border-color: rgba(215, 163, 74, 0.58);
+  background: rgba(215, 163, 74, 0.12);
+}
+
+.shopRowActions .shopDeleteAction,
+.shopRemoveVariant {
+  color: #ffc6c8;
+}
+
+.shopRowActions button:disabled,
+.shopMiniActions button:disabled,
+.shopRemoveVariant:disabled {
+  cursor: not-allowed;
+  opacity: 0.36;
+}
+
+.shopAdmin .tableWrap select {
+  min-height: 2.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 6px;
+  background: #17171c;
+  color: #f7efe2;
+  padding: 0.45rem;
+}
+
+.shopEditorModal {
+  width: min(100%, 54rem);
+  max-height: min(92vh, 54rem);
+}
+
+.shopEditorModal .closeButton {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.shopProductForm textarea,
+.shopProductForm select {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff8ea;
+  font: inherit;
+  font-size: 0.92rem;
+  padding: 0.7rem 0.78rem;
+  outline: 0;
+}
+
+.shopProductForm select {
+  min-height: 2.7rem;
+  color-scheme: dark;
+}
+
+.shopProductForm textarea:focus,
+.shopProductForm select:focus {
+  border-color: rgba(215, 163, 74, 0.78);
+  box-shadow: 0 0 0 3px rgba(215, 163, 74, 0.15);
+}
+
+.shopFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.shopChecks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.shopFieldset {
+  display: grid;
+  min-width: 0;
+  gap: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.16);
+  padding: 1rem;
+}
+
+.shopFieldset legend {
+  padding: 0 0.4rem;
+  color: #d7a34a;
+  font-size: 0.85rem;
+  font-weight: 850;
+}
+
+.shopImageList,
+.shopVariantList {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.shopImageList > div {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+  gap: 0.8rem;
+  align-items: end;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.75rem;
+}
+
+.shopImagePreview {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.shopImagePreview img {
+  object-fit: cover;
+}
+
+.shopVariant {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1.25fr) minmax(7rem, 1fr) minmax(6rem, 0.7fr) minmax(5.5rem, 0.6fr);
+  gap: 0.65rem;
+  align-items: end;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  padding-top: 0.8rem;
+}
+
+.shopVariant .checkboxLabel {
+  grid-column: 1 / 2;
+}
+
+.shopRemoveVariant {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.shopFileName,
+.formNote {
+  margin: 0;
+  color: rgba(247, 239, 226, 0.62);
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.musicSaleUploads {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.musicSaleUploads > div {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+}
+
+.musicAdminList,
+.musicAdminTracks {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.musicAdminRelease {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background: rgba(8, 8, 10, 0.42);
+}
+
+.musicAdminReleaseHead,
+.musicAdminTrack,
+.musicAdminTrackHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.musicAdminReleaseHead {
+  padding: 0.8rem;
+}
+
+.musicAdminExpand {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.8rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.musicAdminExpand img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.musicAdminExpand span,
+.musicAdminTrack > div:first-of-type {
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.musicAdminExpand strong,
+.musicAdminTrack strong {
+  color: #fff8ea;
+}
+
+.musicAdminExpand small,
+.musicAdminTrack small {
+  color: rgba(247, 239, 226, 0.56);
+}
+
+.musicAdminTracks {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 0.9rem;
+}
+
+.musicAdminTrack {
+  display: grid;
+  grid-template-columns: 2rem minmax(8rem, 1fr) auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 0.65rem;
+}
+
+.musicAdminTrack > span {
+  color: #d7a34a;
+  font-weight: 900;
+}
+
+.musicEditorModal {
+  width: min(100%, 48rem);
+  max-height: min(92vh, 54rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .editorModal {
+    animation: modal-enter 160ms ease-out both;
+  }
+
+  .confirmDialog {
+    animation: modal-enter 140ms ease-out both;
+  }
+
+  .sidebar {
+    transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.45rem) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 1100px) {
+  .adminPage {
+    display: block;
+  }
+
+  .workspace {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .mobileHeader {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: -1rem -1rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(13, 13, 16, 0.9);
+    padding: 0.8rem 1rem;
+    backdrop-filter: blur(16px);
+  }
+
+  .mobileHeader .eyebrow {
+    margin-bottom: 0.15rem;
+  }
+
+  .mobileHeader strong {
+    color: #fff8ea;
+    font-size: 1rem;
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(19rem, 84vw);
+    min-height: 100svh;
+    pointer-events: none;
+    transform: translateX(-102%);
+    visibility: hidden;
+    box-shadow: 1.5rem 0 3rem rgba(0, 0, 0, 0.4);
+  }
+
+  .sidebarOpen {
+    pointer-events: auto;
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .sidebarClose {
+    display: inline-grid;
+  }
+
+  .drawerBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 29;
+    display: block;
+    border: 0;
+    background: rgba(0, 0, 0, 0.52);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  .drawerBackdropOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .metricGrid,
+  .insightGrid,
+  .photoSlotGrid,
+  .inlineFields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .sectionHeader {
+    display: grid;
+  }
+
+  .sectionHeader .primaryButton,
+  .sectionHeader .secondaryButton {
+    width: 100%;
+  }
+
+  .tableWrap {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .tableWrap table,
+  .tableWrap tbody,
+  .tableWrap tr,
+  .tableWrap td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tableWrap thead {
+    display: none;
+  }
+
+  .tableWrap tbody {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .tableWrap tr {
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    background: rgba(8, 8, 10, 0.48);
+    padding: 0.85rem;
+  }
+
+  .tableWrap td {
+    display: grid;
+    grid-template-columns: 5.8rem minmax(0, 1fr);
+    gap: 0.8rem;
+    border-bottom: 0;
+    padding: 0.42rem 0;
+  }
+
+  .tableWrap td::before {
+    content: attr(data-label);
+    color: rgba(247, 239, 226, 0.48);
+    font-size: 0.68rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .tableWrap td:first-child {
+    padding-top: 0;
+  }
+
+  .tableWrap td:last-child {
+    padding-bottom: 0;
+  }
+
+  .tableWrap span {
+    max-width: none;
+    white-space: normal;
+  }
+
+  .emptyTableCell {
+    display: block !important;
+    text-align: left !important;
+  }
+
+  .emptyTableCell::before {
+    display: none;
+  }
+
+  .rowActions {
+    justify-content: flex-start;
+  }
+
+  .modalLayer {
+    align-items: end;
+    padding: 0;
+  }
+
+  .editorModal {
+    width: 100%;
+    max-height: min(88svh, 48rem);
+    border-radius: 8px 8px 0 0;
+    border-bottom: 0;
+  }
+
+  .modalHeader {
+    padding: 1rem 1rem 0.8rem;
+  }
+
+  .editorModal .editPanel {
+    padding: 1rem;
+  }
+
+  .modalActions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .modalActions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .workspace {
+    padding: 0.85rem;
+  }
+
+  .mobileHeader {
+    margin: -0.85rem -0.85rem 0.85rem;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .dashboard,
+  .contentSection,
+  .longForm,
+  .loginPanel {
+    padding: 1rem;
+  }
+
+  .metricGrid button {
+    min-height: 7.25rem;
+  }
+
+  .tableWrap td {
+    grid-template-columns: 1fr;
+    gap: 0.28rem;
+  }
+
+  .iconButton::after {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .shopToolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .shopToolbar label {
+    width: 100%;
+  }
+
+  .shopFormGrid,
+  .shopVariant {
+    grid-template-columns: 1fr;
+  }
+
+  .shopImageList > div {
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+  }
+
+  .shopImageList .shopMiniActions {
+    grid-column: 1 / -1;
+  }
+
+  .shopVariant .checkboxLabel,
+  .shopRemoveVariant {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .musicAdminReleaseHead,
+  .musicAdminTrackHeader {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .musicAdminTrack {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+
+  .musicAdminTrack .shopRowActions {
+    grid-column: 1 / -1;
+  }
+}

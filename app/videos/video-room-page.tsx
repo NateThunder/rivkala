@@ -10,14 +10,15 @@ import rag from "../../public/video_section_separated_assets/rag.png";
 import SiteNav from "../site-nav";
 import CRTVideoCard from "./crt-video-card";
 import TornPaperLabel from "./torn-paper-label";
-import { videos } from "./video-data";
+import type { VideoItem } from "@/lib/admin/types";
 import styles from "./video-room.module.css";
 
 type VideoRoomPageProps = {
   className?: string;
+  videos: VideoItem[];
 };
 
-export default function VideoRoomPage({ className = "" }: VideoRoomPageProps) {
+export default function VideoRoomPage({ className = "", videos }: VideoRoomPageProps) {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
   return (
@@ -58,17 +59,21 @@ export default function VideoRoomPage({ className = "" }: VideoRoomPageProps) {
           <Image className={styles.collageGramps} src={gramps} alt="" sizes="11rem" />
         </div>
 
-        <div className={styles.videoGrid}>
-          {videos.map((video, index) => (
-            <CRTVideoCard
-              key={video.id}
-              index={index}
-              isPlaying={activeVideoId === video.id}
-              video={video}
-              onPlay={(selectedVideo) => setActiveVideoId(selectedVideo.id)}
-            />
-          ))}
-        </div>
+        {videos.length ? (
+          <div className={styles.videoGrid}>
+            {videos.map((video, index) => (
+              <CRTVideoCard
+                key={video.id}
+                index={index}
+                isPlaying={activeVideoId === video.id}
+                video={video}
+                onPlay={(selectedVideo) => setActiveVideoId(selectedVideo.id)}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.emptyState}>New transmissions soon.</div>
+        )}
       </section>
     </main>
   );

@@ -1,0 +1,13 @@
+NEXTJS_ENV=development
+# SHA-256 hex of the admin password. Generate with:
+# node -e "crypto.subtle.digest('SHA-256', new TextEncoder().encode('change-me')).then(b=>console.log(Buffer.from(b).toString('hex')))"
+ADMIN_PASSWORD_HASH=e2186dbdb1bb4193608605e84f33208765b5693b55edd4f730a719a100eeea6f
+SESSION_SECRET=8K2hW9vM4xL7tP1yN3jQ6rB5zC0dFpXg
+
+# Stripe Checkout (use test keys locally)
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+DOWNLOAD_TOKEN_TTL_HOURS=24
+
+# Contact form bot protection

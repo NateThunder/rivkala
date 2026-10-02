@@ -572,7 +572,7 @@
     display: none;
   }
 
-  .home__masthead .site-nav__link[href="https://rivkala.bandcamp.com/merch"] {
+.home__masthead .site-nav__link[href="/shop"] {
     position: relative;
     display: block;
     min-height: clamp(4.25rem, 13vw, 5.7rem);
@@ -586,7 +586,7 @@
     aspect-ratio: 1680 / 558;
   }
 
-  .home__masthead .site-nav__link[href="https://rivkala.bandcamp.com/merch"] > span:first-child {
+.home__masthead .site-nav__link[href="/shop"] > span:first-child {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -598,7 +598,7 @@
     border: 0;
   }
 
-  .home__masthead .site-nav__link[href="https://rivkala.bandcamp.com/merch"] .site-nav__indicator {
+.home__masthead .site-nav__link[href="/shop"] .site-nav__indicator {
     display: none;
   }
 

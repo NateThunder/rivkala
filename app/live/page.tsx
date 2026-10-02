@@ -5,7 +5,11 @@ import SectionPage from "../section-page";
 import bookingsBanner from "../../public/Live Page/rivkala_live_page_assets/bookings_enquiries_banner_transparent.png";
 import headingArt from "../../public/Live Page/rivkala_live_page_assets/live_gigs_heading_transparent.png";
 import livePoster from "../../public/Live Page/live poster.png";
+import { getUpcomingPublicGigs } from "@/lib/admin/content";
+import type { LineupPreset, PublicGig } from "@/lib/admin/types";
 import styles from "./live-page.module.css";
+
+export const dynamic = "force-dynamic";
 
 const liveType = Courier_Prime({
   variable: "--font-live-typewriter",
@@ -13,73 +17,23 @@ const liveType = Courier_Prime({
   weight: ["400", "700"],
 });
 
-type LiveEvent = {
-  id: string;
-  day: string;
-  month: string;
-  title: string;
-  location: string;
-  lineup: "SOLO" | "TRIO" | "DUO";
-  time: string;
-  ticketUrl?: string;
-};
-
-const contactHref = "/contact";
-
-const liveEvents: LiveEvent[] = [
-  {
-    id: "aberdeen-jazz-festival",
-    day: "15",
-    month: "MAR",
-    title: "ABERDEEN JAZZ FESTIVAL",
-    location: "Aberdeen, Scotland",
-    lineup: "SOLO",
-    time: "DAY SHOW",
-  },
-  {
-    id: "the-jazz-bar",
-    day: "22",
-    month: "MAR",
-    title: "THE JAZZ BAR",
-    location: "Edinburgh, Scotland",
-    lineup: "TRIO",
-    time: "7:30PM",
-  },
-  {
-    id: "kelburn-garden-party",
-    day: "05",
-    month: "APR",
-    title: "KELBURN GARDEN PARTY",
-    location: "Argyll, Scotland",
-    lineup: "TRIO",
-    time: "2:00PM",
-  },
-  {
-    id: "st-lukes",
-    day: "18",
-    month: "APR",
-    title: "ST LUKES",
-    location: "Glasgow, Scotland",
-    lineup: "DUO",
-    time: "8:00PM",
-  },
-];
-
-const lineupClassNames: Record<LiveEvent["lineup"], string> = {
+const lineupClassNames: Record<LineupPreset, string> = {
   SOLO: styles.lineupSolo,
   TRIO: styles.lineupTrio,
   DUO: styles.lineupDuo,
+  "FULL BAND": styles.lineupFullBand,
+  OTHER: styles.lineupOther,
 };
 
 function isExternalUrl(href: string) {
   return /^https?:\/\//.test(href);
 }
 
-function EventRow({ event }: { event: LiveEvent }) {
-  const href = event.ticketUrl ?? contactHref;
+function EventRow({ event }: { event: PublicGig }) {
+  const href = event.ticketUrl;
   const isExternal = isExternalUrl(href);
   const ariaLabel = `${event.title}, ${event.location}, ${event.day} ${event.month}, ${event.lineup}, ${event.time}. ${
-    event.ticketUrl ? "Open tickets" : "Contact for tickets"
+    event.ticketUrl ? "Open tickets" : "Free gig"
   }`;
   const rowContent = (
     <>
@@ -92,17 +46,23 @@ function EventRow({ event }: { event: LiveEvent }) {
         <span className={styles.eventTitle}>{event.title}</span>
         <span className={styles.eventLocation}>{event.location}</span>
       </span>
-      <span
-        className={`${styles.lineupTag} ${lineupClassNames[event.lineup]}`}
-      >
+      <span className={`${styles.lineupTag} ${lineupClassNames[event.lineupPreset]}`}>
         {event.lineup}
       </span>
       <span className={styles.eventTime}>{event.time}</span>
       <span className={styles.ticketHitArea} aria-hidden="true">
-        TICKETS ▶
+        {event.ticketUrl ? "TICKETS >" : "FREE GIG"}
       </span>
     </>
   );
+
+  if (!href) {
+    return (
+      <div className={`${styles.eventLink} ${styles.eventLinkFree}`} aria-label={ariaLabel}>
+        {rowContent}
+      </div>
+    );
+  }
 
   if (isExternal) {
     return (
@@ -125,7 +85,9 @@ function EventRow({ event }: { event: LiveEvent }) {
   );
 }
 
-export default function LivePage() {
+export default async function LivePage() {
+  const liveEvents = await getUpcomingPublicGigs();
+
   return (
     <SectionPage title="Live gigs" variant="live">
       <div className={`${styles.page} ${liveType.variable}`}>
@@ -141,13 +103,20 @@ export default function LivePage() {
               />
             </div>
 
-            <ul className={styles.eventList}>
-              {liveEvents.map((event) => (
-                <li className={styles.eventItem} key={event.id}>
-                  <EventRow event={event} />
-                </li>
-              ))}
-            </ul>
+            {liveEvents.length ? (
+              <ul className={styles.eventList}>
+                {liveEvents.map((event) => (
+                  <li className={styles.eventItem} key={event.id}>
+                    <EventRow event={event} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className={styles.emptyState}>
+                <p>More dates soon</p>
+                <Link href="/contact">Bookings and enquiries</Link>
+              </div>
+            )}
           </section>
 
           <div className={styles.collage} aria-hidden="true">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Bodoni_Moda } from "next/font/google";
 import SectionPage from "../section-page";
-import { epk } from "../epk/epk-data";
+import { getBioCore } from "@/lib/admin/content";
 import BioPosterParallax from "./bio-poster-parallax";
 import styles from "./bio-page.module.css";
 
@@ -25,7 +25,11 @@ export const metadata: Metadata = {
     "Meet Rivkala, a singer and storyteller weaving vintage soul with bold theatrical flair.",
 };
 
-export default function BioPage() {
+export const dynamic = "force-dynamic";
+
+export default async function BioPage() {
+  const bio = await getBioCore();
+
   return (
     <SectionPage title="Rivkala" variant="contact">
       <div className={`${styles.page} ${serif.variable}`}>
@@ -100,34 +104,19 @@ export default function BioPage() {
             />
 
             <p className={styles.pronunciation}>
-              <span>{epk.pronunciation}</span>
-              <span className={styles.pronouns}>she/her</span>
+              <span>{bio.pronunciation}</span>
+              <span className={styles.pronouns}>{bio.pronouns}</span>
             </p>
           </section>
 
           <section className={styles.copyBlock} aria-label="Biography">
             <p>
-              <strong>Showgirl, singer and storyteller,</strong> Rivkala is an
-              award-winning multidisciplinary jazz/soul artist, vocalist, writer
-              and bandleader, gaining growing regional attention through TV
-              features on <strong>BBC Look North</strong> and{" "}
-              <strong>ITV Tyne Tees</strong>, and national radio coverage on{" "}
-              <strong>BBC Radio 3</strong>, <strong>JazzFM</strong>,{" "}
-              <strong>Selector Radio</strong> and{" "}
-              <strong>BBC Introducing Manchester/NE</strong>.
+              <strong>{bio.strapline},</strong> {bio.shortBio}
             </p>
 
-            <p>
-              Within the campy vessel of her{" "}
-              <strong>larger than life cabaret bar,</strong>{" "}
-              <strong>Crushed Velvet</strong>, Rivkala and her esteemed 6 piece
-              band blend{" "}
-              <strong>influences of jazz, soul, funk, and klezmer</strong> to
-              orchestrate provocatively playful social commentaries on{" "}
-              <strong>gender, wealth inequality and mental health</strong>.
-              Under the warm glow of her beloved lamp Lucille, they balance
-              serious grooves with comedic theatricality.
-            </p>
+            {bio.longBio.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </section>
         </BioPosterParallax>
       </div>

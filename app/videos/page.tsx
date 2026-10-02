@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bodoni_Moda, Courier_Prime } from "next/font/google";
+import { getPublicVideos } from "@/lib/admin/content";
 import VideoRoomPage from "./video-room-page";
 
 const bodoniModa = Bodoni_Moda({
@@ -19,8 +20,15 @@ export const metadata: Metadata = {
   description: "Watch Rivkala's official video transmissions from the TV Room.",
 };
 
-export default function VideosPage() {
+export const dynamic = "force-dynamic";
+
+export default async function VideosPage() {
+  const videos = await getPublicVideos();
+
   return (
-    <VideoRoomPage className={`${bodoniModa.variable} ${courierPrime.variable}`} />
+    <VideoRoomPage
+      className={`${bodoniModa.variable} ${courierPrime.variable}`}
+      videos={videos}
+    />
   );
 }

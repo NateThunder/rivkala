@@ -1,13 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import "./home.css";
-import bannerText from "../public/banner text.png";
+import bannerText from "../public/collage/ChatGPT Image Jul 29, 2026, 02_57_02 PM-Photoroom.png";
 import headshot from "../public/Bex photos/headshot transparent background.png";
 import FeaturedVideo from "./featured-video";
 import FeaturedReleases from "./featured-releases";
+import { getEpkPdf } from "@/lib/admin/content";
 import SiteNav from "./site-nav";
 
-export default function HomeView() {
+export default async function HomeView() {
+  const epkPdf = await getEpkPdf();
+
   return (
     <main className="home">
       <div className="home__bg home__bg--paper" aria-hidden="true" />
@@ -40,8 +43,8 @@ export default function HomeView() {
               </Link>
               <a
                 className="home__cta home__cta--paper home__cta--download"
-                href="/RIVKALA%20EPK%20OFFICIAL.pdf"
-                download="RIVKALA EPK OFFICIAL.pdf"
+                href={epkPdf.href}
+                download={epkPdf.downloadName}
               >
                 <span>Download EPK</span>
               </a>

@@ -124,7 +124,8 @@
   --parallax-depth-y: 0.75rem;
   --parallax-scroll-depth: 1.15rem;
   --collage-rotation: -5deg;
-  bottom: clamp(-1.2rem, -1.4vw, -0.4rem);
+  z-index: -1;
+  bottom: -9rem;
   left: clamp(-3.4rem, -3.8vw, -1.8rem);
   width: clamp(15rem, 31vw, 23rem);
   opacity: 0.92;

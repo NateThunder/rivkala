@@ -1,0 +1,65 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "rivkala",
+	"main": ".open-next/worker.js",
+	"compatibility_date": "2026-07-02",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1
+	},
+	"routes": [
+		{
+			"pattern": "rivkala.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.rivkala.com",
+			"custom_domain": true
+		}
+	],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "rivkala"
+		}
+	],
+	"images": {
+		"binding": "IMAGES"
+	},
+	"send_email": [
+		{
+			"name": "EMAIL",
+			"remote": true,
+			"allowed_sender_addresses": [
+				"downloads@rivkala.com"
+			]
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "rivkala-media"
+		},
+		{
+			"bucket_name": "rivkala-media",
+			"binding": "rivkala_media",
+			"remote": true
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "rivkala-admin",
+			"database_id": "ed20eba7-d0f9-4f60-8b97-b69de3a33630",
+			"migrations_dir": "./migrations"
+		}
+	]
+}

@@ -43,7 +43,7 @@
 
 .formPaper {
   position: relative;
-  min-height: 48rem;
+  min-height: 51rem;
   filter: drop-shadow(0 1.35rem 1.35rem rgba(22, 2, 7, 0.28));
 }
 
@@ -56,7 +56,7 @@
   position: relative;
   z-index: 1;
   display: flex;
-  min-height: 48rem;
+  min-height: 51rem;
   flex-direction: column;
   padding: 4.9rem clamp(3.15rem, 5vw, 4.6rem) 3.7rem;
   color: #281c18;
@@ -108,7 +108,51 @@
 }
 
 .messageField {
-  margin-bottom: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.mailingListOptOut {
+  display: flex;
+  min-height: 2.5rem;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.45rem;
+  color: rgba(42, 28, 23, 0.9);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.mailingListOptOut input {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+  appearance: none;
+  border: 1px solid rgba(55, 37, 30, 0.72);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.mailingListOptOut input:checked {
+  background:
+    linear-gradient(45deg, transparent 43%, #6c1724 43% 57%, transparent 57%),
+    linear-gradient(-45deg, transparent 43%, #6c1724 43% 57%, transparent 57%);
+}
+
+.mailingListOptOut input:focus-visible {
+  outline: 2px solid #6c1724;
+  outline-offset: 3px;
+}
+
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .sendButton {
@@ -152,6 +196,16 @@
 .formStatus a:focus-visible {
   outline: 2px solid #6c1724;
   outline-offset: 3px;
+}
+
+.formStatusError {
+  color: #8b1d2e;
+  font-weight: 700;
+}
+
+.formStatusSuccess {
+  color: #315b38;
+  font-weight: 700;
 }
 
 .socialNav {
@@ -437,11 +491,11 @@
   }
 
   .formPaper {
-    min-height: 43rem;
+    min-height: 46rem;
   }
 
   .form {
-    min-height: 43rem;
+    min-height: 46rem;
     padding: 4.2rem clamp(2.35rem, 10vw, 3.4rem) 3.35rem;
   }
 
@@ -489,7 +543,7 @@
 @media (max-width: 410px) {
   .formPaper,
   .form {
-    min-height: 42rem;
+    min-height: 45rem;
   }
 
   .form {

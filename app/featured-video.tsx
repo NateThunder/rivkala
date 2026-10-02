@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getFeaturedVideo } from "@/lib/admin/content";
 import styles from "./featured-video.module.css";
 import poster from "../public/Bex photos/Rivkala-creditMarianaPires-3.jpg";
 import pinkTitleTape from "../public/TV Room/pink-tape.png";
 import whiteTitleTape from "../public/TV Room/white tape.png";
 import backdrop from "../public/video_section_separated_assets/backdrop.png";
-import crt from "../public/video_section_separated_assets/CRT.png";
 
-const featuredVideoEmbedUrl = "https://www.youtube.com/embed/LK7PeIOZiVY?rel=0&modestbranding=1";
+export default async function FeaturedVideo() {
+  const featuredVideo = await getFeaturedVideo();
+  const featuredVideoEmbedUrl = `https://www.youtube.com/embed/${featuredVideo.youtube_id}?rel=0&modestbranding=1`;
 
-export default function FeaturedVideo() {
   return (
     <section className={styles.featuredVideo} aria-labelledby="featured-video-title">
       <div className={styles.artboard}>
@@ -60,7 +61,7 @@ export default function FeaturedVideo() {
                 <iframe
                   className={styles.embed}
                   src={featuredVideoEmbedUrl}
-                  title="Rivkala featured video on YouTube"
+                  title={featuredVideo.title}
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -70,7 +71,9 @@ export default function FeaturedVideo() {
               </span>
               <Image
                 className={styles.crt}
-                src={crt}
+                src="/TV Room/CRT-bigger.PNG"
+                width={1132}
+                height={875}
                 alt=""
                 aria-hidden="true"
                 sizes="(max-width: 700px) 94vw, (max-width: 1100px) 58vw, 49rem"
